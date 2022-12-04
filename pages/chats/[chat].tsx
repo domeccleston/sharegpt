@@ -48,7 +48,11 @@ function ChatPage({ page }: ChatProps) {
                 alt="Avatar of the person chatting"
                 width="28"
                 height="28"
-                src={page.gravatarUrl}
+                src={
+                  page.gravatarUrl.includes("gravatar")
+                    ? page.gravatarUrl
+                    : "/gradient.webp"
+                }
               />
             ) : (
               <GPTAvatar />
@@ -78,7 +82,7 @@ export const getServerSideProps = async (
   const { chat } = context.params;
 
   context.res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-  
+
   const page = await redis.get(chat);
   if (page) {
     return { props: { page } };
