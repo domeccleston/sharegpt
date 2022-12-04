@@ -10,5 +10,7 @@ const redis = new Redis({
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const headers = req.headers;
+  if (req.headers.origin !== "https://chat.openai.com")
+    return res.status(400).json("Invalid origin");
   res.status(200).json({ headers });
 }
