@@ -18,7 +18,11 @@ export default async function handler(
     return res.status(400).json("Invalid origin");
   const html = req.body;
   console.log(html);
-  const id = uuid();
-  const result = await redis.set(id, html);
-  res.status(200).json({ id });
+  if (req.method !== "OPTIONS") {
+    const id = uuid();
+    const result = await redis.set(id, html);
+    res.status(200).json({ id });
+  } else {
+    return res.status(200).end();
+  }
 }
