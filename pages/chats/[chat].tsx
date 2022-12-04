@@ -50,9 +50,11 @@ function ChatPage({ page }: ChatProps) {
               <GPTAvatar />
             )}
             <div className="flex flex-col">
-              {item.value.split("\n").map((line, i) => (
-                <p key={line.slice(0, 10)} className="pb-2">{line}</p>
-              ))}
+              {item.from === "human" ? (
+                <p className="pb-2">{item.value}</p>
+              ) : (
+                <div dangerouslySetInnerHTML={{ __html: item.value }} />
+              )}
             </div>
           </div>
         </div>
