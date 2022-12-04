@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Redis } from "@upstash/redis";
-import { v4 as uuid } from "uuid";
+import { nanoid } from "nanoid";
 
 const redis = Redis.fromEnv();
 
@@ -14,7 +14,7 @@ export default async function handler(
   const html = req.body;
   console.log(html);
   if (req.method !== "OPTIONS") {
-    const id = uuid();
+    const id = nanoid();
     await redis.set(id, html);
     res.status(200).json({ id });
   } else {
