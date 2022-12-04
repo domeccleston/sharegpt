@@ -11,7 +11,6 @@ specifiers:
   eslint: 8.29.0
   eslint-config-next: 13.0.6
   next: 13.0.6
-  next-tailwind-upgrade: ^1.0.4
   postcss: ^8.4.19
   react: 18.2.0
   react-dom: 18.2.0
@@ -23,7 +22,6 @@ dependencies:
   '@upstash/redis': 1.18.1
   classnames: 2.3.2
   next: 13.0.6_biqbaboplfbrettd7655fr4n2y
-  next-tailwind-upgrade: 1.0.4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   uuid: 9.0.0
@@ -1624,10 +1622,6 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
-
-  /next-tailwind-upgrade/1.0.4:
-    resolution: {integrity: sha512-seg3wZ4kCJWxeV9YexrwwQ84BCMo16Rc2X87chUOjwHW/q5gc0+UaBXs+0K638YXyAYwj0fjOMAXZeYs+7SGaA==}
-    dev: false
 
   /next/13.0.6_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-COvigvms2LRt1rrzfBQcMQ2GZd86Mvk1z+LOLY5pniFtL4VrTmhZ9salrbKfSiXbhsD01TrDdD68ec3ABDyscA==}

@@ -12,7 +12,6 @@
     "@upstash/redis": "^1.18.1",
     "classnames": "^2.3.2",
     "next": "13.0.6",
-    "next-tailwind-upgrade": "^1.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "uuid": "^9.0.0"
