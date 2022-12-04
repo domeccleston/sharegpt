@@ -1,7 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Redis } from "@upstash/redis";
-import { nanoid } from "nanoid";
+import { customAlphabet } from "nanoid";
+
+const alphabet = '23456789abcdefghjkmnpqrstuvwxyz-'
+
+const nanoid = customAlphabet(alphabet, 10);
 
 const redis = Redis.fromEnv();
 
