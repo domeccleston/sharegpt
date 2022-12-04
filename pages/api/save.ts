@@ -19,9 +19,6 @@ export default async function handler(
   const html = req.body;
   console.log(html);
   const id = uuid();
-  if (req.body) {
-    const result = await redis.set(id, html);
-    res.status(200).json({ result });
-  }
-  return res.status(200).end;
+  const result = await redis.set(id, html);
+  res.status(200).json({ result });
 }
