@@ -1,3 +1,7 @@
+.response {
+  width: 300px;
+}
+
 .response p {
   margin-bottom: 20px;
 }
@@ -8,4 +12,10 @@
 
 .response button {
   display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .response {
+    width: auto;
+  }
 }
