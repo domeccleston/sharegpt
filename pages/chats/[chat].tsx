@@ -36,7 +36,7 @@ function ChatPage({ page }: ChatProps) {
             "dark:bg-[#343541] dark:text-gray-100 text-gray-700  w-full px-4 py-[2.5rem] flex justify-center border-solid border dark:border-gray-700 border-[(217, 217, 227)] border-t-0",
             {
               "bg-gray-100": item.from === "gpt",
-              "dark:bg-[#434654]": item.from === "gpt"
+              "dark:bg-[#434654]": item.from === "gpt",
             }
           )}
         >
@@ -75,6 +75,9 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext & { params: ChatParams }
 ) => {
   const { chat } = context.params;
+
+  context.res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+  
   const page = await redis.get(chat);
   if (page) {
     return { props: { page } };
