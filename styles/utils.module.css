@@ -6,6 +6,10 @@
   margin-bottom: 20px;
 }
 
+.response pre {
+  margin-bottom: 20px;
+}
+
 .response code {
   margin-bottom: 20px;
 }
