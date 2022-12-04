@@ -1,0 +1,11 @@
+.response p {
+  margin-bottom: 20px;
+}
+
+.response code {
+  margin-bottom: 20px;
+}
+
+.response button {
+  display: none;
+}
