@@ -33,13 +33,14 @@ function ChatPage({ page }: ChatProps) {
         <div
           key={item.value}
           className={cn(
-            "w-full px-4 py-[2.5rem] flex justify-center border-solid border border-[(217, 217, 227)] border-t-0",
+            "dark:bg-[#343541] dark:text-gray-100 text-gray-700  w-full px-4 py-[2.5rem] flex justify-center border-solid border dark:border-gray-700 border-[(217, 217, 227)] border-t-0",
             {
               "bg-gray-100": item.from === "gpt",
+              "dark:bg-[#434654]": item.from === "gpt"
             }
           )}
         >
-          <div className="sm:w-[48rem] flex gap-[1.5rem] text-gray-700 leading-[1.75]">
+          <div className="sm:w-[48rem] flex gap-[1.5rem] leading-[1.75]">
             {item.from === "human" ? (
               <Image
                 className="mr-2 rounded-sm h-[28px]"
@@ -68,11 +69,7 @@ function ChatPage({ page }: ChatProps) {
   );
 }
 
-const redis = new Redis({
-  //@ts-ignore upstash types are wrong
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+const redis = Redis.fromEnv();
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext & { params: ChatParams }

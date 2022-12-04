@@ -3,11 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Redis } from "@upstash/redis";
 import { v4 as uuid } from "uuid";
 
-const redis = new Redis({
-  //@ts-ignore upstash types are wrong
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+const redis = Redis.fromEnv();
 
 export default async function handler(
   req: NextApiRequest,
