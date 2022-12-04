@@ -5,6 +5,7 @@ const Home: NextPage = () => {
   return (
     <div className="mx-8 my-4">
       <h1 className="font-bold text-4xl">ChatGPT Share</h1>
+      <p>NOTE: this is a hobby project and unaffiliated with ChatGPT or OpenAI.</p>
       <p className="italic py-2">How to get started:</p>
       <ol className="list-decimal">
         <li>
