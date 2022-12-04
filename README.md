@@ -1,4 +1,4 @@
-# Why I made this extension
+# Why this is useful
 
 https://www.loom.com/share/b209f8d2e39d4b7987d72063deb9bee6
 
