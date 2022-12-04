@@ -13,12 +13,14 @@
     "next": "13.0.6",
     "next-tailwind-upgrade": "^1.0.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "18.11.10",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
+    "@types/uuid": "^9.0.0",
     "autoprefixer": "^10.4.13",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
