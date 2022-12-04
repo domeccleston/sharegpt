@@ -27,6 +27,7 @@ type ChatProps = {
 };
 
 function ChatPage({ page }: ChatProps) {
+  console.log(page.gravatarUrl);
   return (
     <div className="flex flex-col items-center">
       {page.items.map((item) => (
