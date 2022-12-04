@@ -7,6 +7,8 @@ import cn from "classnames";
 
 import GPTAvatar from "../../components/GPTAvatar";
 
+import styles from "../../styles/utils.module.css";
+
 interface ChatParams extends ParsedUrlQuery {
   chat: string;
 }
@@ -25,6 +27,7 @@ type ChatProps = {
 };
 
 function ChatPage({ page }: ChatProps) {
+
   return (
     <div className="flex flex-col items-center">
       {page.items.map((item) => (
@@ -53,7 +56,10 @@ function ChatPage({ page }: ChatProps) {
               {item.from === "human" ? (
                 <p className="pb-2">{item.value}</p>
               ) : (
-                <div dangerouslySetInnerHTML={{ __html: item.value }} />
+                <div
+                  className={styles.response}
+                  dangerouslySetInnerHTML={{ __html: item.value }}
+                />
               )}
             </div>
           </div>
