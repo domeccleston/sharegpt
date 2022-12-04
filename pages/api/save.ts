@@ -4,9 +4,9 @@ import { Redis } from "@upstash/redis";
 import { v4 as uuid } from "uuid";
 
 const redis = new Redis({
-  url: "https://global-real-gibbon-30346.upstash.io",
-  token:
-    "AXaKACQgYTY3YTUwYjMtMWFlZC00ZTBhLWJlNTEtOGJmNmIyOTIwM2U0ZmYzNjVkYjk1NDNjNGVhNTk1MWJmM2NlOTcyYjlhYmQ=",
+  //@ts-ignore upstash types are wrong
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
 });
 
 export default async function handler(
