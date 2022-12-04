@@ -1,3 +1,5 @@
+Please note: this is a hobby project and unaffiliated with Vercel, ChatGPT, or OpenAI. 
+
 # Why this is useful
 
 https://www.loom.com/share/b209f8d2e39d4b7987d72063deb9bee6
