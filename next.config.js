@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ["s.gravatar.com"],
+  },
   async headers() {
     return [
       {
