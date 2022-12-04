@@ -1,0 +1,14 @@
+{
+  "name": "ChatGPT Share",
+  "description": "Share your ChatGPT conversations",
+  "version": "1.0.3",
+  "manifest_version": 3,
+  "permissions": ["tabs"],
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/chat"],
+      "js": ["index.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
