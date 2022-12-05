@@ -8,11 +8,11 @@ This extension adds a new 'Share' button to the ChatGPT UI. Click it to instantl
 
 Soon, this extension will be available via the Chrome Extension store.
 
-While it's pending approval, you can install it in less than a minute via these steps 
+While it's pending approval, you can install it in less than a minute via these steps:
 
-1. Clone this repo locally
+1. Clone this repo locally by typing `git clone https://github.com/wong2/chat-gpt-google-extension.git` 
 2. Go to chrome://extensions and select 'load unpacked' in the top left hand corner
-3. Select this repo, 'chatgpt-extension'
+3. Navigate to where you cloned this repo, 'chatgpt-extension', and select it
 4. It will now appear (as a button saying 'Export') on chat.openai.com.
 
 # Contributions
