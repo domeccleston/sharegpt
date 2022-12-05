@@ -108,7 +108,7 @@ const Home: NextPage = () => {
             <li className="text-lg mb-1">
               <Link href="https://shareg.pt/76hmx7ef8h">Virtual machine</Link>{" "}
               <Link href="https://www.engraved.blog/building-a-virtual-machine-inside/">
-                (read the full blog post)!
+                (read the full blog post!)
               </Link>
             </li>
           </ul>
