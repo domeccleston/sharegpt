@@ -30,7 +30,7 @@ export default async function handler(req: NextRequest) {
 
   const [sfProData, sfProBoldData] = await Promise.all([sfPro, sfProBold]);
 
-  const { gravatarUrl, items } = page;
+  const { avatarUrl, items } = page;
   const firstUserMessage = items[0].value;
   const firstBotMessage = convert(items[1].value, {
     wordwrap: 130,
@@ -52,7 +52,7 @@ export default async function handler(req: NextRequest) {
         <div tw="flex p-10 bg-[#343541] w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={gravatarUrl}
+            src={avatarUrl}
             width="48"
             height="48"
             alt="avatar"
