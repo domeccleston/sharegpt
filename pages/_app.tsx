@@ -20,7 +20,7 @@ const cormorant = Cormorant_Garamond({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={cx("bg-gray-50", inter.variable, cormorant.variable)}>
+    <main className={cx(inter.variable, cormorant.variable)}>
       <Component {...pageProps} />
       <Analytics />
     </main>
