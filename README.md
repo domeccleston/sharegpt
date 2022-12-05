@@ -1,8 +1,12 @@
-# ShareGPT
+# [ShareGPT](https://sharegpt.com)
 
 This extension adds a new 'Share' button to the ChatGPT UI. Click it to instantly generate a shareable link to your conversation.
 
 [![Watch the video](https://img.youtube.com/vi/lrjC9PTemJw/maxresdefault.jpg)](https://www.youtube.com/watch?v=lrjC9PTemJw&feature=emb_title)
+
+New links will be accessible at https://shareg.pt/[id], e.g. https://shareg.pt/oPt72P3.
+
+Read more on https://sharegpt.com.
 
 # Installation
 
@@ -15,9 +19,9 @@ Currently Google Chrome is the only supported browser.
 1. Download this repository by clicking on Code > Download Zip:
 
      ![CleanShot 2022-12-05 at 09 32 48](https://user-images.githubusercontent.com/28986134/205677167-37cc1a26-e4cb-423f-943c-0ade9012c53c.png)
-  
+
       You can also clone this repo locally via `git clone https://github.com/domeccleston/sharegpt`.
-   
+
 2. Unzip the folder
 3. In your Chrome browser, navigate to `chrome://extensions`.
 4. Ensure that Developer Mode is enabled via the toggle in the top-right corner.
