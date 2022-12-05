@@ -10,7 +10,7 @@ Soon, this extension will be available via the Chrome Extension store.
 
 While it's pending approval, you can install it in less than a minute via these steps:
 
-1. Clone this repo locally by typing `git clone https://github.com/wong2/chat-gpt-google-extension.git` 
+1. Clone this repo locally by typing `git clone https://github.com/domeccleston/sharegpt` 
 2. Go to chrome://extensions and select 'load unpacked' in the top left hand corner
 3. Navigate to where you cloned this repo, 'chatgpt-extension', and select it
 4. It will now appear (as a button saying 'Export') on chat.openai.com.
