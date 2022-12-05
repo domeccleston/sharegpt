@@ -34,5 +34,6 @@ async function setRandomKey(html: any): Promise<string> {
   if (response === "OK") {
     return key;
   }
+  // by the off chance that the key already exists, try again
   return setRandomKey(html);
 }
