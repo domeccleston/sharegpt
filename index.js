@@ -4,11 +4,12 @@ function init() {
   const exportButton = createBtn();
 
   const buttonsWrapper = document.querySelector(
-    "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.Thread__PositionForm-sc-15plnpr-3.kWvvEa > form > div > div.PromptTextarea__LastItemActions-sc-4snkpf-3.gRmLdg"
+    "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.sc-15plnpr-3.jqdtxi > form > div > div.sc-4snkpf-3.fEGhx"
   );
   buttonsWrapper.appendChild(exportButton);
+
   const submitButton = document.querySelector(
-    "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.Thread__PositionForm-sc-15plnpr-3.kWvvEa > form > div > div.PromptTextarea__TextareaWrapper-sc-4snkpf-0.jpDygc > button"
+    "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.sc-15plnpr-3.jqdtxi > form > div > div.sc-4snkpf-0.iLrIMi > button"
   );
 
   const formElement = document.querySelector(
@@ -105,7 +106,7 @@ function createBtn() {
     button.style.cursor = "initial";
 
     const threadContainer = document.querySelector(
-      "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.Thread__StyledThread-sc-15plnpr-2.crCFRb > div > div > div"
+      "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.sc-15plnpr-2.gAnhyd > div > div > div"
     );
 
     const avatarElement = document.querySelector(
