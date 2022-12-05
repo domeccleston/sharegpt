@@ -19,7 +19,6 @@ function init() {
 function showIfNotLoading(loadingElement, newElement) {
   const timerId = setInterval(() => {
     if (loadingElement.disabled) {
-      console.log(newElement);
       isLoading = true;
       newElement.style.display = "none";
     } else {
