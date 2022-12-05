@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Meta from "@/components/meta";
+import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
 const Home: NextPage = () => {
   return (
@@ -18,7 +20,7 @@ const Home: NextPage = () => {
           ></Image>
           <p>ShareGPT</p>
         </div>
-        <div className="mx-5 flex flex-col items-center space-y-8 text-center sm:mx-auto">
+        <div className="flex flex-col items-center space-y-8 text-center mx-5 sm:mx-auto">
           <h1 className="font-default tracking-tight font-bold text-4xl text-gray-800 transition-colors sm:text-7xl">
             ShareGPT
           </h1>
@@ -63,24 +65,12 @@ const Home: NextPage = () => {
             </a>
           </div>
         </div>
-        <div className="my-16 max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full">
-          <div
-            style={{ position: "relative", paddingBottom: "62.5%", height: 0 }}
-          >
-            <iframe
-              src="https://www.loom.com/embed/b209f8d2e39d4b7987d72063deb9bee6"
-              frameBorder="0"
-              allowFullScreen
-              style={{
-                position: "absolute",
-                borderRadius: "0.5rem",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-              }}
-            ></iframe>
-          </div>
+        <div className="my-16 sm:max-w-[800px] lg:max-w-[1000px] w-full">
+          <LiteYouTubeEmbed
+            id="lrjC9PTemJw"
+            poster="maxresdefault"
+            title="Whats new in Material Design for the web (Chrome Dev Summit 2019)"
+          />
         </div>
         <div
           id="examples"

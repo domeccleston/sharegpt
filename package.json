@@ -21,6 +21,7 @@
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-lite-youtube-embed": "^2.3.52",
     "use-debounce": "^9.0.2",
     "uuid": "^9.0.0"
   },
