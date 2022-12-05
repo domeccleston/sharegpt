@@ -69,9 +69,9 @@ export default async function handler(req: NextRequest) {
             {firstUserMessage}
           </p>
         </div>
-        <div tw="flex p-10 bg-[#444654] w-full">
+        <div tw="flex pl-10 pr-2 py-14 bg-[#444654] w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div tw="bg-[#10A37F] border-0 flex items-center justify-center rounded-sm h-12 w-12 mr-5 mt-3">
+          <div tw="bg-[#10A37F] border-0 flex items-center justify-center rounded-sm h-12 w-12 mr-5">
             <svg
               width="40"
               height="40"
@@ -88,16 +88,17 @@ export default async function handler(req: NextRequest) {
               ></path>
             </svg>
           </div>
-          <p
+          <div
             style={{
               color: "white",
               fontSize: "30px",
               fontFamily: "SF Pro",
-              whiteSpace: "wrap",
+              whiteSpace: "pre-wrap",
+              lineHeight: "44px",
             }}
           >
             {firstBotMessage}
-          </p>
+          </div>
         </div>
         <div tw="flex items-center h-20 px-5 py-2 rounded-lg absolute bottom-5 right-5 bg-[#363543]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
