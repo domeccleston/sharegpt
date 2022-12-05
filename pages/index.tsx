@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row">
             <a
-              className="flex space-x-3 items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg px-5 py-3 font-medium bg-indigo-400 text-white hover:bg-indigo-500 transition-colors duration-75 shadow-md"
+              className="flex space-x-3 justify-center items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg px-5 py-3 font-medium bg-indigo-400 text-white hover:bg-indigo-500 transition-colors duration-75 shadow-md"
               href="https://github.com/domeccleston/sharegpt"
               target="_blank"
               rel="noopener noreferrer"
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
                 width={20}
                 height={20}
               />
-              <p>Install Chrome Extension</p>
+              <p>Install Extension</p>
             </a>
             <a
               className="flex min-w-[250px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-[#fcfcfc] transition-colors duration-75 border border-gray-100 shadow-md"
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
           className="py-4 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
         >
           <h1 className="text-4xl font-medium">Examples</h1>
-          <ul className="list-disc ml-4 mt-4 font-default underline">
+          <ul className="list-disc ml-6 sm:ml-4 mt-4 font-default underline">
             <li className="text-lg mb-1">
               <Link
                 rel="noopener noreferrer"
