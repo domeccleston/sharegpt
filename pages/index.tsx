@@ -83,7 +83,7 @@ const Home: NextPage = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-indigo-600 underline"
-                href="https://shareg.pt/e7udf6c"
+                href="https://shareg.pt/kowcIqR"
               >
                 What is the meaning of life?
               </Link>
