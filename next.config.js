@@ -7,6 +7,7 @@ const nextConfig = {
       "avatar.vercel.sh",
       "s.gravatar.com",
       "lh3.googleusercontent.com",
+      "www.datocms-assets.com",
     ],
   },
   async headers() {
