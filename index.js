@@ -38,7 +38,7 @@ function getGravatarSrc(source) {
 
 function createBtn() {
   const button = document.createElement("button");
-  button.innerText = "Export";
+  button.textContent = "Export";
   button.style.transition = "all 1s ease-in-out";
   button.style.width = "100px";
   button.style.padding = "8px 12px";
@@ -53,7 +53,7 @@ function createBtn() {
   button.addEventListener("click", async () => {
     if (isRequesting) return;
     isRequesting = true;
-    button.innerText = "Exporting...";
+    button.textContent = "Exporting...";
 
     const threadContainer = document.querySelector(
       "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.Thread__StyledThread-sc-15plnpr-2.crCFRb > div > div > div"
@@ -74,7 +74,7 @@ function createBtn() {
       if ([...node.classList].includes("dark:bg-gray-800")) {
         conversationData.items.push({
           from: "human",
-          value: node.innerText,
+          value: node.textContent,
         });
         // if it's a GPT response, it might contain code blocks
       } else if ([...node.classList].includes("bg-gray-50")) {
@@ -92,7 +92,7 @@ function createBtn() {
     const { id } = await res.json();
     const url = `https://shareg.pt/${id}`;
     window.open(url, "_blank");
-    button.innerText = "Export";
+    button.textContent = "Export";
     isRequesting = false;
   });
   return button;
