@@ -1,5 +1,10 @@
 .response {
   width: 300px;
+  overflow-x: scroll;
+}
+
+.response::-webkit-scrollbar {
+  display: none;
 }
 
 .response p {
