@@ -5,6 +5,7 @@ import Spline from "@splinetool/react-spline";
 import { motion } from "framer-motion";
 import { useDebounce } from "use-debounce";
 import Image from "next/image";
+import Meta from "@/components/meta";
 
 const staggerChildVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -21,77 +22,80 @@ const Home: NextPage = () => {
 
   const [showText] = useDebounce(loading ? false : true, 800);
   return (
-    <div className="flex h-screen flex-col items-center">
-      <motion.div
-        className="z-10"
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.5, type: "spring" }}
-      >
-        <div
-          className={`${
-            loading ? "scale-[25%] blur-md" : "scale-100 blur-0"
-          } mt-[7vh] h-[50vh] w-screen object-cover transition-all duration-1000`}
+    <>
+      <Meta />
+      <div className="flex h-screen flex-col items-center">
+        <motion.div
+          className="z-10"
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.5, type: "spring" }}
         >
-          <Spline
-            onLoad={onLoad}
-            style={{ opacity: opacity }}
-            scene="https://prod.spline.design/0ltUkWtcK1TcSvfM/scene.splinecode"
-          />
-        </div>
-        {showText && (
-          <motion.div
-            variants={{
-              show: {
-                transition: {
-                  staggerChildren: 0.25,
-                },
-              },
-            }}
-            initial="hidden"
-            animate="show"
-            className="mx-5 flex flex-col items-center space-y-8 text-center sm:mx-auto"
+          <div
+            className={`${
+              loading ? "scale-[25%] blur-md" : "scale-100 blur-0"
+            } mt-[7vh] h-[50vh] w-screen object-cover transition-all duration-1000`}
           >
-            <motion.h1
-              className="font-display text-4xl text-gray-800 transition-colors sm:text-5xl"
-              variants={staggerChildVariants}
-            >
-              ShareGPT
-            </motion.h1>
-            <motion.p
-              className="max-w-lg text-gray-500 transition-colors sm:text-lg"
-              variants={staggerChildVariants}
-            >
-              Share your wildest ChatGPT conversations with one click.
-            </motion.p>
+            <Spline
+              onLoad={onLoad}
+              style={{ opacity: opacity }}
+              scene="https://prod.spline.design/0ltUkWtcK1TcSvfM/scene.splinecode"
+            />
+          </div>
+          {showText && (
             <motion.div
-              variants={staggerChildVariants}
-              className="flex flex-col space-y-3"
+              variants={{
+                show: {
+                  transition: {
+                    staggerChildren: 0.25,
+                  },
+                },
+              }}
+              initial="hidden"
+              animate="show"
+              className="mx-5 flex flex-col items-center space-y-8 text-center sm:mx-auto"
             >
-              <a
-                className="flex space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
-                href="https://github.com/domeccleston/chatgpt-extension"
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.h1
+                className="font-display text-4xl text-gray-800 transition-colors sm:text-5xl"
+                variants={staggerChildVariants}
               >
-                <Image
-                  alt="Chrome logo"
-                  src="/chrome.svg"
-                  width={20}
-                  height={20}
-                />
-                <p>Get the Chrome Extension</p>
-              </a>
-              <Link
-                href="/z3ftry4pjp"
-                className="text-sm text-gray-500 hover:text-gray-800 transition-colors"
+                ShareGPT
+              </motion.h1>
+              <motion.p
+                className="max-w-lg text-gray-500 transition-colors sm:text-lg"
+                variants={staggerChildVariants}
               >
-                View an example
-              </Link>
+                Share your wildest ChatGPT conversations with one click.
+              </motion.p>
+              <motion.div
+                variants={staggerChildVariants}
+                className="flex flex-col space-y-3"
+              >
+                <a
+                  className="flex space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
+                  href="https://github.com/domeccleston/chatgpt-extension"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    alt="Chrome logo"
+                    src="/chrome.svg"
+                    width={20}
+                    height={20}
+                  />
+                  <p>Get the Chrome Extension</p>
+                </a>
+                <Link
+                  href="/z3ftry4pjp"
+                  className="text-sm text-gray-500 hover:text-gray-800 transition-colors"
+                >
+                  View an example
+                </Link>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </motion.div>
-    </div>
+          )}
+        </motion.div>
+      </div>
+    </>
   );
 };
 
