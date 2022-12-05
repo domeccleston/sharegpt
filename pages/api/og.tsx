@@ -6,8 +6,12 @@ export const config = {
   runtime: "experimental-edge",
 };
 
-const inter = fetch(
+const interMedium = fetch(
   new URL("../../styles/Inter-Medium.ttf", import.meta.url)
+).then((res) => res.arrayBuffer());
+
+const interBold = fetch(
+  new URL("../../styles/Inter-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 const truncate = (str: string, length: number) => {
@@ -16,7 +20,10 @@ const truncate = (str: string, length: number) => {
 };
 
 export default async function handler(req: NextRequest) {
-  const interData = await inter;
+  const [interMediumData, interBoldData] = await Promise.all([
+    interMedium,
+    interBold,
+  ]);
 
   const { searchParams } = req.nextUrl;
   const title = searchParams.get("title") || "ShareGPT";
@@ -40,25 +47,33 @@ export default async function handler(req: NextRequest) {
         <div tw="flex p-10 rounded-lg bg-white/50">
           <p
             style={{
-              fontSize: "50px",
-              fontWeight: "bold",
-              fontFamily: "Inter",
+              fontSize: "40px",
+              fontFamily: "InterMedium",
               color: "#52525B",
               opacity: 0.9,
               marginTop: "20px",
             }}
           >
-            {truncate(title, 100)}
+            {truncate(title, 120)}
           </p>
         </div>
-        <div tw="flex mt-5">
+        <div tw="flex mt-5 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://shareg.pt/logo.png"
             alt="logo"
-            tw="h-12 w-12 rounded-md mr-3"
+            tw="h-14 w-14 rounded-md mr-3"
           />
-          <p className="text-gray-600 text-lg">Shared with ShareGPT</p>
+          <p
+            style={{
+              fontSize: "40px",
+              fontFamily: "InterBold",
+              color: "#52525B",
+              opacity: 0.9,
+            }}
+          >
+            shareg.pt
+          </p>
         </div>
       </div>
     ),
@@ -67,8 +82,12 @@ export default async function handler(req: NextRequest) {
       height: 600,
       fonts: [
         {
-          name: "Inter",
-          data: interData,
+          name: "InterMedium",
+          data: interMediumData,
+        },
+        {
+          name: "InterBold",
+          data: interBoldData,
         },
       ],
     }
