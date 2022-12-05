@@ -11,6 +11,16 @@ function init() {
     "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.Thread__PositionForm-sc-15plnpr-3.kWvvEa > form > div > div.PromptTextarea__TextareaWrapper-sc-4snkpf-0.jpDygc > button"
   );
 
+  const formElement = document.querySelector(
+    "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.Thread__PositionForm-sc-15plnpr-3.kWvvEa > form"
+  );
+
+  document.body.addEventListener("keydown", (event) => {
+    if (event.keyCode === 13) {
+      showIfNotLoading(submitButton, exportButton);
+    }
+  });
+
   submitButton.addEventListener("click", (event) => {
     showIfNotLoading(submitButton, exportButton);
   });
@@ -23,7 +33,7 @@ function showIfNotLoading(loadingElement, newElement) {
       newElement.style.display = "none";
     } else {
       isLoading = false;
-      newElement.style.display = "block";
+      newElement.style.display = "flex";
       clearInterval(timerId);
     }
   }, 100);
@@ -37,6 +47,25 @@ function createIconSvg() {
   </svg>
   `;
   return wrapperEl;
+}
+
+function getAvatarImage() {
+  // Create a canvas element
+  const canvas = document.createElement("canvas");
+
+  const image = document.querySelectorAll("img")[1];
+
+  // Set the canvas size to 30x30 pixels
+  canvas.width = 30;
+  canvas.height = 30;
+
+  // Draw the img onto the canvas
+  canvas.getContext("2d").drawImage(document.querySelectorAll("img")[1], 0, 0);
+
+  // Convert the canvas to a base64 string as a JPEG image
+  const base64 = canvas.toDataURL("image/jpeg");
+
+  return base64;
 }
 
 function getGravatarSrc(source) {
@@ -58,15 +87,18 @@ function createBtn() {
   button.style.alignItems = "center";
   button.style.padding = "8px 12px";
   button.style.background = "#fff";
-  // button.style.display = "none";
+  button.style.order = "2";
+  button.style.display = "none";
   button.style.boxShadow = "0 1px 2px 0 rgb(0 0 0 / 0.05)";
   button.style.borderRadius = "0.25rem";
   button.style.fontSize = ".875rem";
   button.style.color = "rgba(64,65,79,1)";
   button.style.border = "1px solid rgba(0,0,0,.1)";
   button.style.alignSelf = "flex-end";
+
   button.addEventListener("click", async () => {
     if (isRequesting) return;
+    console.log(getAvatarImage());
     isRequesting = true;
     button.textContent = "Sharing...";
 
@@ -79,7 +111,7 @@ function createBtn() {
     );
 
     const conversationData = {
-      gravatarUrl: getGravatarSrc(avatarElement.src),
+      avatarUrl: getAvatarImage(),
       items: [],
     };
 
