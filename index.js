@@ -90,7 +90,7 @@ function createBtn() {
       body: JSON.stringify(conversationData),
     });
     const { id } = await res.json();
-    const url = `https://chatgpt-share.vercel.app/${id}`;
+    const url = `https://shareg.pt/${id}`;
     window.open(url, "_blank");
     button.innerText = "Export";
     isRequesting = false;
