@@ -1,4 +1,4 @@
-Please note: this is a hobby project and unaffiliated with Vercel, ChatGPT, or OpenAI. 
+Please note: this is a hobby project and unaffiliated with ChatGPT or OpenAI. 
 
 # The easiest way to share your ChatGPT conversations
 
