@@ -1,4 +1,4 @@
-# ShareGPT
+# [ShareGPT](https://sharegpt.com.)
 
 This extension adds a new 'Share' button to the ChatGPT UI. Click it to instantly generate a shareable link to your conversation.
 
