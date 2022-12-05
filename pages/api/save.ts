@@ -3,9 +3,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Redis } from "@upstash/redis";
 import { customAlphabet } from "nanoid";
 
-const alphabet = '23456789abcdefghjkmnpqrstuvwxyz-'
-
-const nanoid = customAlphabet(alphabet, 10);
+const nanoid = customAlphabet(
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  7
+); // 7-character random string
 
 const redis = Redis.fromEnv();
 
@@ -18,10 +19,20 @@ export default async function handler(
   const html = req.body;
   console.log(html);
   if (req.method !== "OPTIONS") {
-    const id = nanoid();
-    await redis.set(id, html);
+    const id = await setRandomKey(html);
     res.status(200).json({ id });
   } else {
     return res.status(200).end();
   }
+}
+
+async function setRandomKey(html: any): Promise<string> {
+  const key = nanoid();
+  const response = await redis.set(key, html, {
+    nx: true, // only set if key does not exist
+  });
+  if (response === "OK") {
+    return key;
+  }
+  return setRandomKey(html);
 }
