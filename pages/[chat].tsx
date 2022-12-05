@@ -32,49 +32,52 @@ function ChatPage({ page }: ChatProps) {
   const firstUserMessage = page.items[0].value;
 
   return (
-    <div className="flex flex-col items-center">
-      {page.items.map((item) => (
-        <div
-          key={item.value}
-          className={cn(
-            "dark:bg-[#343541] dark:text-gray-100 text-gray-700  w-full px-4 py-[2.5rem] flex justify-center border-solid border dark:border-gray-700 border-[(217, 217, 227)] border-t-0",
-            {
-              "bg-gray-100": item.from === "gpt",
-              "dark:bg-[#434654]": item.from === "gpt",
-            }
-          )}
-        >
-          <div className="w-full sm:w-[48rem] flex gap-[1.5rem] leading-[1.75]">
-            {item.from === "human" ? (
-              <Image
-                className="mr-2 rounded-sm h-[28px]"
-                alt="Avatar of the person chatting"
-                width="28"
-                height="28"
-                src={
-                  page.gravatarUrl.includes("gravatar")
-                    ? page.gravatarUrl
-                    : "/gradient.webp"
-                }
-              />
-            ) : (
-              <GPTAvatar />
+    <>
+      <Meta title={firstUserMessage} />
+      <div className="flex flex-col items-center">
+        {page.items.map((item) => (
+          <div
+            key={item.value}
+            className={cn(
+              "dark:bg-[#343541] dark:text-gray-100 text-gray-700  w-full px-4 py-[2.5rem] flex justify-center border-solid border dark:border-gray-700 border-[(217, 217, 227)] border-t-0",
+              {
+                "bg-gray-100": item.from === "gpt",
+                "dark:bg-[#434654]": item.from === "gpt",
+              }
             )}
-            <div className="flex flex-col">
+          >
+            <div className="w-full sm:w-[48rem] flex gap-[1.5rem] leading-[1.75]">
               {item.from === "human" ? (
-                <p className="pb-2">{item.value}</p>
-              ) : (
-                <div
-                  className={styles.response}
-                  dangerouslySetInnerHTML={{ __html: item.value }}
+                <Image
+                  className="mr-2 rounded-sm h-[28px]"
+                  alt="Avatar of the person chatting"
+                  width="28"
+                  height="28"
+                  src={
+                    page.gravatarUrl.includes("gravatar")
+                      ? page.gravatarUrl
+                      : "/gradient.webp"
+                  }
                 />
+              ) : (
+                <GPTAvatar />
               )}
+              <div className="flex flex-col">
+                {item.from === "human" ? (
+                  <p className="pb-2">{item.value}</p>
+                ) : (
+                  <div
+                    className={styles.response}
+                    dangerouslySetInnerHTML={{ __html: item.value }}
+                  />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-      <Banner />
-    </div>
+        ))}
+        <Banner />
+      </div>
+    </>
   );
 }
 
