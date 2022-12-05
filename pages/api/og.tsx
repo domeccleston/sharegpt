@@ -93,7 +93,7 @@ export default async function handler(req: NextRequest) {
               color: "white",
               fontSize: "30px",
               fontFamily: "SF Pro",
-              whiteSpace: "pre-wrap",
+              whiteSpace: "wrap",
             }}
           >
             {firstBotMessage}
