@@ -1,6 +1,6 @@
-Please note: this is a hobby project and unaffiliated with Vercel, ChatGPT, or OpenAI. 
+Please note: this is a hobby project and unaffiliated with ChatGPT or OpenAI. 
 
-# Why this is useful
+# The easiest way to share your ChatGPT conversations
 
 https://www.loom.com/share/b209f8d2e39d4b7987d72063deb9bee6
 
