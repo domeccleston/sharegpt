@@ -4,7 +4,7 @@ This extension adds a new 'Share' button to the ChatGPT UI. Click it to instantl
 
 [![Watch the video](https://img.youtube.com/vi/lrjC9PTemJw/maxresdefault.jpg)](https://www.youtube.com/watch?v=lrjC9PTemJw&feature=emb_title)
 
-New links will be accessible at https://shareg.pt/<id>, e.g. https://shareg.pt/oPt72P3.
+New links will be accessible at https://shareg.pt/[id], e.g. https://shareg.pt/oPt72P3.
 
 # Installation
 
