@@ -33,7 +33,7 @@ export default async function handler(req: NextRequest) {
     wordwrap: 130,
   });
 
-  console.log(items[1].value, firstBotMessage);
+  console.log(firstBotMessage);
 
   return new ImageResponse(
     (
@@ -59,7 +59,7 @@ export default async function handler(req: NextRequest) {
         </div>
         <div tw="flex p-10 bg-[#444654] w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div tw="bg-[#10A37F] border-0 flex items-center justify-center rounded-sm h-10 w-10 p-[0.25rem] mr-5 mt-5">
+          <div tw="bg-[#10A37F] border-0 flex items-center justify-center rounded-sm h-10 w-10 p-[0.25rem] mr-5 mt-3">
             <svg
               width="41"
               height="41"
@@ -76,7 +76,15 @@ export default async function handler(req: NextRequest) {
               ></path>
             </svg>
           </div>
-          <p tw="text-white text-xl">{firstBotMessage}</p>
+          <p
+            style={{
+              color: "white",
+              fontSize: "20px",
+              whiteSpace: "pre-wrap",
+            }}
+          >
+            {firstBotMessage}
+          </p>
         </div>
         <div tw="flex items-center px-8 py-2 rounded-lg absolute bottom-3 bg-white">
           {/* eslint-disable-next-line @next/next/no-img-element */}
