@@ -1,10 +1,14 @@
-Please note: this is a hobby project and unaffiliated with ChatGPT or OpenAI. 
+# ShareGPT
 
-# The easiest way to share your ChatGPT conversations
+This extension adds a new 'Share' button to the ChatGPT UI. Click it to instantly generate a shareable link to your conversation.
 
-https://www.loom.com/share/b209f8d2e39d4b7987d72063deb9bee6
+<img width="1440" alt="Screenshot 2022-12-05 at 02 31 31" src="https://user-images.githubusercontent.com/31101792/205666224-24d2bf64-5726-4d20-9b80-2770a394eeb9.png">
 
-# How to install 
+# Installation
+
+Soon, this extension will be available via the Chrome Extension store.
+
+While it's pending approval, you can install it in less than a minute via these steps 
 
 1. Clone this repo locally
 2. Go to chrome://extensions and select 'load unpacked' in the top left hand corner
