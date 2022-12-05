@@ -35,7 +35,9 @@ function ChatPage({ page }: ChatProps) {
     <>
       <Meta
         title={`ShareGPT: ${firstUserMessage}`}
-        image={`https://shareg.pt/api/og?title=${firstUserMessage}`}
+        image={`https://shareg.pt/api/og?title=${encodeURIComponent(
+          firstUserMessage
+        )}`}
       />
       <div className="flex flex-col items-center">
         {page.items.map((item) => (
