@@ -64,6 +64,8 @@ export default async function handler(req: NextRequest) {
               fontSize: "30px",
               fontFamily: "SF Pro",
               whiteSpace: "pre-wrap",
+              "-webkit-font-smoothing": "antialiased",
+              "font-smooth": "always",
             }}
           >
             {firstUserMessage}
@@ -95,6 +97,8 @@ export default async function handler(req: NextRequest) {
               fontFamily: "SF Pro",
               whiteSpace: "pre-wrap",
               lineHeight: "44px",
+              "-webkit-font-smoothing": "antialiased",
+              "font-smooth": "always",
             }}
           >
             {firstBotMessage}
