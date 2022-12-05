@@ -88,7 +88,7 @@ const Home: NextPage = () => {
           className="py-4 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
         >
           <h1 className="text-4xl font-medium">Examples</h1>
-          <ul className="list-disc ml-4 mt-4 font-default underline">
+          <ul className="list-disc ml-6 sm:ml-4 mt-4 font-default underline">
             <li className="text-lg mb-1">
               <Link
                 rel="noopener noreferrer"
