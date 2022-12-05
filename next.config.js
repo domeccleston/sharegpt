@@ -66,10 +66,10 @@ const nextConfig = {
         has: [
           {
             type: "host",
-            value: "sharegpt.com",
+            value: "shareg.pt",
           },
         ],
-        destination: "https://shareg.pt",
+        destination: "https://sharegpt.com",
         permanent: false,
       },
     ];
