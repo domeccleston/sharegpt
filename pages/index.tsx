@@ -4,12 +4,24 @@ import Image from "next/image";
 import Meta from "@/components/meta";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import Twitter from "@/components/twitter";
 
 const Home: NextPage = () => {
   return (
     <>
       <Meta />
-      <div className="flex min-h-screen flex-col items-center py-36 bg-gray-50">
+      <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
+        <Link
+          href="https://twitter.com/steventey/status/1599816553490366464"
+          target="_blank"
+          rel="noreferrer"
+          className="mx-auto flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 mb-5 transition-all hover:bg-blue-200"
+        >
+          <Twitter className="h-5 w-5 text-[#1d9bf0]" />
+          <p className="text-sm font-semibold text-[#1d9bf0]">
+            Introducing ShareGPT
+          </p>
+        </Link>
         <div className="h-[40px] w-full absolute top-0 flex items-center pl-4 pt-4 font-display font-medium text-xl">
           <Image
             src="/logo.png"
@@ -42,9 +54,11 @@ const Home: NextPage = () => {
               />
               <p>Install extension</p>
             </a>
-            <a
+            <Link
               className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-[#fcfcfc] transition-colors duration-75 border border-gray-100 shadow-md"
-              href="#examples"
+              rel="noopener noreferrer"
+              target="_blank"
+              href="https://shareg.pt/oPt72P3"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +76,7 @@ const Home: NextPage = () => {
               </svg>
 
               <p>View an example</p>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="my-16 px-2 sm:px-0 sm:max-w-[800px] lg:max-w-[1000px] w-full">
@@ -83,7 +97,7 @@ const Home: NextPage = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-indigo-600 underline"
-                href="https://shareg.pt/e7udf6c"
+                href="https://shareg.pt/oPt72P3"
               >
                 What is the meaning of life?
               </Link>

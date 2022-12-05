@@ -103,7 +103,7 @@ export default async function handler(req: NextRequest) {
         <div tw="flex items-center h-20 px-5 py-2 rounded-lg absolute bottom-5 right-5 bg-[#363543]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://shareg.pt/logo.png"
+            src="https://sharegpt.com/logo.png"
             alt="logo"
             tw="h-12 w-12 rounded-md mr-3"
           />
