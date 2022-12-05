@@ -65,7 +65,7 @@ const Home: NextPage = () => {
             </a>
           </div>
         </div>
-        <div className="my-16 sm:max-w-[800px] lg:max-w-[1000px] w-full">
+        <div className="my-16 px-2 sm:px-0 sm:max-w-[800px] lg:max-w-[1000px] w-full">
           <LiteYouTubeEmbed
             id="lrjC9PTemJw"
             poster="maxresdefault"
@@ -74,7 +74,7 @@ const Home: NextPage = () => {
         </div>
         <div
           id="examples"
-          className="py-4 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
+          className="py-4 px-2 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
         >
           <h1 className="text-4xl font-medium font-display">Examples</h1>
           <ul className="list-disc ml-6 sm:ml-4 mt-4 grid gap-2">
@@ -117,7 +117,7 @@ const Home: NextPage = () => {
               </Link>
             </li>
           </ul>
-          <div className="py-5">
+          <div className="py-7">
             <Link
               rel="noopener noreferrer"
               target="_blank"
