@@ -21,24 +21,21 @@ type ConversationItem = {
 };
 
 export type ChatProps = {
-  slug: string;
+  chat: string;
   gravatarUrl: string;
   items: ConversationItem[];
 };
 
-export default function ChatPage({ slug, gravatarUrl, items }: ChatProps) {
-  const firstUserMessage = items[0].value;
+export default function ChatPage({ chat, gravatarUrl, items }: ChatProps) {
   const userAvatar = gravatarUrl.includes("gravatar")
     ? gravatarUrl
-    : `https://avatar.vercel.sh/${slug}`;
+    : `https://avatar.vercel.sh/${chat}`;
 
   return (
     <>
       <Meta
-        title={`ShareGPT: ${firstUserMessage}`}
-        image={`https://shareg.pt/api/og?title=${encodeURIComponent(
-          firstUserMessage
-        )}&logo=${encodeURIComponent(userAvatar)}`}
+        title={`Check out this ShareGPT conversation`}
+        image={`https://shareg.pt/api/og?chat=${chat}`}
       />
       <div className="flex flex-col items-center">
         {items.map((item) => (
@@ -106,7 +103,7 @@ export const getStaticProps = async (
   const page = await redis.get(chat);
 
   if (page) {
-    return { props: { ...page, slug: chat } };
+    return { props: { ...page, chat } };
   } else {
     return { notFound: true };
   }
