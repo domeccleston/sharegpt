@@ -14,15 +14,6 @@ const nextConfig = {
       {
         source: "/api/save",
         headers: [
-          {
-            source: "/:slug",
-            headers: [
-              {
-                key: "x-robots-tag",
-                value: "noindex",
-              },
-            ],
-          },
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "*" },
           {
@@ -33,6 +24,15 @@ const nextConfig = {
             key: "Access-Control-Allow-Headers",
             value:
               "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+          },
+        ],
+      },
+      {
+        source: "/:slug",
+        headers: [
+          {
+            key: "x-robots-tag",
+            value: "noindex",
           },
         ],
       },
