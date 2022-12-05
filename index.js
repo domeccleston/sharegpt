@@ -29,6 +29,16 @@ function showIfNotLoading(loadingElement, newElement) {
   }, 100);
 }
 
+function createIconSvg() {
+  const wrapperEl = document.createElement("span");
+  wrapperEl.innerHTML = `
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+  `;
+  return wrapperEl;
+}
+
 function getGravatarSrc(source) {
   const decodedSource = decodeURIComponent(source);
   const gravatarUrl = decodedSource.split("?")[1].slice(4);
@@ -37,9 +47,15 @@ function getGravatarSrc(source) {
 
 function createBtn() {
   const button = document.createElement("button");
-  button.textContent = "Export";
+  const svg = createIconSvg();
+  button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>Share`;
   button.style.transition = "all 1s ease-in-out";
   button.style.width = "100px";
+  button.style.display = "flex";
+  button.style.justifyContent = "space-around";
+  button.style.alignItems = "center";
   button.style.padding = "8px 12px";
   button.style.background = "#fff";
   // button.style.display = "none";
@@ -52,7 +68,7 @@ function createBtn() {
   button.addEventListener("click", async () => {
     if (isRequesting) return;
     isRequesting = true;
-    button.textContent = "Exporting...";
+    button.textContent = "Sharing...";
 
     const threadContainer = document.querySelector(
       "#__next > div > div.flex.flex-1.flex-col.md\\:pl-52.h-full > main > div.Thread__StyledThread-sc-15plnpr-2.crCFRb > div > div > div"
@@ -96,7 +112,7 @@ function createBtn() {
     const { id } = await res.json();
     const url = `https://shareg.pt/${id}`;
     window.open(url, "_blank");
-    button.textContent = "Export";
+    button.textContent = "Share";
     isRequesting = false;
   });
   return button;
