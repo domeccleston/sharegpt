@@ -90,24 +90,53 @@ const Home: NextPage = () => {
           <h1 className="text-4xl font-medium">Examples</h1>
           <ul className="list-disc ml-4 mt-4 font-default underline">
             <li className="text-lg mb-1">
-              <Link href="https://shareg.pt/vr3v7ntnj7">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-indigo-600"
+                href="https://shareg.pt/vr3v7ntnj7"
+              >
                 Rewriting Git from scratch
               </Link>{" "}
-              <Link href="https://twitter.com/tylerangert/status/1598389755997290507">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://twitter.com/tylerangert/status/1598389755997290507"
+              >
                 (credit)
               </Link>
             </li>
             <li className="text-lg mb-1">
-              <Link href="https://shareg.pt/pjh5ezagkc">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-indigo-600"
+                href="https://shareg.pt/pjh5ezagkc"
+              >
                 Seinfeld: Jerry learns bubble sort
               </Link>{" "}
-              <Link href="https://twitter.com/goodside/status/1598077257498923010">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://twitter.com/goodside/status/1598077257498923010"
+              >
                 (credit)
               </Link>
             </li>
             <li className="text-lg mb-1">
-              <Link href="https://shareg.pt/76hmx7ef8h">Virtual machine</Link>{" "}
-              <Link href="https://www.engraved.blog/building-a-virtual-machine-inside/">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-indigo-600"
+                href="https://shareg.pt/76hmx7ef8h"
+              >
+                Virtual machine
+              </Link>{" "}
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://www.engraved.blog/building-a-virtual-machine-inside/"
+              >
                 (read the full blog post!)
               </Link>
             </li>
