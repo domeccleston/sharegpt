@@ -8,13 +8,13 @@ This extension adds a new 'Share' button to the ChatGPT UI. Click it to instantl
 
 Soon, this extension will be available via the Chrome Extension store.
 
-While it's pending approval, you can install it in less than a minute via these steps:
+While it's pending approval, you can install it by downloading the repo locally and running Chrome in Developer mode.
 
-1. Clone this repo locally by typing `git clone https://github.com/domeccleston/sharegpt` 
-2. Go to chrome://extensions and select 'load unpacked' in the top left hand corner
-3. Navigate to where you cloned this repo, 'chatgpt-extension', and select it
-4. It will now appear (as a button saying 'Export') on chat.openai.com.
+Currently Google Chrome is the only supported browser.
 
-# Contributions
+1. Clone this repo locally via `git clone https://github.com/domeccleston/sharegpt`.
+2. Navigate to [chrome://extensions](chrome://extensions).
+3. Ensure that Developer Mode is enabled via the toggle in the top-right corner.
+4. Click the 'load unpacked' button in the top-left-hand corner. You will be prompted to select a folder with your local extension: select the repository you just cloned.
+4. Navigate to https://chat.openai.com/chat. You'll see a new button above the prompt bar allow you to hit share.
 
-Welome, feel free to submit Issues or PRs.
