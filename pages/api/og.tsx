@@ -97,7 +97,7 @@ export default async function handler(req: NextRequest) {
             {firstBotMessage}
           </p>
         </div>
-        <div tw="flex items-center h-20 px-8 py-2 rounded-lg absolute bottom-5 right-5 bg-white">
+        <div tw="flex items-center h-20 px-8 py-2 rounded-lg absolute bottom-5 right-5 bg-[#363543]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://shareg.pt/logo.png"
@@ -108,7 +108,7 @@ export default async function handler(req: NextRequest) {
             style={{
               fontSize: "40px",
               fontFamily: "SF Pro Bold",
-              color: "#343541",
+              color: "white",
               marginTop: "25px",
             }}
           >
