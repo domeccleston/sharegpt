@@ -23,20 +23,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <main className={cx("bg-gray-50", inter.variable, cormorant.variable)}>
       <Component {...pageProps} />
       <Analytics />
-      <div className="h-[100px] flex items-center justify-center w-full">
-        <Link
-          rel="noopener noreferrer"
-          target="_blank"
-          href="https://vercel.com?utm_source=sharegpt&utm_campaign=oss"
-        >
-          <Image
-            width="200"
-            height="100"
-            alt="Vercel Logo"
-            src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg"
-          />
-        </Link>
-      </div>
     </main>
   );
 }
