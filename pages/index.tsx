@@ -46,7 +46,7 @@ const Home: NextPage = () => {
               className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-[#fcfcfc] transition-colors duration-75 border border-gray-100 shadow-md"
               rel="noopener noreferrer"
               target="_blank"
-              href="https://shareg.pt/kowcIqR"
+              href="https://shareg.pt/oPt72P3"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +85,7 @@ const Home: NextPage = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-indigo-600 underline"
-                href="https://shareg.pt/kowcIqR"
+                href="https://shareg.pt/oPt72P3"
               >
                 What is the meaning of life?
               </Link>
