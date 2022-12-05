@@ -20,7 +20,7 @@ type ConversationItem = {
   value: string;
 };
 
-type ChatProps = {
+export type ChatProps = {
   slug: string;
   gravatarUrl: string;
   items: ConversationItem[];
