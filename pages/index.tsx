@@ -10,11 +10,17 @@ const Home: NextPage = () => {
       <Meta />
       <div className="flex min-h-screen flex-col items-center py-36 bg-gray-50">
         <div className="h-[40px] w-full absolute top-0 flex items-center pl-4 pt-4 font-default font-medium text-xl">
-          <Image src="/logo.png" alt="Logo image of a chat bubble" width="30" height="30" className="mr-2 rounded-sm"></Image>
+          <Image
+            src="/logo.png"
+            alt="Logo image of a chat bubble"
+            width="30"
+            height="30"
+            className="mr-2 rounded-sm"
+          ></Image>
           <p>ShareGPT</p>
         </div>
         <div className="mx-5 flex flex-col items-center space-y-8 text-center sm:mx-auto">
-          <h1 className="font-default tracking-tight font-medium text-4xl text-gray-800 transition-colors sm:text-7xl">
+          <h1 className="font-default tracking-tight font-bold text-4xl text-gray-800 transition-colors sm:text-7xl">
             ShareGPT
           </h1>
           <p className="max-w-lg font-default text-gray-600 transition-colors sm:text-lg">
@@ -37,9 +43,7 @@ const Home: NextPage = () => {
             </a>
             <a
               className="flex min-w-[250px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-[#fcfcfc] transition-colors duration-75 border border-gray-100 shadow-md"
-              href="https://github.com/domeccleston/sharegpt"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#examples"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +64,7 @@ const Home: NextPage = () => {
             </a>
           </div>
         </div>
-        <div className="my-16 h-[800px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full">
+        <div className="my-16 max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full">
           <div
             style={{ position: "relative", paddingBottom: "62.5%", height: 0 }}
           >
@@ -78,6 +82,31 @@ const Home: NextPage = () => {
               }}
             ></iframe>
           </div>
+        </div>
+        <div
+          id="examples"
+          className="py-4 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
+        >
+          <h1 className="text-4xl font-medium">Examples</h1>
+          <ul className="list-disc ml-4 mt-4 font-default underline">
+            <li className="text-lg mb-1">
+              <Link href="https://shareg.pt/vr3v7ntnj7">
+                Rewriting Git from scratch
+              </Link>{" "}
+              <Link href="https://twitter.com/tylerangert/status/1598389755997290507">
+                (credit)
+              </Link>
+            </li>
+            <li className="text-lg mb-1">
+              <Link href="https://shareg.pt/pjh5ezagkc">
+                Seinfeld: Jerry learns bubble sort
+              </Link>{" "}
+              <Link href="https://twitter.com/goodside/status/1598077257498923010">
+                (credit)
+              </Link>
+            </li>
+            <li className="text-lg mb-1">Frontend engineering interview</li>
+          </ul>
         </div>
       </div>
     </>
