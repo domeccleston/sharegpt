@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import Image from "next/image";
 
 import { ParsedUrlQuery } from "node:querystring";
@@ -86,13 +86,23 @@ function ChatPage({ page }: ChatProps) {
 
 const redis = Redis.fromEnv();
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext & { params: ChatParams }
+export const getStaticPaths = async () => {
+  return {
+    paths: [
+      {
+        params: {
+          chat: "z3ftry4pjp",
+        },
+      },
+    ],
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps = async (
+  context: GetStaticPropsContext & { params: ChatParams }
 ) => {
   const { chat } = context.params;
-
-  context.res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-  context.res.setHeader("x-robots-tag", "noindex");
 
   const page = await redis.get(chat);
   if (page) {
