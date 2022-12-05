@@ -27,7 +27,6 @@ type ChatProps = {
 };
 
 function ChatPage({ page }: ChatProps) {
-  console.log(page.gravatarUrl);
   return (
     <div className="flex flex-col items-center">
       {page.items.map((item) => (
@@ -41,7 +40,7 @@ function ChatPage({ page }: ChatProps) {
             }
           )}
         >
-          <div className="sm:w-[48rem] flex gap-[1.5rem] leading-[1.75]">
+          <div className="w-full sm:w-[48rem] flex gap-[1.5rem] leading-[1.75]">
             {item.from === "human" ? (
               <Image
                 className="mr-2 rounded-sm h-[28px]"
