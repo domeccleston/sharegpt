@@ -1,16 +1,35 @@
-Please note: this is a hobby project and unaffiliated with ChatGPT or OpenAI. 
+# ShareGPT
 
-# The easiest way to share your ChatGPT conversations
+This extension adds a new 'Share' button to the ChatGPT UI. Click it to instantly generate a shareable link to your conversation.
 
-https://www.loom.com/share/b209f8d2e39d4b7987d72063deb9bee6
+[![Watch the video](https://img.youtube.com/vi/lrjC9PTemJw/maxresdefault.jpg)](https://www.youtube.com/watch?v=lrjC9PTemJw&feature=emb_title)
 
-# How to install 
+# Installation
 
-1. Clone this repo locally
-2. Go to chrome://extensions and select 'load unpacked' in the top left hand corner
-3. Select this repo, 'chatgpt-extension'
-4. It will now appear (as a button saying 'Export') on chat.openai.com.
+Soon, this extension will be available via the Chrome Extension store.
 
-# Contributions
+While it's pending approval, you can install it by downloading the repo locally and running Chrome in Developer mode.
 
-Welome, feel free to submit Issues or PRs.
+Currently Google Chrome is the only supported browser.
+
+1. Download this repository by clicking on Code > Download Zip:
+
+     ![CleanShot 2022-12-05 at 09 32 48](https://user-images.githubusercontent.com/28986134/205677167-37cc1a26-e4cb-423f-943c-0ade9012c53c.png)
+  
+      You can also clone this repo locally via `git clone https://github.com/domeccleston/sharegpt`.
+   
+2. Unzip the folder
+3. In your Chrome browser, navigate to `chrome://extensions`.
+4. Ensure that Developer Mode is enabled via the toggle in the top-right corner.
+5. Click the 'load unpacked' button in the top-left-hand corner. You will be prompted to select a folder with your local extension: select the unzipped folder you just cloned.
+6. Navigate to https://chat.openai.com/chat. You'll see a new button above the prompt bar allow you to hit share.
+
+# FAQ
+
+**I downloaded an older version of the extension, and don't see updates**
+
+Please ensure you have downloaded the latest version, then navigate to `chrome://extensions` and hit the refresh button in the bottom right of the extension card. This will reload the extension.
+
+**Does this collect any sensitive data?**
+
+No, this just collects your conversation with ChatGPT and your profile picture.
