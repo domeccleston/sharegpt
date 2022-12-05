@@ -99,7 +99,7 @@ export default async function handler(req: NextRequest) {
             {firstBotMessage}
           </p>
         </div>
-        <div tw="flex items-center h-20 px-8 py-2 rounded-lg absolute bottom-5 right-5 bg-[#363543]">
+        <div tw="flex items-center h-20 px-5 py-2 rounded-lg absolute bottom-5 right-5 bg-[#363543]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://shareg.pt/logo.png"
