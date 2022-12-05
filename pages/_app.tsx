@@ -3,24 +3,22 @@ import "../styles/highlight.css";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
-import { Inter, Cormorant_Garamond } from "@next/font/google";
-import Image from "next/image";
-import Link from "next/link";
+import { Inter } from "@next/font/google";
+import localFont from "@next/font/local";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: "700",
+const SFPro = localFont({
+  src: "../styles/SF-Pro-Display-Bold.otf",
+  variable: "--font-display",
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={cx(inter.variable, cormorant.variable)}>
+    <main className={cx("bg-gray-50", inter.variable, SFPro.variable)}>
       <Component {...pageProps} />
       <Analytics />
     </main>

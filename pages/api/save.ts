@@ -17,7 +17,6 @@ export default async function handler(
   if (req.headers.origin !== "https://chat.openai.com")
     return res.status(400).json("Invalid origin");
   const html = req.body;
-  console.log(html);
   if (req.method !== "OPTIONS") {
     const id = await setRandomKey(html);
     res.status(200).json({ id });
