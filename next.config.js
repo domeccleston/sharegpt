@@ -36,10 +36,21 @@ const nextConfig = {
         has: [
           {
             type: "host",
-            value: `chatg.pt`,
+            value: "chatg.pt",
           },
         ],
         destination: "https://chat.openai.com", // redirect to OpenAI for now
+        permanent: false,
+      },
+      {
+        source: "/",
+        has: [
+          {
+            type: "host",
+            value: "sharegpt.com",
+          },
+        ],
+        destination: "https://shareg.pt",
         permanent: false,
       },
     ];
