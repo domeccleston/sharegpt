@@ -4,12 +4,24 @@ import Image from "next/image";
 import Meta from "@/components/meta";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import Twitter from "@/components/twitter";
 
 const Home: NextPage = () => {
   return (
     <>
       <Meta />
-      <div className="flex min-h-screen flex-col items-center py-36 bg-gray-50">
+      <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
+        <Link
+          href="https://twitter.com/steventey/status/1599816553490366464"
+          target="_blank"
+          rel="noreferrer"
+          className="mx-auto flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 mb-5 transition-all hover:bg-blue-200"
+        >
+          <Twitter className="h-5 w-5 text-[#1d9bf0]" />
+          <p className="text-sm font-semibold text-[#1d9bf0]">
+            Introducing ShareGPT
+          </p>
+        </Link>
         <div className="h-[40px] w-full absolute top-0 flex items-center pl-4 pt-4 font-display font-medium text-xl">
           <Image
             src="/logo.png"
