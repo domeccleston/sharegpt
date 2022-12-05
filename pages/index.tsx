@@ -94,7 +94,7 @@ const Home: NextPage = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-indigo-600"
-                href="https://shareg.pt/vr3v7ntnj7"
+                href="https://shareg.pt/mcgucu3rdb"
               >
                 Rewriting Git from scratch
               </Link>{" "}
