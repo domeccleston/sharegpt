@@ -130,6 +130,38 @@ const Home: NextPage = () => {
                 How to make Ukrainian borscht?
               </Link>
             </li>
+            <li className="text-lg">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-indigo-600 underline"
+                href="https://chatg.pt/B9mmxcw"
+              >
+                An SVG image of the US flag inline in Markdown, retrieved from a
+                public URL
+              </Link>
+            </li>
+            <li className="text-lg">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-indigo-600 underline"
+                href="           https://chatg.pt/iDH6oAI"
+              >
+                You are a text video game where you give me options (A, B, C, D)
+                as my choices.
+              </Link>
+            </li>
+            <li className="text-lg">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-indigo-600 underline"
+                href="https://chatg.pt/KNOiH6n"
+              >
+                Coding interview
+              </Link>
+            </li>
           </ul>
           <div className="py-7">
             <Link
