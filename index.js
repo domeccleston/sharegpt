@@ -88,6 +88,11 @@ function createBtn() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(conversationData),
+    }).catch((err) => {
+      isRequesting = false;
+      alert(
+        `Error saving conversation: ${err.message}. The developer has been notified.`
+      );
     });
     const { id } = await res.json();
     const url = `https://shareg.pt/${id}`;
