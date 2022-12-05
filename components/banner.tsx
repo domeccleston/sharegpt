@@ -14,7 +14,7 @@ export default function Banner() {
         height={20}
         className="rounded-sm"
       />
-      <p>Shared with ChatGPT</p>
+      <p>Shared via ShareGPT</p>
     </Link>
   );
 }

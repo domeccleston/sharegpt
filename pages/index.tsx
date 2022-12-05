@@ -71,8 +71,8 @@ const Home: NextPage = () => {
                 className="flex flex-col space-y-3"
               >
                 <a
-                  className="flex space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
-                  href="https://github.com/domeccleston/chatgpt-extension"
+                  className="flex space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-[#fcfcfc] transition-colors duration-75 border border-gray-100 shadow-md"
+                  href="https://github.com/domeccleston/sharegpt"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
