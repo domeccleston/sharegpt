@@ -10,7 +10,7 @@ const Home: NextPage = () => {
     <>
       <Meta />
       <div className="flex min-h-screen flex-col items-center py-36 bg-gray-50">
-        <div className="h-[40px] w-full absolute top-0 flex items-center pl-4 pt-4 font-default font-medium text-xl">
+        <div className="h-[40px] w-full absolute top-0 flex items-center pl-4 pt-4 font-display font-medium text-xl">
           <Image
             src="/logo.png"
             alt="Logo image of a chat bubble"
@@ -21,10 +21,10 @@ const Home: NextPage = () => {
           <p>ShareGPT</p>
         </div>
         <div className="flex flex-col items-center space-y-8 text-center mx-5 sm:mx-auto">
-          <h1 className="font-default tracking-tight font-bold text-4xl text-gray-800 transition-colors sm:text-7xl">
+          <h1 className="font-display tracking-tight font-bold text-4xl text-gray-800 transition-colors sm:text-7xl">
             ShareGPT
           </h1>
-          <p className="max-w-lg font-default text-gray-600 transition-colors sm:text-lg">
+          <p className="max-w-lg text-gray-600 transition-colors sm:text-lg">
             Share your wildest ChatGPT conversations with one click.
           </p>
           <div className="flex flex-col sm:flex-row">
@@ -76,7 +76,7 @@ const Home: NextPage = () => {
           id="examples"
           className="py-4 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
         >
-          <h1 className="text-4xl font-medium">Examples</h1>
+          <h1 className="text-4xl font-medium font-display">Examples</h1>
           <ul className="list-disc ml-6 sm:ml-4 mt-4 font-default underline">
             <li className="text-lg mb-1">
               <Link
