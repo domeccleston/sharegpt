@@ -53,8 +53,10 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={gravatarUrl}
+            width="48"
+            height="48"
             alt="avatar"
-            tw="rounded-sm h-12 w-12 mr-5 mt-3"
+            tw="rounded-sm mr-5 mt-3"
           />
           <p
             style={{
@@ -71,8 +73,8 @@ export default async function handler(req: NextRequest) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <div tw="bg-[#10A37F] border-0 flex items-center justify-center rounded-sm h-12 w-12 mr-5 mt-3">
             <svg
-              width="41"
-              height="41"
+              width="40"
+              height="40"
               viewBox="0 0 41 41"
               fill="rgb(16, 163, 127)"
               xmlns="http://www.w3.org/2000/svg"
