@@ -36,6 +36,15 @@ const nextConfig = {
           },
         ],
       },
+      {
+        source: "/:slug",
+        headers: [
+          {
+            key: "x-robots-tag",
+            value: "noindex",
+          },
+        ],
+      },
     ];
   },
   async redirects() {
