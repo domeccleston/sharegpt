@@ -2,7 +2,7 @@
 
 This extension adds a new 'Share' button to the ChatGPT UI. Click it to instantly generate a shareable link to your conversation.
 
-<img width="1440" alt="Screenshot 2022-12-05 at 02 31 31" src="https://user-images.githubusercontent.com/31101792/205666224-24d2bf64-5726-4d20-9b80-2770a394eeb9.png">
+[![Watch the video](https://img.youtube.com/vi/lrjC9PTemJw/maxresdefault.jpg)](https://www.youtube.com/watch?v=lrjC9PTemJw&feature=emb_title)
 
 # Installation
 
