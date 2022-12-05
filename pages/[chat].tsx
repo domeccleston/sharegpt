@@ -80,8 +80,8 @@ function ChatPage({ page }: ChatProps) {
             </div>
           </div>
         ))}
-        <Banner />
       </div>
+      <Banner />
     </>
   );
 }
