@@ -22,15 +22,11 @@ type ConversationItem = {
 
 export type ChatProps = {
   chat: string;
-  gravatarUrl: string;
+  avatarUrl: string;
   items: ConversationItem[];
 };
 
-export default function ChatPage({ chat, gravatarUrl, items }: ChatProps) {
-  const userAvatar = gravatarUrl.includes("gravatar")
-    ? gravatarUrl
-    : `https://avatar.vercel.sh/${chat}`;
-
+export default function ChatPage({ chat, avatarUrl, items }: ChatProps) {
   return (
     <>
       <Meta
@@ -56,7 +52,7 @@ export default function ChatPage({ chat, gravatarUrl, items }: ChatProps) {
                   alt="Avatar of the person chatting"
                   width="28"
                   height="28"
-                  src={userAvatar}
+                  src={avatarUrl}
                 />
               ) : (
                 <GPTAvatar />

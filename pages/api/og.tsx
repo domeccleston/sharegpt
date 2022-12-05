@@ -30,7 +30,7 @@ export default async function handler(req: NextRequest) {
 
   const [sfProData, sfProBoldData] = await Promise.all([sfPro, sfProBold]);
 
-  const { gravatarUrl, items } = page;
+  const { avatarUrl, items } = page;
   const firstUserMessage = items[0].value;
   const firstBotMessage = convert(items[1].value, {
     wordwrap: 130,
@@ -52,7 +52,7 @@ export default async function handler(req: NextRequest) {
         <div tw="flex p-10 bg-[#343541] w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={gravatarUrl}
+            src={avatarUrl}
             width="48"
             height="48"
             alt="avatar"
@@ -69,9 +69,9 @@ export default async function handler(req: NextRequest) {
             {firstUserMessage}
           </p>
         </div>
-        <div tw="flex p-10 bg-[#444654] w-full">
+        <div tw="flex pl-10 pr-2 py-14 bg-[#444654] w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div tw="bg-[#10A37F] border-0 flex items-center justify-center rounded-sm h-12 w-12 mr-5 mt-3">
+          <div tw="bg-[#10A37F] border-0 flex items-center justify-center rounded-sm h-12 w-12 mr-5">
             <svg
               width="40"
               height="40"
@@ -88,18 +88,19 @@ export default async function handler(req: NextRequest) {
               ></path>
             </svg>
           </div>
-          <p
+          <div
             style={{
               color: "white",
               fontSize: "30px",
               fontFamily: "SF Pro",
               whiteSpace: "pre-wrap",
+              lineHeight: "44px",
             }}
           >
             {firstBotMessage}
-          </p>
+          </div>
         </div>
-        <div tw="flex items-center h-20 px-8 py-2 rounded-lg absolute bottom-5 right-5 bg-[#363543]">
+        <div tw="flex items-center h-20 px-5 py-2 rounded-lg absolute bottom-5 right-5 bg-[#363543]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://shareg.pt/logo.png"
