@@ -19,7 +19,7 @@ Currently Google Chrome is the only supported browser.
       You can also clone this repo locally via `git clone https://github.com/domeccleston/sharegpt`.
    
 2. Unzip the folder
-3. Navigate to [chrome://extensions](chrome://extensions).
+3. In your Chrome browser, navigate to `chrome://extensions`.
 4. Ensure that Developer Mode is enabled via the toggle in the top-right corner.
 5. Click the 'load unpacked' button in the top-left-hand corner. You will be prompted to select a folder with your local extension: select the unzipped folder you just cloned.
 6. Navigate to https://chat.openai.com/chat. You'll see a new button above the prompt bar allow you to hit share.
