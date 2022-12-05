@@ -130,6 +130,16 @@ const Home: NextPage = () => {
               </Link>
             </li>
           </ul>
+          <div className="py-5">
+            <Link
+              rel="noopener noreferrer"
+              target="_blank"
+              className="bg-white rounded-md shadow border border-gray-100 px-4 py-3 text-gray-600 font-medium hover:bg-[#fcfcfc] transition-colors duration-75"
+              href="https://tally.so/r/wM1J90"
+            >
+              Submit your own
+            </Link>
+          </div>
         </div>
       </div>
       <div className="h-[100px] flex items-center justify-center w-full">
