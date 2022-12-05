@@ -43,7 +43,7 @@ const Home: NextPage = () => {
             variants={{
               show: {
                 transition: {
-                  staggerChildren: 0.3,
+                  staggerChildren: 0.25,
                 },
               },
             }}
@@ -63,7 +63,10 @@ const Home: NextPage = () => {
             >
               Share your wildest ChatGPT conversations with one click.
             </motion.p>
-            <motion.div variants={staggerChildVariants}>
+            <motion.div
+              variants={staggerChildVariants}
+              className="flex flex-col space-y-3"
+            >
               <a
                 className="flex space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
                 href="https://github.com/domeccleston/chatgpt-extension"
@@ -78,6 +81,12 @@ const Home: NextPage = () => {
                 />
                 <p>Get the Chrome Extension</p>
               </a>
+              <Link
+                href="/z3ftry4pjp"
+                className="text-sm text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                View an example
+              </Link>
             </motion.div>
           </motion.div>
         )}
