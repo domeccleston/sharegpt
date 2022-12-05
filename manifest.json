@@ -3,7 +3,7 @@
   "description": "Share your ChatGPT conversations",
   "version": "1.0.4",
   "manifest_version": 3,
-  "permissions": ["tabs"],
+  "permissions": ["activeTab"],
   "content_scripts": [
     {
       "matches": ["https://chat.openai.com/chat"],
