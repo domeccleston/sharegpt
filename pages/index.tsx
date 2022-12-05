@@ -42,9 +42,11 @@ const Home: NextPage = () => {
               />
               <p>Install extension</p>
             </a>
-            <a
+            <Link
               className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-[#fcfcfc] transition-colors duration-75 border border-gray-100 shadow-md"
-              href="#examples"
+              rel="noopener noreferrer"
+              target="_blank"
+              href="https://shareg.pt/kowcIqR"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +64,7 @@ const Home: NextPage = () => {
               </svg>
 
               <p>View an example</p>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="my-16 px-2 sm:px-0 sm:max-w-[800px] lg:max-w-[1000px] w-full">
