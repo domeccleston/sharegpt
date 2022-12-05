@@ -85,7 +85,7 @@ const Home: NextPage = () => {
                   <p>Get the Chrome Extension</p>
                 </a>
                 <Link
-                  href="/z3ftry4pjp"
+                  href="/r4c5h9egfk"
                   className="text-sm text-gray-500 hover:text-gray-800 transition-colors"
                 >
                   View an example

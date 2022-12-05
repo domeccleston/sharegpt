@@ -3,7 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["s.gravatar.com", "lh3.googleusercontent.com"],
+    domains: [
+      "avatar.vercel.sh",
+      "s.gravatar.com",
+      "lh3.googleusercontent.com",
+    ],
   },
   async headers() {
     return [
@@ -41,10 +45,21 @@ const nextConfig = {
         has: [
           {
             type: "host",
-            value: `chatg.pt`,
+            value: "chatg.pt",
           },
         ],
         destination: "https://chat.openai.com", // redirect to OpenAI for now
+        permanent: false,
+      },
+      {
+        source: "/",
+        has: [
+          {
+            type: "host",
+            value: "sharegpt.com",
+          },
+        ],
+        destination: "https://shareg.pt",
         permanent: false,
       },
     ];

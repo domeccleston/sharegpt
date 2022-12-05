@@ -27,6 +27,7 @@ export default async function handler(req: NextRequest) {
 
   const { searchParams } = req.nextUrl;
   const title = searchParams.get("title") || "ShareGPT";
+  const avatar = searchParams.get("avatar") || "https://avatar.vercel.sh/{";
 
   return new ImageResponse(
     (
@@ -45,13 +46,14 @@ export default async function handler(req: NextRequest) {
         }}
       >
         <div tw="flex p-10 rounded-lg bg-white/50">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={avatar} alt="avatar" tw="h-14 w-14 mr-5 mt-5" />
           <p
             style={{
               fontSize: "40px",
               fontFamily: "InterMedium",
               color: "#52525B",
               opacity: 0.9,
-              marginTop: "20px",
             }}
           >
             {truncate(title, 120)}
