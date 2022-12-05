@@ -24,3 +24,12 @@ Currently Google Chrome is the only supported browser.
 5. Click the 'load unpacked' button in the top-left-hand corner. You will be prompted to select a folder with your local extension: select the unzipped folder you just cloned.
 6. Navigate to https://chat.openai.com/chat. You'll see a new button above the prompt bar allow you to hit share.
 
+# FAQ
+
+**I downloaded an older version of the extension, and don't see updates**
+
+Please ensure you have downloaded the latest version, then navigate to `chrome://extensions` and hit the refresh button in the bottom right of the extension card. This will reload the extension.
+
+**Does this collect any sensitive data?**
+
+No, this just collects your conversation with ChatGPT and your profile picture.
