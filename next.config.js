@@ -25,6 +25,21 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        has: [
+          {
+            type: "host",
+            value: `chatg.pt`,
+          },
+        ],
+        destination: "https://chat.openai.com", // redirect to OpenAI for now
+        permanent: false,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
