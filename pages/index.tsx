@@ -77,56 +77,43 @@ const Home: NextPage = () => {
           className="py-4 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
         >
           <h1 className="text-4xl font-medium font-display">Examples</h1>
-          <ul className="list-disc ml-6 sm:ml-4 mt-4 font-default underline">
-            <li className="text-lg mb-1">
+          <ul className="list-disc ml-6 sm:ml-4 mt-4 grid gap-2">
+            <li className="text-lg">
               <Link
                 rel="noopener noreferrer"
                 target="_blank"
-                className="text-indigo-600"
-                href="https://shareg.pt/mcgucu3rdb"
+                className="text-indigo-600 underline"
+                href="https://shareg.pt/e7udf6c"
+              >
+                What is the meaning of life?
+              </Link>
+            </li>
+            <li className="text-lg">
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-indigo-600 underline"
+                href="https://shareg.pt/2boEFcP"
               >
                 Rewriting Git from scratch
               </Link>{" "}
               <Link
                 rel="noopener noreferrer"
                 target="_blank"
+                className="no-underline!"
                 href="https://twitter.com/tylerangert/status/1598389755997290507"
               >
                 (credit)
               </Link>
             </li>
-            <li className="text-lg mb-1">
+            <li className="text-lg">
               <Link
                 rel="noopener noreferrer"
                 target="_blank"
-                className="text-indigo-600"
-                href="https://shareg.pt/pjh5ezagkc"
+                className="text-indigo-600 underline"
+                href="https://shareg.pt/sU357zv"
               >
-                Seinfeld: Jerry learns bubble sort
-              </Link>{" "}
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://twitter.com/goodside/status/1598077257498923010"
-              >
-                (credit)
-              </Link>
-            </li>
-            <li className="text-lg mb-1">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600"
-                href="https://shareg.pt/76hmx7ef8h"
-              >
-                Virtual machine
-              </Link>{" "}
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://www.engraved.blog/building-a-virtual-machine-inside/"
-              >
-                (read the full blog post!)
+                How to make Ukrainian borscht?
               </Link>
             </li>
           </ul>
