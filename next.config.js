@@ -12,17 +12,17 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/api/save",
+        source: "/:slug",
         headers: [
           {
-            source: "/:slug",
-            headers: [
-              {
-                key: "x-robots-tag",
-                value: "noindex",
-              },
-            ],
+            key: "x-robots-tag",
+            value: "noindex",
           },
+        ],
+      },
+      {
+        source: "/api/save",
+        headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "*" },
           {
