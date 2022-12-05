@@ -1,4 +1,4 @@
-let isLoading = false;
+let isRequesting = false;
 
 function init() {
   const exportButton = createBtn();
@@ -88,7 +88,7 @@ function createBtn() {
       body: JSON.stringify(conversationData),
     });
     const { id } = await res.json();
-    const url = `https://chatgpt-share.vercel.app/chats/${id}`;
+    const url = `https://chatgpt-share.vercel.app/${id}`;
     window.open(url, "_blank");
     button.innerText = "Export";
   });
