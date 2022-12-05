@@ -51,6 +51,8 @@ function createBtn() {
   button.style.border = "1px solid rgba(0,0,0,.1)";
   button.style.alignSelf = "flex-end";
   button.addEventListener("click", async () => {
+    if (isRequesting) return;
+    isRequesting = true;
     button.innerText = "Exporting...";
 
     const threadContainer = document.querySelector(
@@ -91,6 +93,7 @@ function createBtn() {
     const url = `https://chatgpt-share.vercel.app/${id}`;
     window.open(url, "_blank");
     button.innerText = "Export";
+    isRequesting = false;
   });
   return button;
 }
