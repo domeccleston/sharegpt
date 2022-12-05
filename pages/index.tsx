@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useState } from "react";
 import Image from "next/image";
 import Meta from "@/components/meta";
 
