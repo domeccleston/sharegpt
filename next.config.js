@@ -76,6 +76,12 @@ const nextConfig = {
         destination: "https://github.com/domeccleston/sharegpt", // redirect to GH repo for now, will need to update when we get in the chrome store
         permanent: false,
       },
+      {
+        source: "/mentions",
+        destination:
+          "https://twitter.com/search?q=shareg.pt%20-from%3Asteventey&src=typed_query&f=top", // show ShareGPT mentions on Twitter that are not from @steventey
+        permanent: false,
+      },
     ];
   },
 };
