@@ -17,15 +17,18 @@
     "@vercel/analytics": "^0.1.5",
     "@vercel/og": "^0.0.21",
     "classnames": "^2.3.2",
+    "framer-motion": "^7.6.18",
     "html-to-text": "^9.0.0",
     "nanoid": "^4.0.0",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-lite-youtube-embed": "^2.3.52",
-    "use-debounce": "^9.0.2"
+    "use-debounce": "^9.0.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.8",
     "@types/html-to-text": "^8.1.1",
     "@types/node": "18.11.10",
     "@types/react": "18.0.26",
