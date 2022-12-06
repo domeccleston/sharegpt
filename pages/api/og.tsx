@@ -8,12 +8,6 @@ export const config = {
   runtime: "experimental-edge",
 };
 
-const sfPro = fetch(
-  new URL("../../styles/SF-Pro-Text-Medium.otf", import.meta.url)
-).then((res) => res.arrayBuffer());
-const sfProBold = fetch(
-  new URL("../../styles/SF-Pro-Display-Bold.otf", import.meta.url)
-).then((res) => res.arrayBuffer());
 
 const redis = Redis.fromEnv();
 
@@ -28,7 +22,6 @@ export default async function handler(req: NextRequest) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  const [sfProData, sfProBoldData] = await Promise.all([sfPro, sfProBold]);
 
   const { avatarUrl, items } = page;
   const firstUserMessage = items[0].value;
@@ -62,7 +55,6 @@ export default async function handler(req: NextRequest) {
             style={{
               color: "white",
               fontSize: "30px",
-              fontFamily: "SF Pro",
               whiteSpace: "pre-wrap",
             }}
           >
@@ -92,7 +84,6 @@ export default async function handler(req: NextRequest) {
             style={{
               color: "white",
               fontSize: "30px",
-              fontFamily: "SF Pro",
               whiteSpace: "pre-wrap",
               lineHeight: "44px",
             }}
@@ -110,7 +101,7 @@ export default async function handler(req: NextRequest) {
           <p
             style={{
               fontSize: "40px",
-              fontFamily: "SF Pro Bold",
+              fontWeight: "bold",
               color: "white",
               marginTop: "25px",
             }}
@@ -122,17 +113,7 @@ export default async function handler(req: NextRequest) {
     ),
     {
       width: 1200,
-      height: 600,
-      fonts: [
-        {
-          name: "SF Pro",
-          data: sfProData,
-        },
-        {
-          name: "SF Pro Bold",
-          data: sfProBoldData,
-        },
-      ],
+      height: 600
     }
   );
 }
