@@ -135,7 +135,7 @@ const Home: NextPage = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-indigo-600 underline"
-                href="https://chatg.pt/B9mmxcw"
+                href="https://shareg.pt/B9mmxcw"
               >
                 An SVG image of the US flag inline in Markdown, retrieved from a
                 public URL
@@ -146,7 +146,7 @@ const Home: NextPage = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-indigo-600 underline"
-                href="           https://chatg.pt/iDH6oAI"
+                href="           https://shareg.pt/iDH6oAI"
               >
                 You are a text video game where you give me options (A, B, C, D)
                 as my choices.
@@ -157,7 +157,7 @@ const Home: NextPage = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-indigo-600 underline"
-                href="https://chatg.pt/KNOiH6n"
+                href="https://shareg.pt/KNOiH6n"
               >
                 Coding interview
               </Link>
