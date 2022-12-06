@@ -18,7 +18,7 @@ const SFPro = localFont({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={cx("bg-gray-50", inter.variable, SFPro.variable)}>
+    <main className={cx(inter.variable, SFPro.variable)}>
       <Component {...pageProps} />
       <Analytics />
     </main>

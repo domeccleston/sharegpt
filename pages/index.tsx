@@ -175,7 +175,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="h-[100px] flex items-center justify-center w-full">
+      <div className="h-[100px] bg-gray-50 flex items-center justify-center w-full">
         <Link
           rel="noopener noreferrer"
           target="_blank"
