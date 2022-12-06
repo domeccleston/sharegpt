@@ -16,6 +16,14 @@ const nextConfig = {
         source: "/:slug",
         headers: [
           {
+            key: "Referrer-Policy",
+            value: "no-referrer-when-downgrade",
+          },
+          {
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
+          },
+          {
             key: "x-robots-tag",
             value: "noindex",
           },
@@ -34,15 +42,6 @@ const nextConfig = {
             key: "Access-Control-Allow-Headers",
             value:
               "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-          },
-        ],
-      },
-      {
-        source: "/:slug",
-        headers: [
-          {
-            key: "x-robots-tag",
-            value: "noindex",
           },
         ],
       },
