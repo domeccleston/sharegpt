@@ -34,7 +34,7 @@ export default function ChatPage({ chat, avatarUrl, items }: ChatProps) {
         image={`https://shareg.pt/api/og?chat=${chat}`}
         imageAlt={`This is a preview image for a conversation betwen a human and a GPT-3 chatbot. The human first asks: ${items[0].value}. The GPT-3 chatbot then responds: ${items[1].value}`}
       />
-      <div className="flex flex-col items-center bg-white">
+      <div className="flex flex-col items-center pb-24">
         {items.map((item) => (
           <div
             key={item.value}
