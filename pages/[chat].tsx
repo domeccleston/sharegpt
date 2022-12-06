@@ -33,7 +33,7 @@ export default function ChatPage({ chat, avatarUrl, items }: ChatProps) {
         title={`Check out this ShareGPT conversation`}
         image={`https://shareg.pt/api/og?chat=${chat}`}
       />
-      <div className="flex flex-col items-center bg-white">
+      <div className="flex flex-col items-center pb-24">
         {items.map((item) => (
           <div
             key={item.value}
