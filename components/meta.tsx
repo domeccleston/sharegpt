@@ -5,10 +5,12 @@ export default function Meta({
   title = `ShareGPT: Share your wildest ChatGPT conversations with one click.`,
   description = `ShareGPT is a Chrome extension that allows you to share your wildest ChatGPT conversations with one click.`,
   image = "https://sharegpt.com/thumbnail.png",
+  imageAlt = "OG image for the ShareGPT application",
 }: {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
 }) {
   return (
     <Head>
@@ -47,6 +49,7 @@ export default function Meta({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content={imageAlt} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@Vercel" />
@@ -54,6 +57,7 @@ export default function Meta({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta property="twitter:image:alt" content={imageAlt} />
     </Head>
   );
 }
