@@ -60,7 +60,7 @@ export default function ChatPage({ chat, avatarUrl, items }: ChatProps) {
               )}
               <div className="flex flex-col">
                 {item.from === "human" ? (
-                  <p className="pb-2">{item.value}</p>
+                  <p className="pb-2 whitespace-pre-wrap">{item.value}</p>
                 ) : (
                   <div
                     className={styles.response}
