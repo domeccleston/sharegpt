@@ -73,7 +73,8 @@ const nextConfig = {
       },
       {
         source: "/extension",
-        destination: "https://github.com/domeccleston/sharegpt", // redirect to GH repo for now, will need to update when we get in the chrome store
+        destination:
+          "https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0", // redirect to GH repo for now, will need to update when we get in the chrome store
         permanent: false,
       },
       {

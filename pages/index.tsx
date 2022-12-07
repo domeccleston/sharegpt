@@ -42,7 +42,7 @@ const Home: NextPage = () => {
           <div className="flex flex-col sm:flex-row">
             <a
               className="flex space-x-3 justify-center items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg px-5 py-3 font-medium bg-indigo-400 text-white hover:bg-indigo-500 transition-colors duration-75 shadow-md"
-              href="https://github.com/domeccleston/sharegpt"
+              href="https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0"
               target="_blank"
               rel="noopener noreferrer"
             >
