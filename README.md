@@ -10,9 +10,13 @@ Read more on https://sharegpt.com.
 
 # Installation
 
-Soon, this extension will be available via the Chrome Extension store.
+## Install from Chrome Web Store (Recommended)
 
-While it's pending approval, you can install it by downloading the repo locally and running Chrome in Developer mode.
+You can install this extension with one click: https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb
+
+## Local Install
+
+You can also install it by downloading the repo locally and running Chrome in Developer mode.
 
 Currently Google Chrome is the only supported browser.
 
