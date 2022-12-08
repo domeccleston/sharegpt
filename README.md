@@ -27,7 +27,6 @@ Currently Google Chrome is the only supported browser.
 6. Navigate to https://chat.openai.com/chat and type something in.
 7. After you've submitted at a line of conversation, the Share button will appear to allow you to export your convo.
 
-
 # FAQ
 
 **Where's the Share icon? I don't see it**.
