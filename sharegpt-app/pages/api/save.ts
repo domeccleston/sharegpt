@@ -1,22 +1,11 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Redis } from "@upstash/redis";
+import { redis, ratelimit } from "@/lib/upstash";
 import { customAlphabet } from "nanoid";
-import { Ratelimit } from "@upstash/ratelimit";
-
-const redis = Redis.fromEnv();
-
-// Create a new ratelimiter, that allows 10 requests per 10 seconds
-export const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(10, "10 s"),
-});
 
 const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
   7
 ); // 7-character random string
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String?
+  username      String?        @unique
+  email         String?        @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  conversations Conversation[]
+  upvotes       Upvote[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String? @db.Text
+  id_token           String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Conversation {
+  id        String   @id
+  title     String
+  content   Json?
+  password  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  creatorId String?
+  creator   User?    @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  views     Int      @default(0)
+  upvotes   Upvote[]
+
+  @@index([creatorId])
+}
+
+model Upvote {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@unique([conversationId, userId])
+  @@index([conversationId])
+  @@index([userId])
+}

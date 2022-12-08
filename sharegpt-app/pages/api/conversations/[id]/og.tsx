@@ -1,29 +1,30 @@
 import { ImageResponse } from "@vercel/og";
-import { Redis } from "@upstash/redis";
 import { NextRequest, NextResponse } from "next/server";
-import { ChatProps } from "../[chat]";
 import { convert } from "html-to-text";
+import { ConversationProps } from "@/lib/types";
+import { connect } from "@planetscale/database";
+import { pscale_config } from "@/lib/planetscale";
 
 export const config = {
   runtime: "experimental-edge",
 };
 
-
-const redis = Redis.fromEnv();
-
 export default async function handler(req: NextRequest) {
-  const { searchParams } = req.nextUrl;
-  const chat = searchParams.get("chat");
-  if (!chat) {
+  const url = req.nextUrl.pathname;
+  const id = decodeURIComponent(url.split("/")[3]);
+  if (!id) {
     return NextResponse.redirect(new URL("/", req.url));
   }
-  const page = await redis.get<ChatProps>(chat);
-  if (!page) {
+  const conn = connect(pscale_config);
+  const object = await conn.execute(
+    "SELECT content FROM Conversation WHERE id = ?",
+    [id]
+  );
+  if (object.rows.length === 0) {
+    // no rows that match the id
     return NextResponse.redirect(new URL("/", req.url));
   }
-
-
-  const { avatarUrl, items } = page;
+  const { avatarUrl, items } = (object.rows[0] as ConversationProps).content;
   const firstUserMessage = items[0].value;
   const firstBotMessage = convert(items[1].value, {
     wordwrap: 130,
@@ -113,7 +114,7 @@ export default async function handler(req: NextRequest) {
     ),
     {
       width: 1200,
-      height: 600
+      height: 600,
     }
   );
 }

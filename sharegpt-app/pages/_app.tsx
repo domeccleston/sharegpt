@@ -1,5 +1,7 @@
 import "../styles/globals.css";
 import "../styles/highlight.css";
+import type { Session } from "next-auth";
+import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
@@ -16,12 +18,17 @@ const SFPro = localFont({
   variable: "--font-display",
 });
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps<{ session: Session }>) {
   return (
-    <main className={cx(inter.variable, SFPro.variable)}>
-      <Component {...pageProps} />
-      <Analytics />
-    </main>
+    <SessionProvider session={session}>
+      <main className={cx(inter.variable, SFPro.variable)}>
+        <Component {...pageProps} />
+        <Analytics />
+      </main>
+    </SessionProvider>
   );
 }
 
