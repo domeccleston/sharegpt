@@ -14,7 +14,7 @@ Read more on https://sharegpt.com.
 
 You can install this extension with one click: https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb
 
-## Local Install
+## Local install
 
 You can also install it by downloading the repo locally and running Chrome in Developer mode.
 
