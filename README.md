@@ -46,3 +46,5 @@ Please ensure you have downloaded the latest version, then navigate to `chrome:/
 **Does this collect any sensitive data?**
 
 No, this just collects your conversation with ChatGPT and your profile picture.
+
+Frontend for ChatGPT Share. To start sharing ChatGPT conversations, visit https://github.com/domeccleston/chatgpt-extension and install the Chrome extension.
