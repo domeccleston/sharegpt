@@ -1,9 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { redis, ratelimit } from "@/lib/upstash";
+import { ratelimit } from "@/lib/upstash";
 import { customAlphabet } from "nanoid";
 import { conn } from "@/lib/planetscale";
 import { ConversationProps } from "@/lib/types";
 import { truncate } from "@/lib/utils";
+import { NextRequest } from "next/server";
 
 export const config = {
   runtime: "experimental-edge",
@@ -13,12 +13,9 @@ const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
   7
 ); // 7-character random string
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  console.log(req.headers.origin);
-  // if (req.headers.origin !== "https://chat.openai.com")
+export default async function handler(req: NextRequest) {
+  console.log(req.headers.get("origin"));
+  // if (req.headers.get("origin") !== "https://chat.openai.com")
   //   return new Response("Invalid origin", { status: 400 });
 
   if (req.method === "POST") {
@@ -40,7 +37,7 @@ export default async function handler(
   }
 }
 
-async function ReadableStreamToString(stream: ReadableStream) {
+async function ReadableStreamToString(stream: ReadableStream | null) {
   const reader = stream.getReader();
   const decoder = new TextDecoder();
   let result = "";
