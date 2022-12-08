@@ -2,8 +2,7 @@ import { ImageResponse } from "@vercel/og";
 import { NextRequest, NextResponse } from "next/server";
 import { convert } from "html-to-text";
 import { ConversationProps } from "@/lib/types";
-import { connect } from "@planetscale/database";
-import { pscale_config } from "@/lib/planetscale";
+import { conn } from "@/lib/planetscale";
 
 export const config = {
   runtime: "experimental-edge",
@@ -15,7 +14,6 @@ export default async function handler(req: NextRequest) {
   if (!id) {
     return NextResponse.redirect(new URL("/", req.url));
   }
-  const conn = connect(pscale_config);
   const object = await conn.execute(
     "SELECT content FROM Conversation WHERE id = ?",
     [id]
