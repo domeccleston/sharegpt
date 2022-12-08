@@ -20,7 +20,7 @@ export default async function handler(
   if (req.headers.origin !== "https://chat.openai.com")
     return new Response("Invalid origin", { status: 400 });
 
-  if (req.method !== "OPTIONS") {
+  if (req.method === "POST") {
     const { success } = await ratelimit.limit("sharegpt-save-endpoint");
     if (!success) {
       return new Response("Don't DDoS me pls 🥺", { status: 429 });
