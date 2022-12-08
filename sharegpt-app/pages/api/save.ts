@@ -38,6 +38,9 @@ export default async function handler(req: NextRequest) {
 }
 
 async function ReadableStreamToString(stream: ReadableStream | null) {
+  if (!stream) {
+    return "";
+  }
   const reader = stream.getReader();
   const decoder = new TextDecoder();
   let result = "";
