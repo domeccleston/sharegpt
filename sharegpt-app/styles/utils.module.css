@@ -1,5 +1,6 @@
 .response {
   overflow-x: scroll;
+  white-space: pre-wrap;
 }
 
 .response::-webkit-scrollbar {
