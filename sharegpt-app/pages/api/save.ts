@@ -14,11 +14,12 @@ const nanoid = customAlphabet(
   7
 ); // 7-character random string
 export default async function handler(req: NextRequest) {
-  console.log(req.headers.get("origin"));
-  // if (req.headers.get("origin") !== "https://chat.openai.com")
-  //   return new Response("Invalid origin", { status: 400 });
+  if (req.headers.get("origin") !== "https://chat.openai.com")
+    return new Response("Invalid origin", { status: 400 });
 
-  if (req.method === "POST") {
+  if (req.method === "OPTIONS") {
+    return new Response("OK", { status: 200 });
+  } else if (req.method === "POST") {
     const { success } = await ratelimit.limit("sharegpt-save-endpoint");
     if (!success) {
       return new Response("Don't DDoS me pls 🥺", { status: 429 });
