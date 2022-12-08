@@ -17,8 +17,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // if (req.headers.origin !== "https://chat.openai.com")
-  //   return new Response("Invalid origin", { status: 400 });
+  if (req.headers.origin !== "https://chat.openai.com")
+    return new Response("Invalid origin", { status: 400 });
 
   if (req.method !== "OPTIONS") {
     const { success } = await ratelimit.limit("sharegpt-save-endpoint");
