@@ -27,14 +27,9 @@ export default async function handler(req: NextRequest) {
   const firstBotMessage = convert(items[1].value, {
     wordwrap: 130,
   });
-  const [interBold, SFPro] = await Promise.all([
-    fetch(new URL("../../../../styles/Inter-Bold.ttf", import.meta.url)).then(
-      (res) => res.arrayBuffer()
-    ),
-    fetch(
-      new URL("../../../../styles/SF-Pro-Text-Medium.otf", import.meta.url)
-    ).then((res) => res.arrayBuffer()),
-  ]);
+  const interBold = await fetch(
+    new URL("../../../../styles/Inter-Bold.ttf", import.meta.url)
+  ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -46,6 +41,7 @@ export default async function handler(req: NextRequest) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "flex-start",
+          fontFamily: "Inter Bold",
           backgroundColor: "#444654",
         }}
       >
@@ -62,7 +58,6 @@ export default async function handler(req: NextRequest) {
             style={{
               color: "white",
               fontSize: "30px",
-              fontFamily: "SF Pro",
               whiteSpace: "pre-wrap",
             }}
           >
@@ -92,7 +87,6 @@ export default async function handler(req: NextRequest) {
             style={{
               color: "white",
               fontSize: "30px",
-              fontFamily: "SF Pro",
               whiteSpace: "pre-wrap",
               lineHeight: "44px",
             }}
@@ -111,7 +105,6 @@ export default async function handler(req: NextRequest) {
             style={{
               fontSize: "40px",
               fontWeight: "bold",
-              fontFamily: "Inter Bold",
               color: "white",
               marginTop: "25px",
             }}
@@ -128,10 +121,6 @@ export default async function handler(req: NextRequest) {
         {
           name: "Inter Bold",
           data: interBold,
-        },
-        {
-          name: "SF Pro",
-          data: SFPro,
         },
       ],
     }
