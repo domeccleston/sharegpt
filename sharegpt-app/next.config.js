@@ -8,6 +8,9 @@ const nextConfig = {
       "s.gravatar.com",
       "lh3.googleusercontent.com",
       "www.datocms-assets.com",
+      "avatars.dicebear.com",
+      "pbs.twimg.com",
+      "abs.twimg.com",
     ],
   },
   async headers() {
@@ -22,10 +25,6 @@ const nextConfig = {
           {
             key: "X-DNS-Prefetch-Control",
             value: "on",
-          },
-          {
-            key: "x-robots-tag",
-            value: "noindex",
           },
         ],
       },
@@ -69,6 +68,17 @@ const nextConfig = {
           },
         ],
         destination: "https://sharegpt.com",
+        permanent: false,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "shareg.pt",
+          },
+        ],
+        destination: "https://sharegpt.com/c/:path*",
         permanent: false,
       },
       {

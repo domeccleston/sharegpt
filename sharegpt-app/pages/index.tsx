@@ -1,15 +1,15 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import Meta from "@/components/meta";
+import prisma from "@/lib/prisma";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
-import Twitter from "@/components/twitter";
+import Twitter from "@/components/shared/icons/twitter";
+import Layout from "@/components/layout";
 
-const Home: NextPage = () => {
+export default function Home({ totalConvos }: { totalConvos: number }) {
   return (
-    <>
-      <Meta />
+    <Layout>
       <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
         <Link
           href="https://twitter.com/steventey/status/1599816553490366464"
@@ -22,22 +22,17 @@ const Home: NextPage = () => {
             Introducing ShareGPT
           </p>
         </Link>
-        <div className="h-[40px] w-full absolute top-0 flex items-center pl-4 pt-4 font-display font-medium text-xl">
-          <Image
-            src="/logo.png"
-            alt="Logo image of a chat bubble"
-            width="30"
-            height="30"
-            className="mr-2 rounded-sm"
-          ></Image>
-          <p>ShareGPT</p>
-        </div>
         <div className="flex flex-col items-center space-y-8 text-center mx-5 sm:mx-auto">
           <h1 className="font-display tracking-tight font-bold text-4xl text-gray-800 transition-colors sm:text-7xl">
             ShareGPT
           </h1>
           <p className="max-w-lg text-gray-600 transition-colors sm:text-lg">
             Share your wildest ChatGPT conversations with one click.
+            <br />
+            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+              {Intl.NumberFormat("en-us").format(totalConvos)}
+            </span>{" "}
+            conversations shared so far.
           </p>
           <div className="flex flex-col sm:flex-row">
             <a
@@ -146,7 +141,7 @@ const Home: NextPage = () => {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-indigo-600 underline"
-                href="           https://shareg.pt/iDH6oAI"
+                href="https://shareg.pt/iDH6oAI"
               >
                 You are a text video game where you give me options (A, B, C, D)
                 as my choices.
@@ -189,8 +184,15 @@ const Home: NextPage = () => {
           />
         </Link>
       </div>
-    </>
+    </Layout>
   );
-};
+}
 
-export default Home;
+export async function getStaticProps() {
+  const totalConvos = await prisma.conversation.count();
+  return {
+    props: {
+      totalConvos,
+    },
+  };
+}
