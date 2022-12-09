@@ -15,7 +15,7 @@ const useView = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.views === 1) {
+          if (data.views === 0) {
             navigator.clipboard
               .writeText(`https://shareg.pt/${id}`)
               .then(() => {
@@ -25,7 +25,7 @@ const useView = () => {
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // to make sure hook is only called once on mount
+  }, [id]); // to make sure hook is only called once on mount
 }; // not when reactStrictMode is true, this is fired twice, but it only happens in dev, not prod
 
 export default useView;
