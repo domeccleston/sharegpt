@@ -20,6 +20,7 @@ export default function ChatPage({
   content: { avatarUrl, items },
 }: ConversationProps) {
   useView();
+
   return (
     <>
       <Meta

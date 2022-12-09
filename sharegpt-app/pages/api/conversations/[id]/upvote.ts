@@ -9,22 +9,45 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { id } = req.query as { id: string };
-  if (req.method === "POST") {
-    const session = (await unstable_getServerSession(
-      req,
-      res,
-      authOptions
-    )) as Session;
-    const userId = session?.user?.id;
+  const session = (await unstable_getServerSession(
+    req,
+    res,
+    authOptions
+  )) as Session;
+  const userId = session?.user?.id;
 
-    if (!userId) {
-      res.status(401).json({ error: "Not authenticated" });
-      return;
-    }
+  if (!userId) {
+    res.status(401).json({ error: "Not authenticated" });
+    return;
+  }
+
+  if (req.method === "GET") {
+    const response = await prisma.upvote.findUnique({
+      where: {
+        conversationId_userId: {
+          conversationId: id,
+          userId,
+        },
+      },
+    });
+    res.status(200).json({
+      upvoted: !!response,
+    });
+  } else if (req.method === "POST") {
     const response = await prisma.upvote.create({
       data: {
         conversationId: id,
         userId,
+      },
+    });
+    res.status(200).json(response);
+  } else if (req.method === "DELETE") {
+    const response = await prisma.upvote.delete({
+      where: {
+        conversationId_userId: {
+          conversationId: id,
+          userId,
+        },
       },
     });
     res.status(200).json(response);

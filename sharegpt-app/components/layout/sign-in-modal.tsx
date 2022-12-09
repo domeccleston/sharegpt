@@ -7,8 +7,7 @@ import {
   useCallback,
   useMemo,
 } from "react";
-import LoadingDots from "@/components/shared/icons/loading-dots";
-import Link from "next/link";
+import { LoadingDots } from "@/components/shared/icons";
 import Twitter from "../shared/icons/twitter";
 import Image from "next/image";
 
