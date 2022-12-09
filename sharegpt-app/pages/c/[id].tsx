@@ -9,6 +9,7 @@ import Banner from "@/components/layout/banner";
 import Meta from "@/components/layout/meta";
 import { ConversationProps } from "@/lib/types";
 import useView from "@/lib/hooks/use-view";
+import { Toaster } from "react-hot-toast";
 
 interface ChatParams extends ParsedUrlQuery {
   id: string;
@@ -26,6 +27,7 @@ export default function ChatPage({
         image={`https://sharegpt.com/api/conversations/${id}/og`}
         imageAlt={`This is a preview image for a conversation betwen a human and a GPT-3 chatbot. The human first asks: ${items[0].value}. The GPT-3 chatbot then responds: ${items[1].value}`}
       />
+      <Toaster />
       <div className="flex flex-col items-center pb-24">
         {items.map((item) => (
           <div

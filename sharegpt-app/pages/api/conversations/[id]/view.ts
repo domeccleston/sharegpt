@@ -1,31 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connect } from "@planetscale/database";
-import { pscale_config } from "@/lib/planetscale";
+import prisma from "@/lib/prisma";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export const config = {
-  runtime: "experimental-edge",
-};
-
-export default async function handler(req: NextRequest) {
-  const url = req.nextUrl.pathname;
-  const id = decodeURIComponent(url.split("/")[3]);
-  if (!id) {
-    return new Response("Invalid ID", { status: 400 });
-  }
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { id } = req.query as { id: string };
   if (req.method === "POST") {
-    console.log("running");
-    const conn = connect(pscale_config);
-    const response = await conn.execute(
-      "UPDATE Conversation SET views = views + 1 WHERE id = ?",
-      [id]
-    );
-    return new Response(JSON.stringify(response), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
+    const response = await prisma.conversation.update({
+      where: {
+        id,
+      },
+      data: {
+        views: {
+          increment: 1,
+        },
       },
     });
+    return res.status(200).json({ views: response.views });
   } else {
-    return new Response(`Method ${req.method} Not Allowed`, { status: 405 });
+    return res.status(405).json({ error: "Method not allowed" });
   }
 }
