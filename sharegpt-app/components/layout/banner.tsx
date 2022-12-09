@@ -15,7 +15,7 @@ export default function Banner() {
   const { id } = router.query as { id: string };
   const { data: session } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
-  const { data } = useSWR<{ upvoted: boolean }>(
+  const { data, isValidating } = useSWR<{ upvoted: boolean }>(
     session?.user ? `/api/conversations/${id}/upvote` : null,
     fetcher
   );
@@ -66,12 +66,12 @@ export default function Banner() {
               });
             }
           }}
-          disabled={submitting || !data}
+          disabled={submitting || isValidating}
           className={`${
-            submitting || !data ? "cursor-not-allowed" : ""
+            submitting || isValidating ? "cursor-not-allowed" : ""
           } p-2 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-all`}
         >
-          {submitting || !data ? (
+          {submitting || isValidating ? (
             <LoadingCircle />
           ) : data?.upvoted ? (
             <Heart className="h-4 w-4 text-red-500" fill="#EF4444" />

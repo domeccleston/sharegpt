@@ -88,22 +88,12 @@ export default function Home({ totalConvos }: { totalConvos: number }) {
           <h1 className="text-4xl font-medium font-display">Examples</h1>
           <ul className="list-disc ml-6 sm:ml-4 mt-4 grid gap-2">
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/oPt72P3"
-              >
+              <Link className="text-indigo-600 underline" href="/c/oPt72P3">
                 What is the meaning of life?
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/2boEFcP"
-              >
+              <Link className="text-indigo-600 underline" href="/2boEFcP">
                 Rewriting Git from scratch
               </Link>{" "}
               <Link
@@ -116,44 +106,24 @@ export default function Home({ totalConvos }: { totalConvos: number }) {
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/sU357zv"
-              >
+              <Link className="text-indigo-600 underline" href="/c/sU357zv">
                 How to make Ukrainian borscht?
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/B9mmxcw"
-              >
+              <Link className="text-indigo-600 underline" href="/c/B9mmxcw">
                 An SVG image of the US flag inline in Markdown, retrieved from a
                 public URL
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/iDH6oAI"
-              >
+              <Link className="text-indigo-600 underline" href="/c/iDH6oAI">
                 You are a text video game where you give me options (A, B, C, D)
                 as my choices.
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/KNOiH6n"
-              >
+              <Link className="text-indigo-600 underline" href="/c/KNOiH6n">
                 Coding interview
               </Link>
             </li>
