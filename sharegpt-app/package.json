@@ -31,6 +31,7 @@
     "prisma": "^4.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0",
     "react-lite-youtube-embed": "^2.3.52",
     "use-debounce": "^9.0.2"
   },
