@@ -4,9 +4,11 @@ import Meta from "./meta";
 import { useSession } from "next-auth/react";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
+import { motion, AnimatePresence } from "framer-motion";
+import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 
 export default function Layout({ children }: { children: ReactNode }) {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
   return (
     <div>
@@ -25,16 +27,19 @@ export default function Layout({ children }: { children: ReactNode }) {
             <p>ShareGPT</p>
           </div>
           <div>
-            {session?.user ? (
-              <UserDropdown />
-            ) : (
-              <button
-                className="bg-black text-white text-sm px-4 p-1.5 rounded-md border border-black hover:bg-white hover:text-black transition-all"
-                onClick={() => setShowSignInModal(true)}
-              >
-                Sign In
-              </button>
-            )}
+            <AnimatePresence>
+              {!session && status !== "loading" ? (
+                <motion.button
+                  className="bg-black text-white text-sm px-4 p-1.5 rounded-md border border-black hover:bg-white hover:text-black transition-all"
+                  onClick={() => setShowSignInModal(true)}
+                  {...FADE_IN_ANIMATION_SETTINGS}
+                >
+                  Sign In
+                </motion.button>
+              ) : (
+                <UserDropdown />
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

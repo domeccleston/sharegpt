@@ -3,6 +3,8 @@ import { signOut, useSession } from "next-auth/react";
 import { LayoutDashboard, LogOut } from "lucide-react";
 import Popover from "@/components/shared/popover";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 
 export default function UserDropdown() {
   const { data: session } = useSession();
@@ -12,7 +14,10 @@ export default function UserDropdown() {
   if (!email) return null;
 
   return (
-    <div className="relative inline-block text-left">
+    <motion.div
+      className="relative inline-block text-left"
+      {...FADE_IN_ANIMATION_SETTINGS}
+    >
       <Popover
         content={
           <div className="w-full rounded-md bg-white p-2 sm:w-56">
@@ -55,6 +60,6 @@ export default function UserDropdown() {
           />
         </button>
       </Popover>
-    </div>
+    </motion.div>
   );
 }
