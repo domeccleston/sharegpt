@@ -68,11 +68,7 @@ function init() {
     const { id } = await res.json();
     const url = `https://shareg.pt/${id}`;
 
-    const opened = window.open(url, "_blank");
-
-    if (opened == null || typeof(open)=='undefined') {
-      alert('ShareGPT: popup blocked :(');
-    }
+    window.open(url, "_blank");
 
     setTimeout(() => {
       shareButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
