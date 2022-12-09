@@ -62,15 +62,13 @@ async function setRandomKey(
 ): Promise<string> {
   const key = nanoid();
   const currentTime = new Date().toISOString().replace("Z", "");
+  const title = html.items[0].value
+    ? truncate(html.items[0].value, 180)
+    : "Untitled";
   try {
     await conn.execute(
       "INSERT INTO Conversation (id, title, content, updatedAt) VALUES (?, ?, ?, ?)",
-      [
-        key,
-        truncate(html.items[0].value, 180),
-        JSON.stringify(html),
-        currentTime,
-      ]
+      [key, title, JSON.stringify(html), currentTime]
     );
     return key;
   } catch (e) {
