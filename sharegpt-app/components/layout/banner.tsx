@@ -1,12 +1,13 @@
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import Upvote from "@/components/shared/upvote";
 import { useState } from "react";
+import { nFormatter } from "@/lib/utils";
 
-export default function Banner() {
+export default function Banner({ views }: { views: number }) {
   const router = useRouter();
   const { id } = router.query as { id: string };
   const [copied, setCopied] = useState(false);
@@ -26,7 +27,7 @@ export default function Banner() {
         />
         <p>Shared via ShareGPT</p>
       </Link>
-      <div className="border-l border-gray-200 h-8 w-1" />
+      <div className="border-l border-gray-200 h-10 w-1" />
       <button
         onClick={() =>
           navigator.clipboard.writeText(`https://shareg.pt/${id}`).then(() => {
@@ -35,15 +36,20 @@ export default function Banner() {
             setTimeout(() => setCopied(false), 2000);
           })
         }
-        className="p-2 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-all"
+        className="p-2 flex flex-col space-y-1 items-center rounded-md w-12 hover:bg-gray-100 active:bg-gray-200 transition-all"
       >
         {copied ? (
           <Check className="h-4 w-4 text-green-600" />
         ) : (
           <Copy className="h-4 w-4 text-gray-600" />
         )}
+        <p className="text-center text-gray-600 text-sm">Copy</p>
       </button>
       <Upvote />
+      <div className="cursor-default p-2 flex flex-col space-y-1 items-center rounded-md w-12 hover:bg-gray-100 active:bg-gray-200 transition-all">
+        <Eye className="h-4 w-4 text-gray-600" />
+        <p className="text-center text-gray-600 text-sm">{nFormatter(views)}</p>
+      </div>
     </div>
   );
 }

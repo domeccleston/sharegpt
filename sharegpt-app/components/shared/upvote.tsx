@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { fetcher } from "@/lib/utils";
+import { fetcher, nFormatter } from "@/lib/utils";
 import useSWR, { mutate } from "swr";
 import { useState } from "react";
 import { LoadingCircle } from "@/components/shared/icons";
@@ -45,7 +45,7 @@ export default function Upvote() {
         disabled={submitting || isValidating}
         className={`${
           submitting || isValidating ? "cursor-not-allowed" : ""
-        } p-2 flex space-x-2 items-center rounded-md hover:bg-gray-100 active:bg-gray-200 transition-all`}
+        } p-2 flex flex-col space-y-1 items-center rounded-md w-12 hover:bg-gray-100 active:bg-gray-200 transition-all`}
       >
         {submitting || isValidating ? (
           <LoadingCircle />
@@ -54,11 +54,9 @@ export default function Upvote() {
         ) : (
           <Triangle className="h-4 w-4 text-gray-600" />
         )}
-        <div className="w-3 text-center text-gray-600">
-          {upvotesData?.count
-            ? Intl.NumberFormat("en-us").format(upvotesData.count)
-            : 0}
-        </div>
+        <p className="text-center text-gray-600 text-sm">
+          {upvotesData?.count ? nFormatter(upvotesData.count, 1) : 0}
+        </p>
       </button>
     </>
   );

@@ -18,6 +18,7 @@ interface ChatParams extends ParsedUrlQuery {
 export default function ChatPage({
   id,
   content: { avatarUrl, items },
+  views,
 }: ConversationProps) {
   useView();
 
@@ -67,7 +68,7 @@ export default function ChatPage({
           </div>
         ))}
       </div>
-      <Banner />
+      <Banner views={views} />
     </>
   );
 }
@@ -104,6 +105,7 @@ export const getStaticProps = async (
     select: {
       id: true,
       content: true,
+      views: true,
     },
   });
 

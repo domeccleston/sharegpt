@@ -7,6 +7,7 @@ export type ConversationProps = {
       value: string;
     }[];
   };
+  views: number;
 };
 
 export interface Session {
