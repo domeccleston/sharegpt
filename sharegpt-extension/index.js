@@ -68,7 +68,20 @@ function init() {
     const { id } = await res.json();
     const url = `https://shareg.pt/${id}`;
 
-    window.open(url, "_blank");
+    const shareData = {
+      title: 'ShareGPT',
+      text: 'Shared ChatGPT Conversation',
+      url: url,
+    }
+    if (navigator.canShare(shareData)) {
+      navigator.share(shareData);
+    }
+    else {
+      const popUpOpened = window.open(url, "_blank");
+      if (popUpOpened == null || typeof (popUpOpened) == 'undefined') {
+        alert('ShareGPT: popup blocked :(');
+      }
+    }
 
     setTimeout(() => {
       shareButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
