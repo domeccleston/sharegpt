@@ -13,6 +13,7 @@ const nanoid = customAlphabet(
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
   7
 ); // 7-character random string
+
 export default async function handler(req: NextRequest) {
   if (req.headers.get("origin") !== "https://chat.openai.com")
     return new Response("Invalid origin", { status: 400 });
