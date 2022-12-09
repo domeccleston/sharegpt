@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import Meta from "@/components/layout/meta";
+import prisma from "@/lib/prisma";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import Twitter from "@/components/shared/icons/twitter";
 import Layout from "@/components/layout";
 
-const Home: NextPage = () => {
+export default function Home({ totalConvos }: { totalConvos: number }) {
   return (
     <Layout>
       <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
@@ -28,6 +28,11 @@ const Home: NextPage = () => {
           </h1>
           <p className="max-w-lg text-gray-600 transition-colors sm:text-lg">
             Share your wildest ChatGPT conversations with one click.
+            <br />
+            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+              {Intl.NumberFormat("en-us").format(totalConvos)}
+            </span>{" "}
+            conversations shared so far.
           </p>
           <div className="flex flex-col sm:flex-row">
             <a
@@ -181,6 +186,13 @@ const Home: NextPage = () => {
       </div>
     </Layout>
   );
-};
+}
 
-export default Home;
+export async function getStaticProps() {
+  const totalConvos = await prisma.conversation.count();
+  return {
+    props: {
+      totalConvos,
+    },
+  };
+}
