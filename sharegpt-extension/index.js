@@ -1,11 +1,11 @@
 let isRequesting = false;
+const BUTTONS_WRAPPER_SELECTOR = "#__next main form > div div:nth-of-type(1)";
+const BUTTON_TRY_AGAIN_SELECTOR = "#__next main form > div div:nth-of-type(1) > .btn";
 
 function init() {
   const shareButton = createBtn();
 
-  const buttonsWrapper = document.querySelector(
-    "#__next main form > div div:nth-of-type(1)"
-  );
+  const buttonsWrapper = document.querySelector(BUTTONS_WRAPPER_SELECTOR);
 
   buttonsWrapper.appendChild(shareButton);
 
@@ -68,7 +68,11 @@ function init() {
     const { id } = await res.json();
     const url = `https://shareg.pt/${id}`;
 
-    window.open(url, "_blank");
+    const opened = window.open(url, "_blank");
+
+    if (opened == null || typeof(open)=='undefined') {
+      alert('ShareGPT: popup blocked :(');
+    }
 
     setTimeout(() => {
       shareButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
@@ -124,4 +128,24 @@ function createBtn() {
   return button;
 }
 
-init();
+function requestAnimationFrameAsync() {
+  return new Promise(resolve => {
+    requestAnimationFrame(resolve); //faster than set time out
+  });
+}
+
+/** Promise that constantly checks for the buttons wrapper to appear in the DOM, resolving once it appears. */
+function waitForTryAgainButton () {
+  const buttonWrapper = document.querySelector(BUTTON_TRY_AGAIN_SELECTOR);
+
+  if (buttonWrapper) {
+    return Promise.resolve();
+  }
+  else {
+    return new Promise(resolveAnimationFrame => {
+      requestAnimationFrame(resolveAnimationFrame); //faster than set time out
+    }).then(waitForTryAgainButton)
+  }
+}
+
+waitForTryAgainButton().then(init);
