@@ -93,7 +93,7 @@ export default function Home({ totalConvos }: { totalConvos: number }) {
               </Link>
             </li>
             <li className="text-lg">
-              <Link className="text-indigo-600 underline" href="/2boEFcP">
+              <Link className="text-indigo-600 underline" href="/c/2boEFcP">
                 Rewriting Git from scratch
               </Link>{" "}
               <Link
