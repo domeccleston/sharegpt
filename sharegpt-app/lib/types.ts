@@ -1,5 +1,6 @@
 export type ConversationProps = {
   id: string;
+  upvotes: number;
   content: {
     avatarUrl: string;
     items: {

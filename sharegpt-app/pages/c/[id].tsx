@@ -1,11 +1,13 @@
 import { GetStaticPropsContext } from "next";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 import prisma from "@/lib/prisma";
 import { ParsedUrlQuery } from "node:querystring";
 import cn from "classnames";
 import GPTAvatar from "@/components/shared/icons/GPTAvatar";
 import styles from "@/styles/utils.module.css";
 import Banner from "@/components/layout/banner";
+import LikeButton from "@/components/layout/like-button";
 import Meta from "@/components/layout/meta";
 import { ConversationProps } from "@/lib/types";
 import useView from "@/lib/hooks/use-view";
@@ -16,9 +18,15 @@ interface ChatParams extends ParsedUrlQuery {
 
 export default function ChatPage({
   id,
+  upvotes,
   content: { avatarUrl, items },
 }: ConversationProps) {
   useView();
+
+  const { data: session } = useSession();
+
+  console.log({ upvotes });
+
   return (
     <>
       <Meta
@@ -65,6 +73,7 @@ export default function ChatPage({
         ))}
       </div>
       <Banner />
+      {session && <LikeButton upvotes={upvotes} id={id} />}
     </>
   );
 }
