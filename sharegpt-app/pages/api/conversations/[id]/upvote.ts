@@ -8,7 +8,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const [, , , id] = req?.url?.split("/") as string[];
+  const { id } = req.query as { id: string };
   if (req.method === "POST") {
     const session = (await unstable_getServerSession(
       req,
