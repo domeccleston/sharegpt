@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             ></Image>
             <p>ShareGPT</p>
           </div>
-          <div>
+          {/* <div>
             {session?.user ? (
               <UserDropdown />
             ) : (
@@ -35,7 +35,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 Sign In
               </button>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
       {children}
