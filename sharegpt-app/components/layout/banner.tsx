@@ -5,9 +5,7 @@ export default function Banner() {
   return (
     <div className="fixed bottom-5 inset-x-0 mx-auto max-w-fit rounded-lg p-2 bg-white border border-gray-100 shadow-md flex justify-between space-x-1 items-center">
       <Link
-        href="https://sharegpt.com"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/"
         className="flex space-x-3 items-center justify-center font-medium text-gray-600 px-3 py-2 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-all"
       >
         <Image

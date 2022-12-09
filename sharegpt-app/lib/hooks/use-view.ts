@@ -15,7 +15,7 @@ export const useView = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.views === 0) {
+          if (data.views === 1) {
             navigator.clipboard
               .writeText(`https://shareg.pt/${id}`)
               .then(() => {
