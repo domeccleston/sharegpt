@@ -112,7 +112,3 @@ export const getStaticProps = async (
     return { notFound: true };
   }
 };
-
-export const config = {
-  unstable_runtimeJS: false,
-};
