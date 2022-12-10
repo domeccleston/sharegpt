@@ -26,7 +26,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             ></Image>
             <p>ShareGPT</p>
           </div>
-          {/*<div>
+          <div>
             <AnimatePresence>
               {!session && status !== "loading" ? (
                 <motion.button
@@ -40,7 +40,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <UserDropdown />
               )}
             </AnimatePresence>
-          </div>*/}
+          </div>
         </div>
       </div>
       {children}
