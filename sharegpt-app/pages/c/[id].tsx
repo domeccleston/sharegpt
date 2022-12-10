@@ -78,10 +78,11 @@ export const getStaticPaths = async () => {
     select: {
       id: true,
     },
-    orderBy: {
-      views: "desc",
+    where: {
+      views: {
+        gte: 5,
+      },
     },
-    take: 100, // pregenerate the top 100 most viewed conversations
   });
   return {
     paths: convos.map((convo) => ({
