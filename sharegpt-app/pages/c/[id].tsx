@@ -8,7 +8,8 @@ import styles from "@/styles/utils.module.css";
 import Banner from "@/components/layout/banner";
 import Meta from "@/components/layout/meta";
 import { ConversationProps } from "@/lib/types";
-import useView from "@/lib/hooks/use-view";
+import { useView } from "@/lib/hooks/use-view";
+import { Toaster } from "react-hot-toast";
 
 interface ChatParams extends ParsedUrlQuery {
   id: string;
@@ -17,8 +18,10 @@ interface ChatParams extends ParsedUrlQuery {
 export default function ChatPage({
   id,
   content: { avatarUrl, items },
+  views,
 }: ConversationProps) {
   useView();
+
   return (
     <>
       <Meta
@@ -26,6 +29,7 @@ export default function ChatPage({
         image={`https://sharegpt.com/api/conversations/${id}/og`}
         imageAlt={`This is a preview image for a conversation betwen a human and a GPT-3 chatbot. The human first asks: ${items[0].value}. The GPT-3 chatbot then responds: ${items[1].value}`}
       />
+      <Toaster />
       <div className="flex flex-col items-center pb-24">
         {items.map((item) => (
           <div
@@ -64,7 +68,7 @@ export default function ChatPage({
           </div>
         ))}
       </div>
-      <Banner />
+      <Banner views={views} />
     </>
   );
 }
@@ -74,10 +78,11 @@ export const getStaticPaths = async () => {
     select: {
       id: true,
     },
-    orderBy: {
-      views: "desc",
+    where: {
+      views: {
+        gte: 5,
+      },
     },
-    take: 100, // pregenerate the top 100 most viewed conversations
   });
   return {
     paths: convos.map((convo) => ({
@@ -101,16 +106,13 @@ export const getStaticProps = async (
     select: {
       id: true,
       content: true,
+      views: true,
     },
   });
 
   if (props) {
-    return { props };
+    return { props, revalidate: 60 };
   } else {
     return { notFound: true };
   }
-};
-
-export const config = {
-  unstable_runtimeJS: false,
 };

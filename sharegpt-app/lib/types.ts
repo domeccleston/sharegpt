@@ -1,4 +1,4 @@
-export type ConversationProps = {
+export interface ConversationProps {
   id: string;
   content: {
     avatarUrl: string;
@@ -7,7 +7,20 @@ export type ConversationProps = {
       value: string;
     }[];
   };
-};
+  views: number;
+}
+
+export interface ConversationMeta {
+  id: string;
+  title: string;
+  avatar: string;
+  creator: {
+    name: string;
+    image: string;
+  };
+  upvotes: number;
+  createdAt: string;
+}
 
 export interface Session {
   user: {

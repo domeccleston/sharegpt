@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import prisma from "@/lib/prisma";
@@ -6,8 +5,16 @@ import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import Twitter from "@/components/shared/icons/twitter";
 import Layout from "@/components/layout";
+import ConvoCard from "@/components/explore/convo-card";
+import { ConversationMeta } from "@/lib/types";
 
-export default function Home({ totalConvos }: { totalConvos: number }) {
+export default function Home({
+  totalConvos,
+  topConvos,
+}: {
+  totalConvos: number;
+  topConvos: ConversationMeta[];
+}) {
   return (
     <Layout>
       <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
@@ -86,24 +93,15 @@ export default function Home({ totalConvos }: { totalConvos: number }) {
           className="py-4 px-2 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
         >
           <h1 className="text-4xl font-medium font-display">Examples</h1>
+          {/* <ConvoCard /> */}
           <ul className="list-disc ml-6 sm:ml-4 mt-4 grid gap-2">
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/oPt72P3"
-              >
+              <Link className="text-indigo-600 underline" href="/c/oPt72P3">
                 What is the meaning of life?
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/2boEFcP"
-              >
+              <Link className="text-indigo-600 underline" href="/c/2boEFcP">
                 Rewriting Git from scratch
               </Link>{" "}
               <Link
@@ -116,44 +114,24 @@ export default function Home({ totalConvos }: { totalConvos: number }) {
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/sU357zv"
-              >
+              <Link className="text-indigo-600 underline" href="/c/sU357zv">
                 How to make Ukrainian borscht?
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/B9mmxcw"
-              >
+              <Link className="text-indigo-600 underline" href="/c/B9mmxcw">
                 An SVG image of the US flag inline in Markdown, retrieved from a
                 public URL
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/iDH6oAI"
-              >
+              <Link className="text-indigo-600 underline" href="/c/iDH6oAI">
                 You are a text video game where you give me options (A, B, C, D)
                 as my choices.
               </Link>
             </li>
             <li className="text-lg">
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-indigo-600 underline"
-                href="https://shareg.pt/KNOiH6n"
-              >
+              <Link className="text-indigo-600 underline" href="/c/KNOiH6n">
                 Coding interview
               </Link>
             </li>
@@ -190,9 +168,30 @@ export default function Home({ totalConvos }: { totalConvos: number }) {
 
 export async function getStaticProps() {
   const totalConvos = await prisma.conversation.count();
+  const topConvos = await prisma.conversation.findMany({
+    select: {
+      id: true,
+      title: true,
+      avatar: true,
+      creator: true,
+      _count: {
+        select: {
+          upvotes: true,
+        },
+      },
+      createdAt: true,
+    },
+    orderBy: [{ views: "desc" }],
+    take: 10,
+  });
   return {
     props: {
       totalConvos,
+      topConvos: topConvos.map((convo) => ({
+        ...convo,
+        upvotes: convo._count.upvotes,
+        createdAt: convo.createdAt.toISOString(),
+      })),
     },
     revalidate: 60,
   };

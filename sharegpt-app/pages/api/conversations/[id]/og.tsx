@@ -27,6 +27,9 @@ export default async function handler(req: NextRequest) {
   const firstBotMessage = convert(items[1].value, {
     wordwrap: 130,
   });
+  const interBold = await fetch(
+    new URL("../../../../styles/Inter-Bold.ttf", import.meta.url)
+  ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -38,6 +41,7 @@ export default async function handler(req: NextRequest) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "flex-start",
+          fontFamily: "Inter Bold",
           backgroundColor: "#444654",
         }}
       >
@@ -113,6 +117,12 @@ export default async function handler(req: NextRequest) {
     {
       width: 1200,
       height: 600,
+      fonts: [
+        {
+          name: "Inter Bold",
+          data: interBold,
+        },
+      ],
     }
   );
 }
