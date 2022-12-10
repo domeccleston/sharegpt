@@ -66,10 +66,11 @@ async function setRandomKey(
   const title = html.items[0].value
     ? truncate(html.items[0].value, 180)
     : "Untitled";
+  const avatar = html.avatarUrl || `https://avatar.vercel.sh/${key}`;
   try {
     await conn.execute(
-      "INSERT INTO Conversation (id, title, content, updatedAt) VALUES (?, ?, ?, ?)",
-      [key, title, JSON.stringify(html), currentTime]
+      "INSERT INTO Conversation (id, title, avatar, content, updatedAt) VALUES (?, ?, ?, ?, ?)",
+      [key, title, avatar, JSON.stringify(html), currentTime]
     );
     return key;
   } catch (e) {

@@ -70,6 +70,7 @@ model VerificationToken {
 model Conversation {
   id        String   @id
   title     String
+  avatar    String?  @db.LongText
   content   Json?
   password  String?
   createdAt DateTime @default(now())
@@ -80,6 +81,8 @@ model Conversation {
   upvotes   Upvote[]
 
   @@index([creatorId])
+  @@index([views(sort: Desc)])
+  @@index([createdAt])
 }
 
 model Upvote {
