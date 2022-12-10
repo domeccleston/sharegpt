@@ -181,14 +181,7 @@ export async function getStaticProps() {
       },
       createdAt: true,
     },
-    orderBy: [
-      {
-        upvotes: {
-          _count: "desc",
-        },
-      },
-      { views: "desc" },
-    ],
+    orderBy: [{ views: "desc" }],
     take: 10,
   });
   return {
