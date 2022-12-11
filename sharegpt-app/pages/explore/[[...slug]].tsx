@@ -20,7 +20,7 @@ export default function Explore({
         <motion.ul
           key={router.asPath} // need key or else inter page transitions won't work
           initial="hidden"
-          animate="show"
+          whileInView="show"
           variants={{
             hidden: {},
             show: {

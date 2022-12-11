@@ -6,6 +6,7 @@ import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
 import { motion, AnimatePresence } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
+import Link from "next/link";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { data: session, status } = useSession();
@@ -16,7 +17,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <SignInModal />
       <div className="w-full absolute top-0">
         <div className="max-w-screen-xl mx-5 sm:mx-auto flex justify-between items-center h-16">
-          <div className="flex items-center font-medium text-xl">
+          <Link href="/" className="flex items-center font-medium text-xl">
             <Image
               src="/logo.png"
               alt="Logo image of a chat bubble"
@@ -25,7 +26,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               className="mr-2 rounded-sm"
             ></Image>
             <p>ShareGPT</p>
-          </div>
+          </Link>
           <div>
             <AnimatePresence>
               {!session && status !== "loading" ? (

@@ -10,6 +10,7 @@ import { ConversationMeta } from "@/lib/types";
 import { motion } from "framer-motion";
 import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { getConvos } from "@/lib/api";
+import { Search } from "lucide-react";
 
 export default function Home({
   totalConvos,
@@ -20,7 +21,7 @@ export default function Home({
 }) {
   return (
     <Layout>
-      <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
+      <div className="flex flex-col items-center py-28 bg-gray-50">
         <Link
           href="https://twitter.com/steventey/status/1599816553490366464"
           target="_blank"
@@ -46,7 +47,7 @@ export default function Home({
           </p>
           <div className="flex flex-col sm:flex-row">
             <a
-              className="flex space-x-3 justify-center items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg px-5 py-3 font-medium bg-indigo-400 text-white hover:bg-indigo-500 transition-colors duration-75 shadow-md"
+              className="flex space-x-3 justify-center items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg px-5 py-3 font-medium bg-indigo-500 text-white hover:bg-indigo-600 transition-all shadow-md"
               href="https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0"
               target="_blank"
               rel="noopener noreferrer"
@@ -60,27 +61,11 @@ export default function Home({
               <p>Install extension</p>
             </a>
             <Link
-              className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-[#fcfcfc] transition-colors duration-75 border border-gray-100 shadow-md"
-              rel="noopener noreferrer"
-              target="_blank"
-              href="https://shareg.pt/oPt72P3"
+              className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
+              href="/explore"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
-
-              <p>View an example</p>
+              <Search className="w-4 h-4" />
+              <p>Explore examples</p>
             </Link>
           </div>
         </div>
@@ -97,7 +82,7 @@ export default function Home({
           </h2>
           <motion.ul
             initial="hidden"
-            animate="show"
+            whileInView="show"
             variants={{
               hidden: {},
               show: {
