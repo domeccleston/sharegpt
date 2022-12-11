@@ -5,9 +5,10 @@ import Image from "next/image";
 import { nFormatter, timeAgo } from "@/lib/utils";
 import Upvote from "../shared/upvote";
 import Link from "next/link";
+import { Eye, MessageCircle } from "lucide-react";
 
 export default function ConvoCard({ data }: { data: ConversationMeta }) {
-  const { id, title, avatar, creator, views, upvotes, createdAt } = data;
+  const { id, title, avatar, views, createdAt } = data;
   return (
     <motion.li
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
@@ -16,7 +17,7 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
       <div className="grid gap-2 flex-1">
         <Link
           href={`/c/${id}`}
-          className="font-medium truncate text-gray-700 hover:text-black"
+          className="font-medium text-sm sm:text-base line-clamp-2 sm:line-clamp-1 text-gray-700 hover:text-black"
         >
           <h3>{title}</h3>
         </Link>
@@ -29,19 +30,30 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
             className="rounded-full"
           />
           <Link href={`/c/${id}`}>
-            <p className="text-gray-500 text-sm hover:text-gray-800">
+            <p className="sm:hidden text-gray-500 text-sm hover:text-gray-800">
+              {timeAgo(createdAt, true)}
+            </p>
+            <p className="hidden sm:block text-gray-500 text-sm hover:text-gray-800">
               created {timeAgo(createdAt)}
             </p>
           </Link>
           <p className="text-gray-500 text-sm">|</p>
           <Link href={`/c/${id}`}>
-            <p className="text-gray-500 text-sm hover:text-gray-800">
+            <div className="sm:hidden flex space-x-1 items-center">
+              <Eye className="h-4 w-4 text-gray-600" />
+              <p className="text-gray-500 text-sm">{nFormatter(views)}</p>
+            </div>
+            <p className="hidden sm:block text-gray-500 text-sm hover:text-gray-800">
               {nFormatter(views)} views
             </p>
           </Link>
           <p className="text-gray-500 text-sm">|</p>
           <Link href={`/c/${id}`}>
-            <p className="text-gray-500 text-sm hover:text-gray-800">
+            <div className="sm:hidden flex space-x-1 items-center">
+              <MessageCircle className="h-4 w-4 text-gray-600" />
+              <p className="text-gray-500 text-sm">{nFormatter(0)}</p>
+            </div>
+            <p className="hidden sm:block text-gray-500 text-sm hover:text-gray-800">
               {nFormatter(0)} comments
             </p>
           </Link>

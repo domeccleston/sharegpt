@@ -89,11 +89,10 @@ export default function Home({
             title="Whats new in Material Design for the web (Chrome Dev Summit 2019)"
           />
         </div>
-        <div
-          id="examples"
-          className="py-4 px-2 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
-        >
-          <h2 className="text-4xl font-medium font-display">Browse Examples</h2>
+        <div id="examples" className="py-4 px-2 sm:max-w-screen-lg w-full">
+          <h2 className="text-3xl sm:text-4xl font-medium font-display">
+            Browse Examples
+          </h2>
           <motion.ul
             initial="hidden"
             animate="show"
