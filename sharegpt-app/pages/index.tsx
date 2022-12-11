@@ -133,7 +133,7 @@ export async function getStaticProps() {
     props: {
       totalConvos,
       topConvos,
-      revalidate: 60,
     },
+    revalidate: 60,
   };
 }
