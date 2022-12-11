@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import toast from "react-hot-toast";
 
 export const useView = () => {
   const router = useRouter();
@@ -12,17 +11,7 @@ export const useView = () => {
         headers: {
           "Content-Type": "application/json",
         },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.views === 1) {
-            navigator.clipboard
-              .writeText(`https://shareg.pt/${id}`)
-              .then(() => {
-                toast.success("Link copied to clipboard");
-              });
-          }
-        });
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]); // to make sure hook is only called once on mount
