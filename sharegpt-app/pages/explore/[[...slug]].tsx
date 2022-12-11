@@ -5,6 +5,8 @@ import prisma from "@/lib/prisma";
 import { ConversationMeta } from "@/lib/types";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import useSWR from "swr";
+import { fetcher } from "@/lib/utils";
 
 export default function Explore({
   type,
@@ -16,11 +18,19 @@ export default function Explore({
   convos: ConversationMeta[];
 }) {
   const router = useRouter();
+  const { data: convosData } = useSWR<ConversationMeta[]>(
+    `/api/conversations?type=${type}`,
+    fetcher,
+    {
+      fallbackData: convos,
+    }
+  );
+
   return (
     <ExploreLayout type={type} totalConvos={totalConvos}>
       <div className="pb-20 px-2 sm:max-w-screen-lg w-full mx-auto">
         <motion.ul
-          key={router.asPath} // need key or else inter page transitions won't work
+          key={`${router.asPath}/${convosData![0].id}`} // need key or else inter page transitions won't work
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
@@ -34,7 +44,7 @@ export default function Explore({
           }}
           className="mt-8 grid gap-2"
         >
-          {convos.map((convo) => (
+          {convosData!.map((convo) => (
             <ConvoCard key={convo.id} data={convo} />
           ))}
         </motion.ul>
@@ -67,15 +77,17 @@ export async function getStaticProps({
   params: { slug: string[] };
 }) {
   const { slug } = params;
+  const type = slug && slug[0] === "new" ? "new" : "top";
+
   const totalConvos = await prisma.conversation.count();
   const convos = await getConvos({
-    orderBy: slug && slug[0] === "new" ? "createdAt" : "views",
+    orderBy: type === "new" ? "createdAt" : "views",
     take: 100,
   });
 
   return {
     props: {
-      type: slug && slug[0] === "new" ? "new" : "top",
+      type,
       totalConvos,
       convos,
     },
