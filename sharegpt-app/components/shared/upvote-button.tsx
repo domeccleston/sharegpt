@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { fetcher, nFormatter } from "@/lib/utils";
 import useSWR, { mutate } from "swr";
 import { useState } from "react";
@@ -6,17 +5,28 @@ import { LoadingCircle } from "@/components/shared/icons";
 import { useSignInModal } from "@/components/layout/sign-in-modal";
 import { useSession } from "next-auth/react";
 import { Triangle } from "lucide-react";
+import { useRef } from "react";
+import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
 
-export default function Upvote({ id }: { id: string }) {
+export default function UpvoteButton({ id }: { id: string }) {
   const { data: session } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
+
+  const buttonRef = useRef<any>();
+  const entry = useIntersectionObserver(buttonRef, {});
+  const isVisible = !!entry?.isIntersecting;
+
   const { data, isValidating } = useSWR<{ upvoted: boolean }>(
-    session?.user ? `/api/conversations/${id}/upvote` : null,
+    isVisible && session?.user ? `/api/conversations/${id}/upvote` : null,
     fetcher,
-    { revalidateOnFocus: false }
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   );
   const { data: upvotesData } = useSWR<{ count: number }>(
-    `/api/conversations/${id}/upvotes`,
+    isVisible && `/api/conversations/${id}/upvotes`,
     fetcher
   );
   const [submitting, setSubmitting] = useState(false);
@@ -24,6 +34,7 @@ export default function Upvote({ id }: { id: string }) {
     <>
       <SignInModal />
       <button
+        ref={buttonRef}
         onClick={() => {
           if (!session?.user) {
             setShowSignInModal(true);

@@ -4,6 +4,7 @@ import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
+import { AnimatePresence } from "framer-motion";
 import cx from "classnames";
 import { Inter } from "@next/font/google";
 import localFont from "@next/font/local";
@@ -25,7 +26,9 @@ function MyApp({
   return (
     <SessionProvider session={session}>
       <main className={cx(inter.variable, SFPro.variable)}>
-        <Component {...pageProps} />
+        <AnimatePresence mode="wait">
+          <Component {...pageProps} />
+        </AnimatePresence>
         <Analytics />
       </main>
     </SessionProvider>

@@ -8,6 +8,8 @@ import Layout from "@/components/layout";
 import ConvoCard from "@/components/explore/convo-card";
 import { ConversationMeta } from "@/lib/types";
 import { motion } from "framer-motion";
+import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
+import { getConvos } from "@/lib/api";
 
 export default function Home({
   totalConvos,
@@ -89,7 +91,7 @@ export default function Home({
             title="Whats new in Material Design for the web (Chrome Dev Summit 2019)"
           />
         </div>
-        <div id="examples" className="py-4 px-2 sm:max-w-screen-lg w-full">
+        <div className="py-4 px-2 sm:max-w-screen-lg w-full">
           <h2 className="text-3xl sm:text-4xl font-medium font-display">
             Browse Examples
           </h2>
@@ -109,17 +111,15 @@ export default function Home({
             {topConvos.map((convo) => (
               <ConvoCard key={convo.id} data={convo} />
             ))}
+            <motion.li variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}>
+              <Link
+                href="/explore"
+                className="rounded-md p-3 w-full block text-center text-sm text-gray-600 hover:text-gray-800"
+              >
+                View More
+              </Link>
+            </motion.li>
           </motion.ul>
-          <div className="py-7">
-            <Link
-              rel="noopener noreferrer"
-              target="_blank"
-              className="bg-white rounded-md shadow border border-gray-100 px-4 py-3 text-gray-600 font-medium hover:bg-[#fcfcfc] transition-colors duration-75"
-              href="https://tally.so/r/wM1J90"
-            >
-              Submit your own
-            </Link>
-          </div>
         </div>
       </div>
       <div className="h-[100px] bg-gray-50 flex items-center justify-center w-full">
@@ -142,32 +142,12 @@ export default function Home({
 
 export async function getStaticProps() {
   const totalConvos = await prisma.conversation.count();
-  const topConvos = await prisma.conversation.findMany({
-    select: {
-      id: true,
-      title: true,
-      avatar: true,
-      creator: true,
-      _count: {
-        select: {
-          upvotes: true,
-        },
-      },
-      views: true,
-      createdAt: true,
-    },
-    orderBy: [{ views: "desc" }],
-    take: 10,
-  });
+  const topConvos = await getConvos({ orderBy: "views", take: 10 });
   return {
     props: {
       totalConvos,
-      topConvos: topConvos.map((convo) => ({
-        ...convo,
-        upvotes: convo._count.upvotes,
-        createdAt: convo.createdAt.toISOString(),
-      })),
+      topConvos,
+      revalidate: 60,
     },
-    revalidate: 60,
   };
 }
