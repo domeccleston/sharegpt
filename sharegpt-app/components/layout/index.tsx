@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <Meta />
       <SignInModal />
       <div className="w-full absolute top-0">
-        <div className="max-w-screen-xl mx-5 sm:mx-auto flex justify-between items-center h-16">
+        <div className="max-w-screen-xl mx-5 xl:mx-auto flex justify-between items-center h-16">
           <Link
             href="/"
             className="flex items-center font-display font-bold text-xl"

@@ -10,7 +10,9 @@ import { ConversationMeta } from "@/lib/types";
 import { motion } from "framer-motion";
 import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { getConvos } from "@/lib/api";
-import { Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
+import Popover from "@/components/shared/popover";
+import { useState } from "react";
 
 export default function Home({
   totalConvos,
@@ -19,6 +21,7 @@ export default function Home({
   totalConvos: number;
   topConvos: ConversationMeta[];
 }) {
+  const [openPopover, setOpenPopover] = useState(false);
   return (
     <Layout>
       <div className="flex flex-col items-center py-28 bg-gray-50">
@@ -46,20 +49,81 @@ export default function Home({
             conversations shared so far.
           </p>
           <div className="flex flex-col sm:flex-row">
-            <a
-              className="flex space-x-3 justify-center items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg px-5 py-3 font-medium bg-indigo-500 text-white hover:bg-indigo-600 transition-all shadow-md"
-              href="https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                alt="Chrome logo"
-                src="/chrome.svg"
-                width={20}
-                height={20}
-              />
-              <p>Install extension</p>
-            </a>
+            <div className="flex justify-center items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg bg-[#232c67] md:bg-indigo-500 text-white shadow-md">
+              <a
+                className="hidden md:flex space-x-3 justify-center items-center px-5 py-3 border-r-2 border-white/25 font-medium md:hover:bg-indigo-600 transition-all rounded-l-lg"
+                href="/extension"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  alt="Chrome logo"
+                  src="/chrome.svg"
+                  width={20}
+                  height={20}
+                />
+                <p>Install extension</p>
+              </a>
+              <a
+                className="flex md:hidden space-x-3 justify-center items-center px-5 py-3 border-r-2 border-white/25 font-medium md:hover:bg-indigo-600 transition-all rounded-l-lg"
+                href="/shortcut"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  alt="iOS Shortcuts logo"
+                  src="/shortcut.svg"
+                  width={20}
+                  height={20}
+                  className="border-2 border-white/25 rounded-md"
+                />
+                <p>Add shortcut</p>
+              </a>
+              <Popover
+                content={
+                  <div className="grid w-full md:w-[14.5rem] p-2">
+                    <a
+                      href="/extension"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex space-x-3 items-center px-5 py-3 text-gray-600 text-sm font-medium hover:bg-gray-100 rounded-md transition-all"
+                    >
+                      <Image
+                        alt="Chrome logo"
+                        src="/chrome.svg"
+                        width={20}
+                        height={20}
+                      />
+                      <p>Install extension</p>
+                    </a>
+                    <a
+                      href="/shortcut"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex space-x-3 items-center px-5 py-3 text-gray-600 text-sm font-medium hover:bg-gray-100 rounded-md transition-all"
+                    >
+                      <Image
+                        alt="iOS Shortcut logo"
+                        src="/shortcut.svg"
+                        width={20}
+                        height={20}
+                      />
+                      <p>Add shortcut</p>
+                    </a>
+                  </div>
+                }
+                align="end"
+                openPopover={openPopover}
+                setOpenPopover={setOpenPopover}
+              >
+                <button
+                  className="px-3 h-12 flex items-center text-white md:hover:bg-indigo-600 transition-all rounded-r-lg"
+                  onClick={() => setOpenPopover(!openPopover)}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </Popover>
+            </div>
             <Link
               className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
               href="/explore"
@@ -69,7 +133,7 @@ export default function Home({
             </Link>
           </div>
         </div>
-        <div className="my-16 px-2 sm:px-0 sm:max-w-[800px] lg:max-w-[1000px] w-full">
+        <div className="my-16 px-0 sm:px-2 sm:max-w-screen-lg w-full">
           <LiteYouTubeEmbed
             id="lrjC9PTemJw"
             poster="maxresdefault"
