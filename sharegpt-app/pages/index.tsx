@@ -83,6 +83,7 @@ export default function Home({
           <motion.ul
             initial="hidden"
             whileInView="show"
+            viewport={{ once: true }}
             variants={{
               hidden: {},
               show: {

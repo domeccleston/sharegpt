@@ -21,6 +21,7 @@ export default function Explore({
           key={router.asPath} // need key or else inter page transitions won't work
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
           variants={{
             hidden: {},
             show: {
