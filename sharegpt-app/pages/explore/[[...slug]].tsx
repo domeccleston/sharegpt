@@ -3,7 +3,7 @@ import ExploreLayout from "@/components/explore/layout";
 import { getConvos } from "@/lib/api";
 import prisma from "@/lib/prisma";
 import { ConversationMeta } from "@/lib/types";
-import { AnimateSharedLayout, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
 export default function Explore({
