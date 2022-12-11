@@ -44,10 +44,15 @@ export default function Explore({
           }}
           className="mt-8 grid gap-2"
         >
-          {convosData!.map((convo) => (
+          {convosData?.slice(0, 10).map((convo) => (
             <ConvoCard key={convo.id} data={convo} />
           ))}
         </motion.ul>
+        <ul className="mt-2 grid gap-2">
+          {convosData?.slice(10).map((convo) => (
+            <ConvoCard key={convo.id} data={convo} />
+          ))}
+        </ul>
       </div>
     </ExploreLayout>
   );
