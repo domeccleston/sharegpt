@@ -49,6 +49,29 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/extension",
+        destination:
+          "https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0",
+        permanent: false,
+      },
+      {
+        source: "/shortcut",
+        destination:
+          "https://www.icloud.com/shortcuts/e533826eb73b416f8d9c49bc90b0b448",
+        permanent: false,
+      },
+      {
+        source: "/github",
+        destination: "https://github.com/domeccleston/sharegpt",
+        permanent: false,
+      },
+      {
+        source: "/mentions",
+        destination:
+          "https://twitter.com/search?q=shareg.pt%20-from%3Asteventey&src=typed_query&f=top", // show ShareGPT mentions on Twitter that are not from @steventey
+        permanent: false,
+      },
+      {
         source: "/",
         has: [
           {
@@ -79,23 +102,6 @@ const nextConfig = {
           },
         ],
         destination: "https://sharegpt.com/c/:path*",
-        permanent: false,
-      },
-      {
-        source: "/extension",
-        destination:
-          "https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0", // redirect to GH repo for now, will need to update when we get in the chrome store
-        permanent: false,
-      },
-      {
-        source: "/github",
-        destination: "https://github.com/domeccleston/sharegpt", // redirect to GH repo for now, will need to update when we get in the chrome store
-        permanent: false,
-      },
-      {
-        source: "/mentions",
-        destination:
-          "https://twitter.com/search?q=shareg.pt%20-from%3Asteventey&src=typed_query&f=top", // show ShareGPT mentions on Twitter that are not from @steventey
         permanent: false,
       },
     ];
