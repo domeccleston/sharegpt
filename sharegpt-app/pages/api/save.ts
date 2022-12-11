@@ -26,7 +26,12 @@ export default async function handler(req: NextRequest) {
       return new Response("Don't DDoS me pls 🥺", { status: 429 });
     }
     const bodyString = await ReadableStreamToString(req.body);
-    const html = JSON.parse(bodyString);
+    const html = JSON.parse(
+      bodyString.replace(
+        /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+        ""
+      ) // remove script tags to prevent XSS
+    );
     const id = await setRandomKey(html);
     return new Response(JSON.stringify({ id }), {
       status: 200,
