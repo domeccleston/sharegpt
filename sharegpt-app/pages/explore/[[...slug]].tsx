@@ -67,7 +67,7 @@ export async function getStaticProps({
   const totalConvos = await prisma.conversation.count();
   const convos = await getConvos({
     orderBy: slug && slug[0] === "new" ? "createdAt" : "views",
-    take: 50,
+    take: 100,
   });
 
   return {
