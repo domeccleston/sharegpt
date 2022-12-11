@@ -28,6 +28,7 @@ export default function ChatPage({
         title={`Check out this ShareGPT conversation`}
         image={`https://sharegpt.com/api/conversations/${id}/og`}
         imageAlt={`This is a preview image for a conversation betwen a human and a GPT-3 chatbot. The human first asks: ${items[0].value}. The GPT-3 chatbot then responds: ${items[1].value}`}
+        canonical={`https://sharegpt.com/c/${id}`}
       />
       <Toaster />
       <div className="flex flex-col items-center pb-24">

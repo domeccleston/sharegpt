@@ -19,15 +19,31 @@ const tabs = [
 ];
 
 export default function ExploreLayout({
+  type,
   totalConvos,
   children,
 }: {
+  type: "new" | "top";
   totalConvos: number;
   children: ReactNode;
 }) {
   const router = useRouter();
+  const description = `Discover ${Intl.NumberFormat("en-us").format(
+    totalConvos
+  )} ${type} ChatGPT conversations shared via ShareGPT.`;
+
   return (
-    <Layout>
+    <Layout
+      meta={{
+        title: `Explore ${
+          type === "top" ? "Top" : "New"
+        } Conversations on ShareGPT`,
+        description,
+        canonical: `https://sharegpt.com/explore${
+          type === "top" ? "" : "/new"
+        }`,
+      }}
+    >
       <div className="flex flex-col items-center pt-28 bg-gray-50">
         <div className="flex flex-col items-center space-y-8 text-center mx-5 sm:mx-auto">
           <h1 className="font-display tracking-tight font-bold text-4xl text-gray-800 transition-colors sm:text-7xl">
@@ -38,7 +54,7 @@ export default function ExploreLayout({
             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
               {Intl.NumberFormat("en-us").format(totalConvos)}
             </span>{" "}
-            ChatGPT conversations shared via ShareGPT.
+            {type} ChatGPT conversations shared via ShareGPT.
           </p>
         </div>
         {/* Tabs */}

@@ -8,12 +8,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 import Link from "next/link";
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function Layout({
+  meta,
+  children,
+}: {
+  meta?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    imageAlt?: string;
+    canonical?: string;
+  };
+  children: ReactNode;
+}) {
   const { data: session, status } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
   return (
     <div>
-      <Meta />
+      <Meta {...meta} />
       <SignInModal />
       <div className="w-full absolute top-0">
         <div className="max-w-screen-xl mx-5 xl:mx-auto flex justify-between items-center h-16">

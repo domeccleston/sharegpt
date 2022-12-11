@@ -6,16 +6,19 @@ export default function Meta({
   description = `ShareGPT is a Chrome extension that allows you to share your wildest ChatGPT conversations with one click.`,
   image = "https://sharegpt.com/thumbnail.png",
   imageAlt = "OG image for the ShareGPT application",
+  canonical = "https://sharegpt.com",
 }: {
   title?: string;
   description?: string;
   image?: string;
   imageAlt?: string;
+  canonical?: string;
 }) {
   return (
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <link rel="canonical" href={canonical} />
       <link
         rel="apple-touch-icon"
         sizes="180x180"

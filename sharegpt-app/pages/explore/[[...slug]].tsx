@@ -7,15 +7,17 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
 export default function Explore({
+  type,
   totalConvos,
   convos,
 }: {
+  type: "new" | "top";
   totalConvos: number;
   convos: ConversationMeta[];
 }) {
   const router = useRouter();
   return (
-    <ExploreLayout totalConvos={totalConvos}>
+    <ExploreLayout type={type} totalConvos={totalConvos}>
       <div className="pb-20 px-2 sm:max-w-screen-lg w-full mx-auto">
         <motion.ul
           key={router.asPath} // need key or else inter page transitions won't work
@@ -73,6 +75,7 @@ export async function getStaticProps({
 
   return {
     props: {
+      type: slug && slug[0] === "new" ? "new" : "top",
       totalConvos,
       convos,
     },

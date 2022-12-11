@@ -13,6 +13,12 @@ function generateSiteMap({
        <url>
          <loc>${hostname}</loc>
        </url>
+       <url>
+         <loc>${hostname}/explore</loc>
+       </url>
+       <url>
+         <loc>${hostname}/explore/new</loc>
+       </url>
        ${conversations
          .map(({ id }) => {
            return `
