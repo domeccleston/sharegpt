@@ -17,7 +17,10 @@ export default function Layout({ children }: { children: ReactNode }) {
       <SignInModal />
       <div className="w-full absolute top-0">
         <div className="max-w-screen-xl mx-5 sm:mx-auto flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center font-medium text-xl">
+          <Link
+            href="/"
+            className="flex items-center font-display font-bold text-xl"
+          >
             <Image
               src="/logo.png"
               alt="Logo image of a chat bubble"
