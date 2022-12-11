@@ -1,4 +1,4 @@
-import { Check, Copy, Eye } from "lucide-react";
+import { Link as LinkIcon, Check, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -41,7 +41,7 @@ export default function Banner({ views }: { views: number }) {
         {copied ? (
           <Check className="h-4 w-4 text-green-600" />
         ) : (
-          <Copy className="h-4 w-4 text-gray-600" />
+          <LinkIcon className="h-4 w-4 text-gray-600" />
         )}
         <p className="text-center text-gray-600 text-sm">Copy</p>
       </button>
