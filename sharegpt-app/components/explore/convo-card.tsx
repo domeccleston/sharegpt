@@ -1,80 +1,53 @@
-export default function ConvoCard() {
+import { motion } from "framer-motion";
+import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
+import { ConversationMeta } from "@/lib/types";
+import Image from "next/image";
+import { nFormatter, timeAgo } from "@/lib/utils";
+import Upvote from "../shared/upvote";
+import Link from "next/link";
+
+export default function ConvoCard({ data }: { data: ConversationMeta }) {
+  const { id, title, avatar, creator, views, upvotes, createdAt } = data;
   return (
-    <div className="flex flex-col w-full h-full p-4 bg-white rounded-lg shadow-lg">
-      <div className="flex flex-row justify-between w-full">
-        <div className="flex flex-row items-center">
-          <img
-            className="w-8 h-8 mr-2 rounded-full"
-            src="https://pbs.twimg.com/profile_images/1352777458756300800/7LgZbW8n_400x400.jpg"
+    <motion.li
+      variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
+      className="flex items-center justify-between space-x-5 rounded-md border border-gray-100 bg-white p-4 shadow-lg"
+    >
+      <div className="grid gap-2 flex-1">
+        <Link
+          href={`/c/${id}`}
+          className="font-medium truncate text-gray-700 hover:text-black"
+        >
+          <h3>{title}</h3>
+        </Link>
+        <div className="flex items-center space-x-2">
+          <Image
+            width="20"
+            height="20"
+            alt="Avatar"
+            src={avatar}
+            className="rounded-full"
           />
-          <div className="flex flex-col">
-            <span className="text-sm font-bold text-gray-900">@dom__inic</span>
-            <span className="text-xs text-gray-500">1h</span>
-          </div>
-        </div>
-        <div className="flex flex-row items-center">
-          <span className="text-xs text-gray-500">1.5k</span>
-          <svg
-            className="w-5 h-5 ml-2 text-gray-500"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+          <Link href={`/c/${id}`}>
+            <p className="text-gray-500 text-sm hover:text-gray-800">
+              created {timeAgo(createdAt)}
+            </p>
+          </Link>
+          <p className="text-gray-500 text-sm">|</p>
+          <Link href={`/c/${id}`}>
+            <p className="text-gray-500 text-sm hover:text-gray-800">
+              {nFormatter(views)} views
+            </p>
+          </Link>
+          <p className="text-gray-500 text-sm">|</p>
+          <Link href={`/c/${id}`}>
+            <p className="text-gray-500 text-sm hover:text-gray-800">
+              {nFormatter(0)} comments
+            </p>
+          </Link>
         </div>
       </div>
-      <div className="flex flex-col w-full mt-4">
-        <span className="text-sm text-gray-900">
-          @dom__inic: Hello, my name is Dominic and I am a software engineer. I
-          love to build things and I am currently working on a project called
-          ShareGPT. It is a Chrome extension that allows you to share your
-          wildest ChatGPT conversations with one click. You can check it out at
-          sharegpt.com.
-        </span>
-      </div>
-      <div className="flex flex-row w-full mt-4">
-        <div className="flex flex-row items-center justify-center w-1/2 h-12 text-sm font-bold text-white bg-blue-500 rounded-lg shadow-lg">
-          <svg
-            className="w-5 h-5 mr-2 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
-          <span>Share</span>
-        </div>
-        <div className="flex flex-row items-center justify-center w-1/2 h-12 ml-4 text-sm font-bold text-white bg-red-500 rounded-lg shadow-lg">
-          <svg
-            className="w-5 h-5 mr-2 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-          <span>Report</span>
-        </div>
-      </div>
-    </div>
+      <Upvote id={id} />
+    </motion.li>
   );
 }

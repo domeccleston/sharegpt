@@ -19,7 +19,8 @@ export interface ConversationMeta {
     image: string;
   };
   upvotes: number;
-  createdAt: string;
+  views: number;
+  createdAt: Date;
 }
 
 export interface Session {

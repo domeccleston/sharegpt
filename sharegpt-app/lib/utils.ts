@@ -1,3 +1,5 @@
+import ms from "ms";
+
 export const truncate = (str: string, length: number) => {
   if (!str || str.length <= length) return str;
   return `${str.slice(0, length)}...`;
@@ -48,3 +50,10 @@ export function nFormatter(num: number, digits?: number) {
     ? (num / item.value).toFixed(digits || 1).replace(rx, "$1") + item.symbol
     : "0";
 }
+
+export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
+  if (!timestamp) return "never";
+  return `${ms(Date.now() - new Date(timestamp).getTime())}${
+    timeOnly ? "" : " ago"
+  }`;
+};

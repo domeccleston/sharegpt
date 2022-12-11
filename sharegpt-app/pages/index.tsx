@@ -7,6 +7,7 @@ import Twitter from "@/components/shared/icons/twitter";
 import Layout from "@/components/layout";
 import ConvoCard from "@/components/explore/convo-card";
 import { ConversationMeta } from "@/lib/types";
+import { motion } from "framer-motion";
 
 export default function Home({
   totalConvos,
@@ -92,50 +93,24 @@ export default function Home({
           id="examples"
           className="py-4 px-2 min-h-[200px] max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] w-full"
         >
-          <h1 className="text-4xl font-medium font-display">Examples</h1>
-          {/* <ConvoCard /> */}
-          <ul className="list-disc ml-6 sm:ml-4 mt-4 grid gap-2">
-            <li className="text-lg">
-              <Link className="text-indigo-600 underline" href="/c/oPt72P3">
-                What is the meaning of life?
-              </Link>
-            </li>
-            <li className="text-lg">
-              <Link className="text-indigo-600 underline" href="/c/2boEFcP">
-                Rewriting Git from scratch
-              </Link>{" "}
-              <Link
-                rel="noopener noreferrer"
-                target="_blank"
-                className="no-underline!"
-                href="https://twitter.com/tylerangert/status/1598389755997290507"
-              >
-                (credit)
-              </Link>
-            </li>
-            <li className="text-lg">
-              <Link className="text-indigo-600 underline" href="/c/sU357zv">
-                How to make Ukrainian borscht?
-              </Link>
-            </li>
-            <li className="text-lg">
-              <Link className="text-indigo-600 underline" href="/c/B9mmxcw">
-                An SVG image of the US flag inline in Markdown, retrieved from a
-                public URL
-              </Link>
-            </li>
-            <li className="text-lg">
-              <Link className="text-indigo-600 underline" href="/c/iDH6oAI">
-                You are a text video game where you give me options (A, B, C, D)
-                as my choices.
-              </Link>
-            </li>
-            <li className="text-lg">
-              <Link className="text-indigo-600 underline" href="/c/KNOiH6n">
-                Coding interview
-              </Link>
-            </li>
-          </ul>
+          <h2 className="text-4xl font-medium font-display">Browse Examples</h2>
+          <motion.ul
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.05,
+                },
+              },
+            }}
+            className="mt-8 grid gap-2"
+          >
+            {topConvos.map((convo) => (
+              <ConvoCard key={convo.id} data={convo} />
+            ))}
+          </motion.ul>
           <div className="py-7">
             <Link
               rel="noopener noreferrer"
@@ -179,6 +154,7 @@ export async function getStaticProps() {
           upvotes: true,
         },
       },
+      views: true,
       createdAt: true,
     },
     orderBy: [{ views: "desc" }],

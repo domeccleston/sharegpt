@@ -7,9 +7,7 @@ import { useSignInModal } from "@/components/layout/sign-in-modal";
 import { useSession } from "next-auth/react";
 import { Triangle } from "lucide-react";
 
-export default function Upvote() {
-  const router = useRouter();
-  const { id } = router.query as { id: string };
+export default function Upvote({ id }: { id: string }) {
   const { data: session } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const { data, isValidating } = useSWR<{ upvoted: boolean }>(
