@@ -22,7 +22,7 @@ export default function Explore({
   const router = useRouter();
   const { page } = router.query as { page?: string };
   const { data: convosData } = useSWR<ConversationMeta[]>(
-    `/api/conversations?type=${type}${page ? `&page=${page}` : ""}}`,
+    `/api/conversations?type=${type}${page ? `&page=${page}` : ""}`,
     fetcher,
     {
       fallbackData: convos,
