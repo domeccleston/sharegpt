@@ -114,6 +114,6 @@ export const getStaticProps = async (
   if (props) {
     return { props, revalidate: 60 };
   } else {
-    return { notFound: true };
+    return { notFound: true, revalidate: 60 };
   }
 };
