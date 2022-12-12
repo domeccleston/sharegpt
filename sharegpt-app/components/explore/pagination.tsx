@@ -76,7 +76,7 @@ export default function Pagination({ count }: { count: number }) {
               <Button value={currentPage} />
               <Button value={currentPage + 1} />
               <Divider />
-              <Button value={paginationArray.length} />
+              <Button value={paginationArray.length - 1} />
             </>
           ) : currentPage <= 3 ? (
             <>
@@ -84,15 +84,15 @@ export default function Pagination({ count }: { count: number }) {
               <Button value={2} />
               <Button value={3} />
               <Divider />
-              <Button value={paginationArray.length} />
+              <Button value={paginationArray.length - 1} />
             </>
           ) : (
             <>
               <Button value={1} />
               <Divider />
+              <Button value={paginationArray.length - 3} />
               <Button value={paginationArray.length - 2} />
               <Button value={paginationArray.length - 1} />
-              <Button value={paginationArray.length} />
             </>
           )
         ) : (
