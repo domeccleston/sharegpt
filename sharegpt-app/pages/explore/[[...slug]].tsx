@@ -30,9 +30,10 @@ export default function Explore({
     <ExploreLayout type={type} totalConvos={totalConvos}>
       <div className="pb-20 px-2 sm:max-w-screen-lg w-full mx-auto">
         <motion.ul
-          key={`${router.asPath}/${convosData![0].id}`} // need key or else inter page transitions won't work
+          key={router.asPath} // need key or else inter page transitions won't work
           initial="hidden"
           whileInView="show"
+          animate="show"
           viewport={{ once: true }}
           variants={{
             hidden: {},
