@@ -26,7 +26,7 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
             width="20"
             height="20"
             alt="Avatar"
-            src={avatar}
+            src={avatar || `https://avatar.vercel.sh/${id}`}
             className="rounded-full"
           />
           <Link href={`/c/${id}`}>

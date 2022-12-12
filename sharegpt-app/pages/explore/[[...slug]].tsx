@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
+import { PAGINATION_LIMIT } from "@/lib/constants";
+import Pagination from "@/components/explore/pagination";
 
 export default function Explore({
   type,
@@ -18,11 +20,13 @@ export default function Explore({
   convos: ConversationMeta[];
 }) {
   const router = useRouter();
+  const { page } = router.query as { page?: string };
   const { data: convosData } = useSWR<ConversationMeta[]>(
-    `/api/conversations?type=${type}`,
+    `/api/conversations?type=${type}${page ? `&page=${page}` : ""}}`,
     fetcher,
     {
       fallbackData: convos,
+      keepPreviousData: true,
     }
   );
 
@@ -54,6 +58,7 @@ export default function Explore({
             <ConvoCard key={convo.id} data={convo} />
           ))}
         </ul>
+        <Pagination count={totalConvos} />
       </div>
     </ExploreLayout>
   );
@@ -88,7 +93,7 @@ export async function getStaticProps({
   const totalConvos = await prisma.conversation.count();
   const convos = await getConvos({
     orderBy: type === "new" ? "createdAt" : "views",
-    take: 100,
+    take: PAGINATION_LIMIT,
   });
 
   return {

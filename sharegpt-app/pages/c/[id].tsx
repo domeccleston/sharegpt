@@ -8,7 +8,7 @@ import styles from "@/styles/utils.module.css";
 import Banner from "@/components/layout/banner";
 import Meta from "@/components/layout/meta";
 import { ConversationProps } from "@/lib/types";
-import { useView } from "@/lib/hooks/use-view";
+import useView from "@/lib/hooks/use-view";
 import { Toaster } from "react-hot-toast";
 
 interface ChatParams extends ParsedUrlQuery {

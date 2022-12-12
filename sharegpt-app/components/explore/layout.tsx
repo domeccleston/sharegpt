@@ -60,29 +60,32 @@ export default function ExploreLayout({
         {/* Tabs */}
         <AnimateSharedLayout>
           <div className="flex items-center justify-center space-x-2 p-2 mt-5 rounded-lg bg-white border border-gray-100 shadow-md">
-            {tabs.map(({ name, icon, href }) => (
-              <Link key={href} href={href} className="relative">
-                <div
-                  className={`flex items-center justify-center space-x-3 px-4 py-2 z-10 relative rounded-md ${
-                    router.asPath === href ? "" : "hover:bg-gray-50"
-                  }`}
-                >
-                  {icon}
-                  <p className="text-sm font-medium text-gray-600">{name}</p>
-                </div>
-                {router.asPath === href && (
-                  <motion.div
-                    className="bg-gray-100 absolute w-full h-full top-0 z-0 rounded-md"
-                    layoutId="navigation-underline"
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 30,
-                    }}
-                  />
-                )}
-              </Link>
-            ))}
+            {tabs.map(({ name, icon, href }) => {
+              const activeTab = router.asPath.split("?")[0] === href;
+              return (
+                <Link key={href} href={href} className="relative">
+                  <div
+                    className={`flex items-center justify-center space-x-3 px-4 py-2 z-10 relative rounded-md ${
+                      activeTab ? "" : "hover:bg-gray-50"
+                    }`}
+                  >
+                    {icon}
+                    <p className="text-sm font-medium text-gray-600">{name}</p>
+                  </div>
+                  {activeTab && (
+                    <motion.div
+                      className="bg-gray-100 absolute w-full h-full top-0 z-0 rounded-md"
+                      layoutId="navigation-underline"
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
         </AnimateSharedLayout>
       </div>

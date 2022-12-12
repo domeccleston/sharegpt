@@ -3,9 +3,11 @@ import prisma from "@/lib/prisma";
 export async function getConvos({
   orderBy,
   take,
+  skip = 0,
 }: {
   orderBy: string;
   take: number;
+  skip?: number;
 }) {
   const convos = await prisma.conversation.findMany({
     select: {
@@ -32,6 +34,7 @@ export async function getConvos({
       [orderBy]: "desc",
     },
     take,
+    skip,
   });
 
   return convos.map((convo) => ({
