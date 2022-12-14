@@ -33,7 +33,7 @@ export default function SideModal({
           },
         },
         undefined,
-        { shallow: true }
+        { shallow: true, scroll: false }
       );
     } else {
       setShowModal(false);

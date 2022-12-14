@@ -24,7 +24,7 @@ export default function MoreCommentsBubble({
             },
           },
           undefined,
-          { shallow: true }
+          { shallow: true, scroll: false }
         );
       }}
       variants={FRAMER_MOTION_COMMENT_BUBBLE_VARIANTS}

@@ -58,7 +58,7 @@ export default function Comment({
                 },
               },
               undefined,
-              { shallow: true }
+              { shallow: true, scroll: false }
             );
           }}
           className="mt-3 bg-white text-black border border-gray-200 hover:bg-gray-50 text-center shadow-sm w-full text-sm h-8 rounded-md transition-all duration-75 focus:outline-none"

@@ -92,7 +92,7 @@ const CommentModal = ({
                     },
                   },
                   undefined,
-                  { shallow: true }
+                  { shallow: true, scroll: false }
                 )
               }
               className="flex space-x-2 items-center rounded-lg hover:bg-gray-100 transition-all p-2"
@@ -115,7 +115,7 @@ const CommentModal = ({
                   },
                 },
                 undefined,
-                { shallow: true }
+                { shallow: true, scroll: false }
               )
             }
             className="rounded-lg hover:bg-gray-100 transition-all p-2"
