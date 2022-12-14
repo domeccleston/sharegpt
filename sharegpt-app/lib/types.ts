@@ -7,6 +7,7 @@ export interface ConversationProps {
       value: string;
     }[];
   };
+  comments: CommentProps[];
   views: number;
 }
 
@@ -29,4 +30,16 @@ export interface Session {
     id?: string | null;
     name?: string | null;
   };
+}
+
+export interface CommentProps {
+  id: string;
+  content: string;
+  position: number;
+  user: {
+    name: string;
+    username: string;
+    image: string;
+  };
+  createdAt: Date;
 }

@@ -7,9 +7,18 @@ import GPTAvatar from "@/components/shared/icons/GPTAvatar";
 import styles from "@/styles/utils.module.css";
 import Banner from "@/components/layout/banner";
 import Meta from "@/components/layout/meta";
-import { ConversationProps } from "@/lib/types";
+import { CommentProps, ConversationProps } from "@/lib/types";
 import useView from "@/lib/hooks/use-view";
 import { Toaster } from "react-hot-toast";
+import CommentBubbleGroup from "@/components/comments/bubble-group";
+import { useCommentModal } from "@/components/comments/modal";
+import { useRouter } from "next/router";
+import { useEffect, useMemo } from "react";
+import useSWR from "swr";
+import { fetcher } from "@/lib/utils";
+import { getConvo } from "@/lib/api";
+import { AnimatePresence, motion } from "framer-motion";
+import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 
 interface ChatParams extends ParsedUrlQuery {
   id: string;
@@ -18,9 +27,40 @@ interface ChatParams extends ParsedUrlQuery {
 export default function ChatPage({
   id,
   content: { avatarUrl, items },
+  comments: initialComments,
   views,
 }: ConversationProps) {
   useView();
+
+  const { data: comments } = useSWR<CommentProps[]>(
+    `/api/conversations/${id}/comments`,
+    fetcher,
+    {
+      fallbackData: initialComments,
+    }
+  );
+
+  const router = useRouter();
+  const { comment, position } = router.query;
+  const { CommentModal, setShowCommentModal } = useCommentModal();
+
+  useEffect(() => {
+    if (comment || position) {
+      setShowCommentModal(true);
+    } else {
+      setShowCommentModal(false);
+    }
+  }, [comment, position, setShowCommentModal]);
+
+  const currentPosition = useMemo(() => {
+    if (position) {
+      return parseInt(position as string);
+    } else if (comment) {
+      return comments?.find((c) => c.id === comment)?.position || 1;
+    } else {
+      return null;
+    }
+  }, [comment, comments, position]);
 
   return (
     <>
@@ -30,41 +70,58 @@ export default function ChatPage({
         imageAlt={`This is a preview image for a conversation betwen a human and a GPT-3 chatbot. The human first asks: ${items[0].value}. The GPT-3 chatbot then responds: ${items[1].value}`}
         canonical={`https://sharegpt.com/c/${id}`}
       />
+      <CommentModal />
       <Toaster />
-      <div className="flex flex-col items-center pb-24">
-        {items.map((item) => (
+      <div className="flex flex-col items-center pb-24 dark:bg-[#343541] min-h-screen">
+        {items.map((item, idx) => (
           <div
+            id={idx.toString()}
             key={item.value}
             className={cn(
-              "dark:bg-[#343541] dark:text-gray-100 text-gray-700  w-full px-4 py-[2.5rem] flex justify-center border-solid border dark:border-gray-700 border-[(217, 217, 227)] border-t-0",
+              "relative dark:bg-[#343541] text-gray-700 w-full border-b dark:border-gray-700 border-gray-200",
               {
-                "bg-gray-100": item.from === "gpt",
-                "dark:bg-[#434654]": item.from === "gpt",
+                "bg-gray-100 dark:bg-[#434654]": item.from === "gpt",
               }
             )}
           >
-            <div className="w-full sm:w-[48rem] flex gap-[1.5rem] leading-[1.75]">
-              {item.from === "human" ? (
-                <Image
-                  className="mr-2 rounded-sm h-[28px]"
-                  alt="Avatar of the person chatting"
-                  width="28"
-                  height="28"
-                  src={avatarUrl}
+            <AnimatePresence>
+              {currentPosition && currentPosition !== idx + 1 && (
+                <motion.div
+                  {...FADE_IN_ANIMATION_SETTINGS}
+                  className="absolute w-full h-full z-10 bg-gray-300 dark:bg-black/30 bg-opacity-50 backdrop-blur-[2px] pointer-events-none"
                 />
-              ) : (
-                <GPTAvatar />
               )}
-              <div className="flex flex-col">
+            </AnimatePresence>
+            <div className="relative mx-auto max-w-screen-xl dark:text-gray-100 text-gray-700 w-full px-4 py-10">
+              <div className="w-full max-w-screen-md flex flex-1 mx-auto gap-[1.5rem] leading-[1.75]">
                 {item.from === "human" ? (
-                  <p className="pb-2">{item.value}</p>
-                ) : (
-                  <div
-                    className={styles.response}
-                    dangerouslySetInnerHTML={{ __html: item.value }}
+                  <Image
+                    className="mr-2 rounded-sm h-[28px]"
+                    alt="Avatar of the person chatting"
+                    width="28"
+                    height="28"
+                    src={avatarUrl}
                   />
+                ) : (
+                  <GPTAvatar />
                 )}
+                <div className="flex flex-col">
+                  {item.from === "human" ? (
+                    <p className="pb-2">{item.value}</p>
+                  ) : (
+                    <div
+                      className={styles.response}
+                      dangerouslySetInnerHTML={{ __html: item.value }}
+                    />
+                  )}
+                </div>
               </div>
+              <CommentBubbleGroup
+                position={idx + 1}
+                comments={comments?.filter(
+                  (comment) => comment.position === idx + 1
+                )}
+              />
             </div>
           </div>
         ))}
@@ -100,16 +157,7 @@ export const getStaticProps = async (
 ) => {
   const { id } = context.params;
 
-  const props = await prisma.conversation.findUnique({
-    where: {
-      id,
-    },
-    select: {
-      id: true,
-      content: true,
-      views: true,
-    },
-  });
+  const props = await getConvo(id);
 
   if (props) {
     return { props, revalidate: 60 };

@@ -1,4 +1,10 @@
 import ms from "ms";
+import { customAlphabet } from "nanoid";
+
+export const nanoid = customAlphabet(
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  7
+); // 7-character random string
 
 export const truncate = (str: string, length: number) => {
   if (!str || str.length <= length) return str;

@@ -43,3 +43,76 @@ export async function getConvos({
     createdAt: convo.createdAt.toISOString(),
   }));
 }
+
+export async function getConvo(id: string) {
+  const convo = await prisma.conversation.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      content: true,
+      views: true,
+      comments: {
+        select: {
+          id: true,
+          content: true,
+          position: true,
+          createdAt: true,
+          user: {
+            select: {
+              name: true,
+              username: true,
+              image: true,
+            },
+          },
+        },
+        where: {
+          parentCommentId: null,
+        },
+        orderBy: {
+          createdAt: "asc",
+        },
+      },
+    },
+  });
+
+  return {
+    ...convo,
+    comments:
+      convo?.comments.map((comment) => ({
+        ...comment,
+        createdAt: comment.createdAt.toISOString(),
+      })) ?? [],
+  };
+}
+
+export async function getComments(id: string) {
+  const comments = await prisma.comment.findMany({
+    where: {
+      conversationId: id,
+      parentCommentId: null,
+    },
+    select: {
+      id: true,
+      content: true,
+      position: true,
+      createdAt: true,
+      user: {
+        select: {
+          name: true,
+          username: true,
+          image: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
+
+  return comments.map((comment) => ({
+    ...comment,
+    createdAt: comment.createdAt.toISOString(),
+  }));
+}
