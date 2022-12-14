@@ -18,7 +18,7 @@ export default function CommentBubbleGroup({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="absolute top-10 right-0 flex -space-x-1 items-center justify-start w-60"
+          className="hidden absolute top-10 right-0 lg:flex -space-x-1 items-center justify-start lg:w-40 xl:w-60"
           variants={{
             hidden: {},
             show: {

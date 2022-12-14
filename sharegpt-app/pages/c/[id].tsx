@@ -88,7 +88,7 @@ export default function ChatPage({
               {currentPosition && currentPosition !== idx + 1 && (
                 <motion.div
                   {...FADE_IN_ANIMATION_SETTINGS}
-                  className="absolute w-full h-full z-10 bg-gray-300 bg-opacity-50 backdrop-blur-[2px] pointer-events-none"
+                  className="absolute w-full h-full z-10 bg-gray-300 dark:bg-black/30 bg-opacity-50 backdrop-blur-[2px] pointer-events-none"
                 />
               )}
             </AnimatePresence>

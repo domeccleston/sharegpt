@@ -19,7 +19,7 @@ export default function Comment({
     <div
       className={`w-full ${
         hoverCard ? "sm:w-96 shadow-md" : "shadow-sm"
-      } rounded-lg p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800`}
+      } rounded-lg p-6 border border-gray-200 bg-white`}
     >
       <div className="flex space-x-3 items-center">
         <Image
@@ -32,7 +32,7 @@ export default function Comment({
         />
         <div>
           <p className="font-semibold leading-5">{comment.user.name}</p>
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
+          <p className="text-gray-500 text-sm">
             @{comment.user.username} • <span>{timeAgo(comment.createdAt)}</span>
           </p>
         </div>
@@ -41,7 +41,7 @@ export default function Comment({
         <p
           className={`${
             fullComment ? "" : "line-clamp-5"
-          } text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line`}
+          } text-sm text-gray-600 whitespace-pre-line`}
         >
           {comment.content}
         </p>
