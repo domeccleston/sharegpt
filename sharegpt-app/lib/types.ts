@@ -20,6 +20,7 @@ export interface ConversationMeta {
     image: string;
   };
   upvotes: number;
+  comments: number;
   views: number;
   createdAt: Date;
 }

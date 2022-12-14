@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Eye, MessageCircle } from "lucide-react";
 
 export default function ConvoCard({ data }: { data: ConversationMeta }) {
-  const { id, title, avatar, views, createdAt } = data;
+  const { id, title, avatar, views, comments, createdAt } = data;
   return (
     <motion.li
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
@@ -54,7 +54,7 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
               <p className="text-gray-500 text-sm">{nFormatter(0)}</p>
             </div>
             <p className="hidden sm:block text-gray-500 text-sm hover:text-gray-800">
-              {nFormatter(0)} comments
+              {nFormatter(comments)} comments
             </p>
           </Link>
         </div>
