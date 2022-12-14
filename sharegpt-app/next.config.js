@@ -11,6 +11,7 @@ const nextConfig = {
       "avatars.dicebear.com",
       "pbs.twimg.com",
       "abs.twimg.com",
+      "images.unsplash.com",
     ],
   },
   async headers() {

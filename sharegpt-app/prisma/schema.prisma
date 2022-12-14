@@ -25,6 +25,7 @@ model User {
   sessions      Session[]
   conversations Conversation[]
   upvotes       Upvote[]
+  comments      Comment[]
 }
 
 model Account {
@@ -68,17 +69,18 @@ model VerificationToken {
 }
 
 model Conversation {
-  id        String   @id
+  id        String    @id
   title     String
-  avatar    String?  @db.LongText
+  avatar    String?   @db.LongText
   content   Json?
   password  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   creatorId String?
-  creator   User?    @relation(fields: [creatorId], references: [id], onDelete: Cascade)
-  views     Int      @default(0)
+  creator   User?     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  views     Int       @default(0)
   upvotes   Upvote[]
+  comments  Comment[]
 
   @@index([creatorId])
   @@index([views(sort: Desc)])
@@ -96,4 +98,27 @@ model Upvote {
   @@unique([conversationId, userId])
   @@index([conversationId])
   @@index([userId])
+}
+
+model Comment {
+  id              String       @id
+  conversationId  String
+  conversation    Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content         String        @db.LongText
+  position        Int
+  parentCommentId String?
+  parentComment   Comment?     @relation("Thread", fields: [parentCommentId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  childComments   Comment[]    @relation("Thread")
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@index([conversationId])
+  @@index([userId])
+  @@index([parentCommentId])
+  @@index([conversationId, parentCommentId])
+  @@index([conversationId, parentCommentId, createdAt])
+  @@index([conversationId, position])
+  @@index([conversationId, position, parentCommentId, createdAt])
 }
