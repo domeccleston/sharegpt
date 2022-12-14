@@ -21,7 +21,9 @@ export default async function handler(
     }
     const session = await getServerSession(req, res);
     if (!session?.user?.id) {
-      res.status(401).json({ error: "Unauthorized" });
+      res
+        .status(401)
+        .json({ error: "Need to be logged in to leave a comment." });
       return;
     }
     const id = nanoid();

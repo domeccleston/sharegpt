@@ -15,9 +15,10 @@ import { useRouter } from "next/router";
 import { ChevronLeft, Send, X } from "lucide-react";
 import { LoadingDots } from "../shared/icons";
 import { mutate } from "swr";
-import CommentThread from "./thread";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
+import Image from "next/image";
+import { toast } from "react-hot-toast";
 
 const CommentModal = ({
   showCommentModal,
@@ -56,14 +57,15 @@ const CommentModal = ({
     })
       .then((res) => res.json())
       .then((data) => {
+        setSubmitting(false);
         if (data.error) {
-          alert(data.message);
+          toast.error(data.error);
+        } else {
+          mutate(`/api/conversations/${id}/comments`).then(() => {
+            setContent("");
+            commentsBottomRef.current?.scrollIntoView({ behavior: "smooth" });
+          });
         }
-        mutate(`/api/conversations/${id}/comments`).then(() => {
-          setSubmitting(false);
-          setContent("");
-          commentsBottomRef.current?.scrollIntoView({ behavior: "smooth" });
-        });
       });
   };
 
@@ -123,44 +125,73 @@ const CommentModal = ({
         </div>
 
         {comments && position && (
-          <div className="flex flex-1 overflow-scroll flex-col space-y-5 px-3 py-6">
-            {comments
-              .filter((comment) => comment.position === parseInt(position))
-              .map((comment) => (
-                <Comment key={comment.id} comment={comment} />
-              ))}
+          <div className="flex flex-1 flex-col space-y-5 px-3 py-6 overflow-scroll">
+            {comments.filter(
+              (comment) => comment.position === parseInt(position)
+            ).length > 0 ? (
+              comments
+                .filter((comment) => comment.position === parseInt(position))
+                .map((comment) => (
+                  <Comment key={comment.id} comment={comment} />
+                ))
+            ) : (
+              <div className="flex flex-1 flex-col items-center justify-center space-y-2">
+                <Image
+                  src="/illustrations/video-park.svg"
+                  width={200}
+                  height={200}
+                  alt="No comments yet"
+                />
+                <h2 className="text-xl font-medium text-gray-600">
+                  No comments yet
+                </h2>
+                <p className="text-sm text-gray-500">
+                  Be the first to comment on this conversation
+                </p>
+              </div>
+            )}
             <div ref={commentsBottomRef} />
           </div>
         )}
 
         {comments && comment && (
-          <CommentThread comment={comments.find((c) => c.id === comment)!} />
+          <div className="flex flex-1 flex-col space-y-5 px-3 py-6 overflow-scroll">
+            {comment && (
+              <Comment
+                key={comment}
+                comment={comments.find((c) => c.id === comment)!}
+                fullComment
+              />
+            )}
+          </div>
         )}
 
-        <form
-          onSubmit={handleSubmit}
-          className="h-60 w-full border-t border-gray-200 p-5 bg-white rounded-b-lg"
-        >
-          <textarea
-            name="comment"
-            className="w-full h-full resize-none text-sm text-gray-600 placeholder:text-gray-400 focus:outline-none"
-            placeholder={position ? "Write a comment..." : "Write a reply..."}
-            rows={6}
-            required
-            onKeyDown={handleKeyDown}
-            value={content}
-            onChange={(e) => {
-              setContent(e.target.value);
-            }}
-          />
-          <button className="absolute bottom-4 right-4 w-10 h-10 flex items-center justify-center border border-gray-300 bg-white rounded-full hover:scale-105 active:scale-100 transition-all">
-            {submitting ? (
-              <LoadingDots />
-            ) : (
-              <Send className="w-4 h-4 mt-0.5 mr-0.5 text-gray-400" />
-            )}
-          </button>
-        </form>
+        {!comment && (
+          <form
+            onSubmit={handleSubmit}
+            className="h-60 w-full border-t border-gray-200 p-5 bg-white rounded-b-lg"
+          >
+            <textarea
+              name="comment"
+              className="w-full h-full resize-none text-sm text-gray-600 placeholder:text-gray-400 focus:outline-none"
+              placeholder={position ? "Write a comment..." : "Write a reply..."}
+              rows={6}
+              required
+              onKeyDown={handleKeyDown}
+              value={content}
+              onChange={(e) => {
+                setContent(e.target.value);
+              }}
+            />
+            <button className="absolute bottom-4 right-4 w-10 h-10 flex items-center justify-center border border-gray-300 bg-white rounded-full hover:scale-105 active:scale-100 transition-all">
+              {submitting ? (
+                <LoadingDots />
+              ) : (
+                <Send className="w-4 h-4 mt-0.5 mr-0.5 text-gray-400" />
+              )}
+            </button>
+          </form>
+        )}
       </div>
     </SideModal>
   );

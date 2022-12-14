@@ -8,12 +8,13 @@ import { useState } from "react";
 export default function Comment({
   comment,
   hoverCard,
+  fullComment,
 }: {
   comment: CommentProps;
   hoverCard?: boolean;
+  fullComment?: boolean;
 }) {
   const router = useRouter();
-  const [truncate, setTruncate] = useState(true);
   return (
     <div
       className={`w-full ${
@@ -39,30 +40,32 @@ export default function Comment({
       <div className="mt-4">
         <p
           className={`${
-            truncate ? "line-clamp-5" : ""
+            fullComment ? "" : "line-clamp-5"
           } text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line`}
         >
           {comment.content}
         </p>
       </div>
-      <button
-        onClick={() => {
-          router.push(
-            {
-              pathname: "/c/[id]",
-              query: {
-                id: router.query.id,
-                comment: comment.id,
+      {!fullComment && (
+        <button
+          onClick={() => {
+            router.push(
+              {
+                pathname: "/c/[id]",
+                query: {
+                  id: router.query.id,
+                  comment: comment.id,
+                },
               },
-            },
-            undefined,
-            { shallow: true }
-          );
-        }}
-        className="mt-3 bg-white text-black border border-gray-200 hover:bg-gray-50 text-center shadow-sm w-full text-sm h-8 rounded-md transition-all duration-75 focus:outline-none"
-      >
-        Reply
-      </button>
+              undefined,
+              { shallow: true }
+            );
+          }}
+          className="mt-3 bg-white text-black border border-gray-200 hover:bg-gray-50 text-center shadow-sm w-full text-sm h-8 rounded-md transition-all duration-75 focus:outline-none"
+        >
+          View Comment
+        </button>
+      )}
     </div>
   );
 }
