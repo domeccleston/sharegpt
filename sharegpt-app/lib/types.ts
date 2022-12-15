@@ -19,7 +19,7 @@ export interface ConversationMeta {
     name: string;
     image: string;
   };
-  upvotes: number;
+  saves: number;
   comments: number;
   views: number;
   createdAt: Date;

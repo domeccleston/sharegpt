@@ -13,7 +13,7 @@ export default async function handler(req: NextRequest) {
   }
   if (req.method === "GET") {
     const response = await conn.execute(
-      "SELECT COUNT(*) FROM Upvote WHERE conversationId = ?",
+      "SELECT COUNT(*) FROM Save WHERE conversationId = ?",
       [id]
     );
     let count;

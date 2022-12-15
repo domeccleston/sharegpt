@@ -13,8 +13,6 @@ export default async function handler(
       search?: string;
     };
 
-    console.log(search);
-
     const response = await getConvos({
       orderBy: type === "new" ? "createdAt" : "views",
       take: PAGINATION_LIMIT,

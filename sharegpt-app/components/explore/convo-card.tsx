@@ -3,7 +3,7 @@ import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { ConversationMeta } from "@/lib/types";
 import Image from "next/image";
 import { nFormatter, timeAgo } from "@/lib/utils";
-import UpvoteButton from "../shared/upvote-button";
+import SaveButton from "../shared/save-button";
 import Link from "next/link";
 import { Eye, MessageCircle } from "lucide-react";
 
@@ -59,7 +59,7 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
           </Link>
         </div>
       </div>
-      <UpvoteButton id={id} />
+      <SaveButton id={id} />
     </motion.li>
   );
 }

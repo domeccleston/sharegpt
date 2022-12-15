@@ -33,7 +33,7 @@ export async function getConvos({
       // },
       _count: {
         select: {
-          upvotes: true,
+          saves: true,
           comments: true,
         },
       },
@@ -49,7 +49,7 @@ export async function getConvos({
 
   return convos.map((convo) => ({
     ...convo,
-    upvotes: convo._count.upvotes,
+    saves: convo._count.saves,
     comments: convo._count.comments,
     createdAt: convo.createdAt.toISOString(),
   }));
