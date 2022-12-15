@@ -49,7 +49,7 @@ export default function Comment({
       {!fullComment && (
         <button
           onClick={() => {
-            router.push(
+            router.replace(
               {
                 pathname: "/c/[id]",
                 query: {

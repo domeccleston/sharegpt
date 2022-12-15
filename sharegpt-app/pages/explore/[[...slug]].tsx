@@ -13,7 +13,7 @@ import Pagination from "@/components/explore/pagination";
 import { Search } from "lucide-react";
 import { LoadingSpinner } from "@/components/shared/icons";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Explore({
   type,
@@ -39,6 +39,18 @@ export default function Explore({
       keepPreviousData: true,
     }
   );
+
+  const [extraDebouncedSearch] = useDebounce(search, 2000);
+  useEffect(() => {
+    async function logSearch() {
+      if (extraDebouncedSearch && extraDebouncedSearch.length > 2) {
+        await fetch(`/api/logs/conversations?search=${extraDebouncedSearch}`, {
+          method: "POST",
+        });
+      }
+    }
+    logSearch();
+  }, [extraDebouncedSearch]);
 
   const [focused, setFocused] = useState(false);
 
