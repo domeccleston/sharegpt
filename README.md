@@ -139,7 +139,7 @@ const url = `https://shareg.pt/${id}`; // short link to the ShareGPT post
 This endpoint takes 3 different query parameters:
 - `type`: 
   - Used for sorting the results.
-  - Takes 2 string values: `"new" | "top"
+  - Takes 2 string values: `"new" | "top"`
   - `"new"` sorts conversations by creation time
   - `"top"` sorts conversations by number of views
   - If `undefined`, defaults to `"top"`
