@@ -169,11 +169,11 @@ const CommentModal = ({
         {!comment && (
           <form
             onSubmit={handleSubmit}
-            className="h-60 w-full border-t border-gray-200 p-5 bg-white rounded-b-lg"
+            className="h-60 w-full border-t border-gray-200 p-4 bg-white rounded-b-lg"
           >
             <textarea
               name="comment"
-              className="w-full h-full resize-none text-sm text-gray-600 placeholder:text-gray-400 focus:outline-none"
+              className="w-full h-full resize-none text-sm text-gray-600 placeholder:text-gray-400 focus:outline-none border-none focus:ring-0"
               placeholder={position ? "Write a comment..." : "Write a reply..."}
               rows={6}
               required
