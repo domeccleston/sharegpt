@@ -9,7 +9,7 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
+  previewFeatures = ["referentialIntegrity", "fullTextSearch", "fullTextIndex","filterJson"]
 }
 
 model User {
@@ -24,7 +24,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   conversations Conversation[]
-  upvotes       Upvote[]
+  saves         Save[]
+  comments      Comment[]
 }
 
 model Account {
@@ -68,24 +69,25 @@ model VerificationToken {
 }
 
 model Conversation {
-  id        String   @id
+  id        String    @id
   title     String
-  avatar    String?  @db.LongText
+  avatar    String?   @db.LongText
   content   Json?
   password  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   creatorId String?
-  creator   User?    @relation(fields: [creatorId], references: [id], onDelete: Cascade)
-  views     Int      @default(0)
-  upvotes   Upvote[]
+  creator   User?     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  views     Int       @default(0)
+  saves     Save[]
+  comments  Comment[]
 
   @@index([creatorId])
   @@index([views(sort: Desc)])
   @@index([createdAt])
+  @@fulltext([title])
 }
-
-model Upvote {
+model Save {
   id             String       @id @default(cuid())
   conversationId String
   conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
@@ -96,4 +98,27 @@ model Upvote {
   @@unique([conversationId, userId])
   @@index([conversationId])
   @@index([userId])
+}
+
+model Comment {
+  id              String       @id
+  conversationId  String
+  conversation    Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content         String       @db.LongText
+  position        Int
+  parentCommentId String?
+  parentComment   Comment?     @relation("Thread", fields: [parentCommentId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  childComments   Comment[]    @relation("Thread")
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@index([conversationId])
+  @@index([userId])
+  @@index([parentCommentId])
+  @@index([conversationId, parentCommentId])
+  @@index([conversationId, parentCommentId, createdAt])
+  @@index([conversationId, position])
+  @@index([conversationId, position, parentCommentId, createdAt])
 }

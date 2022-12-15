@@ -3,16 +3,16 @@ import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { ConversationMeta } from "@/lib/types";
 import Image from "next/image";
 import { nFormatter, timeAgo } from "@/lib/utils";
-import UpvoteButton from "../shared/upvote-button";
+import SaveButton from "../shared/save-button";
 import Link from "next/link";
 import { Eye, MessageCircle } from "lucide-react";
 
 export default function ConvoCard({ data }: { data: ConversationMeta }) {
-  const { id, title, avatar, views, createdAt } = data;
+  const { id, title, avatar, views, comments, createdAt } = data;
   return (
     <motion.li
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
-      className="flex items-center justify-between space-x-5 rounded-md border border-gray-100 bg-white p-4 shadow-lg"
+      className="flex items-center justify-between space-x-5 rounded-md border border-gray-100 bg-white p-4 shadow-md"
     >
       <div className="grid gap-2 flex-1">
         <Link
@@ -54,12 +54,12 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
               <p className="text-gray-500 text-sm">{nFormatter(0)}</p>
             </div>
             <p className="hidden sm:block text-gray-500 text-sm hover:text-gray-800">
-              {nFormatter(0)} comments
+              {nFormatter(comments)} comments
             </p>
           </Link>
         </div>
       </div>
-      <UpvoteButton id={id} />
+      <SaveButton id={id} />
     </motion.li>
   );
 }

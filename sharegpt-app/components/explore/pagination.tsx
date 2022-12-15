@@ -2,6 +2,9 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useRouter, NextRouter } from "next/router";
 import { PAGINATION_LIMIT } from "@/lib/constants";
 import useScroll from "@/lib/hooks/use-scroll";
+import useSWR from "swr";
+import { fetcher } from "@/lib/utils";
+import { useDebounce } from "use-debounce";
 
 const setPage = (router: NextRouter, page: number) => {
   router.replace(
@@ -38,13 +41,25 @@ const Divider = () => {
   return <div className="w-6 border border-gray-400 rounded-lg" />;
 };
 
-export default function Pagination({ count }: { count: number }) {
+export default function Pagination({ count: initialCount }: { count: number }) {
+  const router = useRouter();
+  const { search } = router.query as { search?: string };
+  const [debouncedSearch] = useDebounce(search, 500);
+  const { data: count } = useSWR<number>(
+    `/api/conversations/count${
+      debouncedSearch ? `?search=${debouncedSearch}` : ""
+    }`,
+    fetcher,
+    {
+      fallbackData: initialCount,
+    }
+  ) as { data: number };
+
   const paginatedCount = Math.ceil(count / PAGINATION_LIMIT);
   const paginationArray = !isNaN(paginatedCount)
     ? Array.from(Array(paginatedCount).keys())
     : [];
 
-  const router = useRouter();
   const currentPage: number =
     router.query.page && typeof router.query.page === "string"
       ? parseInt(router.query.page)

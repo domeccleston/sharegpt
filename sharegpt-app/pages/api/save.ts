@@ -1,18 +1,12 @@
 import { ratelimit } from "@/lib/upstash";
-import { customAlphabet } from "nanoid";
 import { conn } from "@/lib/planetscale";
 import { ConversationProps } from "@/lib/types";
-import { truncate } from "@/lib/utils";
+import { nanoid, truncate } from "@/lib/utils";
 import { NextRequest } from "next/server";
 
 export const config = {
   runtime: "experimental-edge",
 };
-
-const nanoid = customAlphabet(
-  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-  7
-); // 7-character random string
 
 export default async function handler(req: NextRequest) {
   if (req.headers.get("origin") !== "https://chat.openai.com")

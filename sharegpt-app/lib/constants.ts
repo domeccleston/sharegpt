@@ -6,8 +6,13 @@ export const FADE_IN_ANIMATION_SETTINGS = {
 };
 
 export const FRAMER_MOTION_LIST_ITEM_VARIANTS = {
-  hidden: { scale: 0.8, opacity: 0 },
-  show: { scale: 1, opacity: 1, transition: { type: "spring" } },
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { type: "spring" } },
+};
+
+export const FRAMER_MOTION_COMMENT_BUBBLE_VARIANTS = {
+  hidden: { translateX: 5, opacity: 0 },
+  show: { translateX: 0, opacity: 1, transition: { type: "spring" } },
 };
 
 export const PAGINATION_LIMIT = 50;

@@ -22,7 +22,7 @@ export default async function handler(
   }
 
   if (req.method === "GET") {
-    const response = await prisma.upvote.findUnique({
+    const response = await prisma.save.findUnique({
       where: {
         conversationId_userId: {
           conversationId: id,
@@ -31,10 +31,10 @@ export default async function handler(
       },
     });
     res.status(200).json({
-      upvoted: !!response,
+      saved: !!response,
     });
   } else if (req.method === "POST") {
-    const response = await prisma.upvote.create({
+    const response = await prisma.save.create({
       data: {
         conversationId: id,
         userId,
@@ -42,7 +42,7 @@ export default async function handler(
     });
     res.status(200).json(response);
   } else if (req.method === "DELETE") {
-    const response = await prisma.upvote.delete({
+    const response = await prisma.save.delete({
       where: {
         conversationId_userId: {
           conversationId: id,

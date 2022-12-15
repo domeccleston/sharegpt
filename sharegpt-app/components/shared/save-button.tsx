@@ -4,11 +4,11 @@ import { useState } from "react";
 import { LoadingCircle } from "@/components/shared/icons";
 import { useSignInModal } from "@/components/layout/sign-in-modal";
 import { useSession } from "next-auth/react";
-import { Triangle } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import { useRef } from "react";
 import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
 
-export default function UpvoteButton({ id }: { id: string }) {
+export default function SaveButton({ id }: { id: string }) {
   const { data: session } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
 
@@ -16,8 +16,8 @@ export default function UpvoteButton({ id }: { id: string }) {
   const entry = useIntersectionObserver(buttonRef, {});
   const isVisible = !!entry?.isIntersecting;
 
-  const { data, isValidating } = useSWR<{ upvoted: boolean }>(
-    isVisible && session?.user ? `/api/conversations/${id}/upvote` : null,
+  const { data, isValidating } = useSWR<{ saved: boolean }>(
+    isVisible && session?.user ? `/api/conversations/${id}/save` : null,
     fetcher,
     {
       revalidateIfStale: false,
@@ -25,8 +25,8 @@ export default function UpvoteButton({ id }: { id: string }) {
       revalidateOnReconnect: false,
     }
   );
-  const { data: upvotesData } = useSWR<{ count: number }>(
-    isVisible && `/api/conversations/${id}/upvotes`,
+  const { data: savesData } = useSWR<{ count: number }>(
+    isVisible && `/api/conversations/${id}/saves`,
     fetcher
   );
   const [submitting, setSubmitting] = useState(false);
@@ -40,11 +40,11 @@ export default function UpvoteButton({ id }: { id: string }) {
             setShowSignInModal(true);
           } else {
             setSubmitting(true);
-            fetch(`/api/conversations/${id}/upvote`, {
-              method: data?.upvoted ? "DELETE" : "POST",
+            fetch(`/api/conversations/${id}/save`, {
+              method: data?.saved ? "DELETE" : "POST",
             }).then(() => {
-              mutate(`/api/conversations/${id}/upvote`).then(() =>
-                mutate(`/api/conversations/${id}/upvotes`).then(() =>
+              mutate(`/api/conversations/${id}/save`).then(() =>
+                mutate(`/api/conversations/${id}/saves`).then(() =>
                   setSubmitting(false)
                 )
               );
@@ -58,13 +58,13 @@ export default function UpvoteButton({ id }: { id: string }) {
       >
         {submitting || isValidating ? (
           <LoadingCircle />
-        ) : data?.upvoted ? (
-          <Triangle className="h-4 w-4 text-orange-500" fill="#F97316" />
+        ) : data?.saved ? (
+          <Bookmark className="h-4 w-4 text-rose-500" fill="#F43F5E" />
         ) : (
-          <Triangle className="h-4 w-4 text-gray-600" />
+          <Bookmark className="h-4 w-4 text-gray-600" />
         )}
         <p className="text-center text-gray-600 text-sm">
-          {upvotesData?.count ? nFormatter(upvotesData.count, 1) : 0}
+          {savesData?.count ? nFormatter(savesData.count, 1) : 0}
         </p>
       </button>
     </>
