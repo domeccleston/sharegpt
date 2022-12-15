@@ -82,7 +82,7 @@ const CommentModal = ({
           {comments && comment ? (
             <button
               onClick={() =>
-                router.push(
+                router.replace(
                   {
                     pathname: "/c/[id]",
                     query: {
@@ -107,7 +107,7 @@ const CommentModal = ({
           )}
           <button
             onClick={() =>
-              router.push(
+              router.replace(
                 {
                   pathname: "/c/[id]",
                   query: {

@@ -15,7 +15,7 @@ export default function MoreCommentsBubble({
   return (
     <motion.button
       onClick={() => {
-        router.push(
+        router.replace(
           {
             pathname: "/c/[id]",
             query: {

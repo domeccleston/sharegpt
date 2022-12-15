@@ -55,6 +55,7 @@ export default function Explore({
         <input
           type="text"
           name="search"
+          autoComplete="off"
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           value={search || ""}

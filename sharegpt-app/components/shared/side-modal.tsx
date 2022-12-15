@@ -25,7 +25,7 @@ export default function SideModal({
 
   const closeModal = useCallback(() => {
     if (comment || position) {
-      router.push(
+      router.replace(
         {
           pathname: "/c/[id]",
           query: {
