@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prebuild": "prisma generate",
+    "predev": "prisma generate",
+    "start": "next start"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",
