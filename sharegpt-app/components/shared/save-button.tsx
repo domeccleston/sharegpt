@@ -59,7 +59,7 @@ export default function SaveButton({ id }: { id: string }) {
         {submitting || isValidating ? (
           <LoadingCircle />
         ) : data?.saved ? (
-          <Bookmark className="h-4 w-4 text-rose-600" fill="#E11D48" />
+          <Bookmark className="h-4 w-4 text-rose-500" fill="#F43F5E" />
         ) : (
           <Bookmark className="h-4 w-4 text-gray-600" />
         )}

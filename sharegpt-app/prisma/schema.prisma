@@ -24,7 +24,6 @@ model User {
   accounts      Account[]
   sessions      Session[]
   conversations Conversation[]
-  upvotes       Upvote[]
   saves         Save[]
   comments      Comment[]
 }
@@ -80,7 +79,6 @@ model Conversation {
   creatorId String?
   creator   User?     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   views     Int       @default(0)
-  upvotes   Upvote[]
   saves     Save[]
   comments  Comment[]
 
@@ -88,19 +86,6 @@ model Conversation {
   @@index([views(sort: Desc)])
   @@index([createdAt])
   @@fulltext([title])
-}
-
-model Upvote {
-  id             String       @id @default(cuid())
-  conversationId String
-  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
-  userId         String
-  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt      DateTime     @default(now())
-
-  @@unique([conversationId, userId])
-  @@index([conversationId])
-  @@index([userId])
 }
 model Save {
   id             String       @id @default(cuid())
