@@ -12,7 +12,7 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
   return (
     <motion.li
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
-      className="flex items-center justify-between space-x-5 rounded-md border border-gray-100 bg-white p-4 shadow-lg"
+      className="flex items-center justify-between space-x-5 rounded-md border border-gray-100 bg-white p-4 shadow-md"
     >
       <div className="grid gap-2 flex-1">
         <Link

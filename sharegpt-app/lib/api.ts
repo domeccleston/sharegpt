@@ -4,12 +4,21 @@ export async function getConvos({
   orderBy,
   take,
   skip = 0,
+  search,
 }: {
   orderBy: string;
   take: number;
   skip?: number;
+  search?: string;
 }) {
   const convos = await prisma.conversation.findMany({
+    ...(search && {
+      where: {
+        title: {
+          search,
+        },
+      },
+    }),
     select: {
       id: true,
       title: true,

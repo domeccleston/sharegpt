@@ -137,7 +137,7 @@ const CommentModal = ({
             ) : (
               <div className="flex flex-1 flex-col items-center justify-center space-y-2">
                 <Image
-                  src="/illustrations/video-park.svg"
+                  src="/illustrations/empty.svg"
                   width={200}
                   height={200}
                   alt="No comments yet"

@@ -7,12 +7,19 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    const { type, page } = req.query as { type: string; page?: string };
+    const { type, page, search } = req.query as {
+      type: string;
+      page?: string;
+      search?: string;
+    };
+
+    console.log(search);
 
     const response = await getConvos({
       orderBy: type === "new" ? "createdAt" : "views",
       take: PAGINATION_LIMIT,
       skip: page ? parseInt(page) * 50 : 0,
+      search,
     });
 
     res.status(200).json(response);

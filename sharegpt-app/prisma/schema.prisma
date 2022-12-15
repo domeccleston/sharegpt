@@ -9,7 +9,7 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
+  previewFeatures = ["referentialIntegrity", "fullTextSearch", "fullTextIndex","filterJson"]
 }
 
 model User {
@@ -85,6 +85,7 @@ model Conversation {
   @@index([creatorId])
   @@index([views(sort: Desc)])
   @@index([createdAt])
+  @@fulltext([title])
 }
 
 model Upvote {
@@ -106,7 +107,7 @@ model Comment {
   conversation    Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
   userId          String
   user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  content         String        @db.LongText
+  content         String       @db.LongText
   position        Int
   parentCommentId String?
   parentComment   Comment?     @relation("Thread", fields: [parentCommentId], references: [id], onUpdate: NoAction, onDelete: NoAction)
