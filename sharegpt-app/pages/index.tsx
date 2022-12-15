@@ -140,7 +140,7 @@ export default function Home({
             title="Whats new in Material Design for the web (Chrome Dev Summit 2019)"
           />
         </div>
-        <div className="w-full bg-gray-200 py-5 sm:py-10 mb-10">
+        <div className="w-full bg-gray-100 py-5 sm:py-10 mb-10">
           <div className="flex justify-center space-x-5">
             <Link
               href="https://techcrunch.com/2022/12/08/sharegpt-lets-you-easily-share-your-chatgpt-conversations/"
@@ -152,7 +152,7 @@ export default function Home({
                 alt="TechCrunch logo"
                 width={2244}
                 height={318}
-                className="grayscale w-48 sm:w-60 hover:scale-105 transition-all"
+                className="w-48 sm:w-60 hover:scale-105 transition-all"
               />
             </Link>
           </div>
