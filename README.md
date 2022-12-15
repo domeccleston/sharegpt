@@ -136,7 +136,7 @@ const url = `https://shareg.pt/${id}`; // short link to the ShareGPT post
 
 #### GET: `https://sharegpt.com/api/conversations`
 
-This endpoint takes 3 different query parameters:
+This endpoint takes 3 optional query parameters:
 - `type`: 
   - Used for sorting the results.
   - Takes 2 string values: `"new" | "top"`
@@ -147,9 +147,11 @@ This endpoint takes 3 different query parameters:
   - Used for pagination
   - Takes an integer value as a factor of the `PAGINATION_LIMIT`, which is set to 50.
   - E.g. to get posts 100 - 150, set `page` to `3`
+  - If `undefined`, defaults to `1`
 - `search`
   - Used for filtering records by title.
   - E.g. `search = "python"` returns all records with the word "python" in the title
+  - If `undefined`, search results are not filtered 
 
 Example:
 
