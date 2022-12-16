@@ -88,14 +88,16 @@ export async function getConvo(id: string) {
     },
   });
 
-  return {
-    ...convo,
-    comments:
-      convo?.comments.map((comment) => ({
-        ...comment,
-        createdAt: comment.createdAt.toISOString(),
-      })) ?? [],
-  };
+  return convo
+    ? {
+        ...convo,
+        comments:
+          convo?.comments.map((comment) => ({
+            ...comment,
+            createdAt: comment.createdAt.toISOString(),
+          })) ?? [],
+      }
+    : null;
 }
 
 export async function getComments(id: string) {

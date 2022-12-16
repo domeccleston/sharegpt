@@ -54,8 +54,9 @@ function init() {
           value: markdownContent.outerHTML,
         });
       }
-    } 
-    const res = await fetch("https://chatgpt-share.vercel.app/api/save", {
+    }
+
+    const res = await fetch("https://sharegpt.com/api/conversations", {
       body: JSON.stringify(conversationData),
       headers: { "Content-Type": "application/json" },
       method: "POST",
