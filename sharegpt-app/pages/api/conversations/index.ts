@@ -28,6 +28,10 @@ export default async function handler(
     });
     res.status(200).json(response);
 
+    // OPTIONS /api/conversations (for CORS)
+  } else if (req.method === "OPTIONS") {
+    res.status(200).send("OK");
+
     // POST /api/conversations (for saving conversations)
   } else if (req.method === "POST") {
     const { success } = await ratelimit.limit("sharegpt-save-endpoint");
