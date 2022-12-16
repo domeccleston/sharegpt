@@ -34,7 +34,6 @@ ShareGPT is an open-source Chrome Extension for you to share your wildest ChatGP
 - Save your favorite conversations for later
 - Leave comments on conversations
 
-
 ## Tech Stack
 
 ShareGPT is built with the following stack:
@@ -53,7 +52,7 @@ The ShareGPT API is a REST-styled API that allows you to write and read conversa
 
 ### Conversations Endpoint
 
-#### POST: `https://sharegpt.com/api/save`
+#### POST: `https://sharegpt.com/api/conversations`
 
 You can use this endpoint to add new conversations to our database.
 
@@ -62,7 +61,6 @@ You can use this endpoint to add new conversations to our database.
 
 ```ts
 function conversationData() {
-
   const threadContainer = document.querySelector(
     "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
   );
@@ -90,7 +88,7 @@ function conversationData() {
     }
   }
 
-  return result
+  return result;
 }
 
 function getAvatarImage() {
@@ -112,14 +110,15 @@ function getAvatarImage() {
   return base64;
 }
 ```
+
 </details>
 
 Then, send a POST request to the endpoint above with the following payload and request headers:
 
 ```ts
-const res = await fetch("https://sharegpt.com/api/save", {
+const res = await fetch("https://sharegpt.com/api/conversations", {
   body: JSON.stringify(conversationData),
-  headers: { 
+  headers: {
     "Content-Type": "application/json"
     "origin": "https://chat.openai.com" // this is required or else request will fail with "Invalid origin" error
   },
@@ -137,7 +136,8 @@ const url = `https://shareg.pt/${id}`; // short link to the ShareGPT post
 #### GET: `https://sharegpt.com/api/conversations`
 
 This endpoint takes 3 optional query parameters:
-- `type`: 
+
+- `type`:
   - Used for sorting the results.
   - Takes 2 string values: `"new" | "top"`
   - `"new"` sorts conversations by creation time
@@ -151,24 +151,27 @@ This endpoint takes 3 optional query parameters:
 - `search`
   - Used for filtering records by title.
   - E.g. `search = "python"` returns all records with the word "python" in the title
-  - If `undefined`, search results are not filtered 
+  - If `undefined`, search results are not filtered
 
 Example:
 
 ```ts
-await fetch("https://sharegpt.com/api/conversations?type=new&page=2&search=python");
+await fetch(
+  "https://sharegpt.com/api/conversations?type=new&page=2&search=python"
+);
 ```
 
-This returns a list of conversations with the following type: 
+This returns a list of conversations with the following type:
 
 ```ts
 interface ConversationMeta {
-  id: string;        // unique id for the conversation
-  title: string;     // title of the conversation (first user prompt)
-  avatar: string;    // base64 encoded URI of the user's avatar
-  saves: number;     // number of times the conversation is saved on ShareGPT
-  comments: number;  // number of comments the conversation has on ShareGPT
-  views: number;     // number of times the conversation has been viewed on ShareGPT
-  createdAt: Date;   // timestamp when the conversation was creataed
-}[]
+  id: string; // unique id for the conversation
+  title: string; // title of the conversation (first user prompt)
+  avatar: string; // base64 encoded URI of the user's avatar
+  saves: number; // number of times the conversation is saved on ShareGPT
+  comments: number; // number of comments the conversation has on ShareGPT
+  views: number; // number of times the conversation has been viewed on ShareGPT
+  createdAt: Date; // timestamp when the conversation was creataed
+}
+[];
 ```
