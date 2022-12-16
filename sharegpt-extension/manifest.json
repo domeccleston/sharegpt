@@ -26,7 +26,6 @@
       "run_at": "document_end"
     }
   ],
-  "background": {
-    "service_worker": "auth-checker.js"
-  }
+  "host_permissions": ["https://sharegpt.com/*"],
+  "permissions": ["cookies"]
 }

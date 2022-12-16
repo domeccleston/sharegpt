@@ -25,8 +25,17 @@
   text-align: center;
 }
 
+.subtitle {
+  font-size: 13px;
+  color: #545454;
+  text-align: center;
+  margin-top: -2px;
+}
+
 .button {
   border: 1px solid #e4e4e7;
+  color: #333333;
+  text-decoration: none;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -56,4 +65,34 @@
   width: 1rem;
   height: 1rem;
   margin-right: 0.75rem;
+}
+
+#login-div,
+#session-div {
+  display: none;
+}
+
+.profile-pic {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #414141;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.3s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
