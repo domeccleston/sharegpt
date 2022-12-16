@@ -28,15 +28,8 @@ export default async function handler(
     });
     res.status(200).json(response);
 
-    // OPTIONS /api/conversations (for CORS)
-  } else if (req.method === "OPTIONS") {
-    res.status(200).send("OK");
-
     // POST /api/conversations (for saving conversations)
   } else if (req.method === "POST") {
-    if (req.headers.origin !== "https://chat.openai.com") {
-      return res.status(400).json({ error: "Invalid origin" });
-    }
     const { success } = await ratelimit.limit("sharegpt-save-endpoint");
     if (!success) {
       return res.status(429).json({ error: "Don't DDoS me pls 🥺" });

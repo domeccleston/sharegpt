@@ -119,8 +119,7 @@ Then, send a POST request to the endpoint above with the following payload and r
 const res = await fetch("https://sharegpt.com/api/conversations", {
   body: JSON.stringify(conversationData),
   headers: {
-    "Content-Type": "application/json"
-    "origin": "https://chat.openai.com" // this is required or else request will fail with "Invalid origin" error
+    "Content-Type": "application/json",
   },
   method: "POST",
 });
