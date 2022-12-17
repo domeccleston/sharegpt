@@ -73,7 +73,7 @@ model Conversation {
   title     String
   avatar    String?   @db.LongText
   content   Json?
-  password  String?
+  private   Boolean   @default(false)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   creatorId String?
@@ -85,6 +85,7 @@ model Conversation {
   @@index([creatorId])
   @@index([views(sort: Desc)])
   @@index([createdAt])
+  @@index([private])
   @@fulltext([title])
 }
 model Save {

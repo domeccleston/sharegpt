@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Eye, MessageCircle } from "lucide-react";
 
 export default function ConvoCard({ data }: { data: ConversationMeta }) {
-  const { id, title, avatar, views, comments, createdAt } = data;
+  const { id, title, avatar, creator, views, comments, createdAt } = data;
   return (
     <motion.li
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
@@ -26,7 +26,7 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
             width="20"
             height="20"
             alt="Avatar"
-            src={avatar || `https://avatar.vercel.sh/${id}`}
+            src={creator?.image || avatar || `https://avatar.vercel.sh/${id}`}
             className="rounded-full"
           />
           <Link href={`/c/${id}`}>

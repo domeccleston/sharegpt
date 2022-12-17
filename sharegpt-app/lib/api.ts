@@ -17,20 +17,20 @@ export async function getConvos({
         title: {
           search,
         },
+        private: false,
       },
     }),
     select: {
       id: true,
       title: true,
       avatar: true,
-      // until we're ready to add user profiles
-      // creator: {
-      //   select: {
-      //     name: true,
-      //     username: true,
-      //     image: true,
-      //   },
-      // },
+      creator: {
+        select: {
+          name: true,
+          username: true,
+          image: true,
+        },
+      },
       _count: {
         select: {
           saves: true,
