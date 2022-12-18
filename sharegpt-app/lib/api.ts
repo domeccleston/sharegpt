@@ -12,14 +12,14 @@ export async function getConvos({
   search?: string;
 }) {
   const convos = await prisma.conversation.findMany({
-    ...(search && {
-      where: {
+    where: {
+      private: false,
+      ...(search && {
         title: {
           search,
         },
-        private: false,
-      },
-    }),
+      }),
+    },
     select: {
       id: true,
       title: true,
