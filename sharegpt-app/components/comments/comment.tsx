@@ -1,9 +1,7 @@
 import { CommentProps } from "@/lib/types";
 import { timeAgo } from "@/lib/utils";
-import { MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 export default function Comment({
   comment,
@@ -23,7 +21,10 @@ export default function Comment({
     >
       <div className="flex space-x-3 items-center">
         <Image
-          src={comment.user.image}
+          src={
+            comment.user.image ||
+            `https://avatar.vercel.sh/${comment.user.username}`
+          }
           width={24}
           height={24}
           draggable="false"
