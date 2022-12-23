@@ -26,6 +26,5 @@
       "run_at": "document_end"
     }
   ],
-  "host_permissions": ["https://sharegpt.com/*"],
-  "permissions": ["cookies"]
+  "host_permissions": ["https://sharegpt.com/*"]
 }
