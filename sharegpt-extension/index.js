@@ -3,11 +3,26 @@ let isRequesting = false;
 function init() {
   const shareButton = createBtn();
 
-  const buttonsWrapper = document.querySelector(
-    "#__next main form > div div:nth-of-type(1)"
-  );
+  function appendShareButton() {
+    const buttonsWrapper = document.querySelector(
+      "#__next main form > div div:nth-of-type(1)"
+    );
+  
+    buttonsWrapper.appendChild(shareButton);
+  }
 
-  buttonsWrapper.appendChild(shareButton);
+  appendShareButton();
+
+  // re-append the share buttin whenever "#__next main" gets replaced
+  const observer = new MutationObserver(function(mutations_list) {
+    mutations_list.forEach(function(mutation) {
+      if (mutation.addedNodes.length > 0) {
+        appendShareButton();
+      }
+    });
+  });
+  
+  observer.observe(document.querySelector("#__next"), { subtree: false, childList: true });
 
   const textareaElement = document.querySelector("#__next main form textarea");
 
@@ -30,7 +45,7 @@ function init() {
     shareButton.style.cursor = "initial";
 
     const threadContainer = document.querySelector(
-      "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
+      "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
     );
 
     const conversationData = {
@@ -39,7 +54,7 @@ function init() {
     };
 
     for (const node of threadContainer.children) {
-      const markdownContent = node.querySelector(".markdown");
+      const markdownContent = node.querySelector("div:nth-of-type(1) div:nth-of-type(2) div:nth-of-type(1)");
 
       // tailwind class indicates human or gpt
       if ([...node.classList].includes("dark:bg-gray-800")) {
