@@ -160,6 +160,8 @@ export const getStaticProps = async (
 
   const props = await getConvo(id);
 
+  console.log({ props })
+
   if (props) {
     return { props, revalidate: 60 };
   } else {
