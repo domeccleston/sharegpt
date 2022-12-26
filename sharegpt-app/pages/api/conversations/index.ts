@@ -57,11 +57,12 @@ async function setRandomKey(
   content: ConversationProps["content"],
   userId: string | null
 ): Promise<any> {
-  console.log({ content });
+  console.log({ content: content.items });
   const id = nanoid();
   const title = content?.items[0]?.value
     ? truncate(content?.items[0]?.value, 180)
     : "Untitled";
+  console.log({ title });
   const avatar = content?.avatarUrl || `https://avatar.vercel.sh/${id}`;
   try {
     await prisma.conversation.create({
