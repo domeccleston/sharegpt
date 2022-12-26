@@ -62,8 +62,8 @@ export default function ChatPage({
     }
   }, [comment, comments, position]);
 
-  console.log({ items });
-
+  if (!items[0]) return null;
+  
   return (
     <>
       <Meta
