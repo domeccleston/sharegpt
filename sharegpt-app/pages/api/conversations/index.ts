@@ -34,15 +34,20 @@ export default async function handler(
 
     // POST /api/conversations (for saving conversations)
   } else if (req.method === "POST") {
-    const { success } = await ratelimit.limit("sharegpt-save-endpoint");
-    if (!success) {
-      return res.status(429).json({ error: "Don't DDoS me pls 🥺" });
+    try {
+      const { success } = await ratelimit.limit("sharegpt-save-endpoint");
+      if (!success) {
+        return res.status(429).json({ error: "Don't DDoS me pls 🥺" });
+      }
+      const session = await getServerSession(req, res);
+      const sanitizedBody = sanitize(JSON.stringify(req.body));
+      const content = JSON.parse(sanitizedBody);
+      const response = await setRandomKey(content, session?.user?.id ?? null);
+      return res.status(200).json(response);
+    } catch (error: unknown) {
+      console.log("Error saving conversation: ", error);
+      return res.status(500).json({ message: "Error saving conversation." });
     }
-    const session = await getServerSession(req, res);
-    const sanitizedBody = sanitize(JSON.stringify(req.body));
-    const content = JSON.parse(sanitizedBody);
-    const response = await setRandomKey(content, session?.user?.id ?? null);
-    return res.status(200).json(response);
   } else {
     res.status(405).json({ error: "Method not allowed" });
   }
