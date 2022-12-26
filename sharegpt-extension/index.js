@@ -48,8 +48,6 @@ function init() {
       "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
     );
 
-    console.log(threadContainer.children);
-
     const conversationData = {
       avatarUrl: getAvatarImage(),
       items: [],
