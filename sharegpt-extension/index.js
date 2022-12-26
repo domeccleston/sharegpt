@@ -45,7 +45,7 @@ function init() {
     shareButton.style.cursor = "initial";
 
     const threadContainer = document.querySelector(
-      "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
+      "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
     );
 
     const conversationData = {
@@ -71,8 +71,8 @@ function init() {
         });
       }
     }
-    
-    const res = await fetch("https://sharegpt.com/api/conversations", {
+
+    const res = await fetch("http:/localhost:3000/api/conversations", {
       body: JSON.stringify(conversationData),
       headers: { "Content-Type": "application/json" },
       method: "POST",
