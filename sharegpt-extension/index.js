@@ -78,7 +78,7 @@ function init() {
     }).catch((err) => {
       isRequesting = false;
       alert(
-        `Error saving conversation: ${err.message}. The developer has been notified.`
+        `Error saving conversation: ${err.message}`
       );
     });
     const { id } = await res.json();
