@@ -62,6 +62,8 @@ export default function ChatPage({
     }
   }, [comment, comments, position]);
 
+  console.log({ items });
+
   return (
     <>
       <Meta
