@@ -45,8 +45,10 @@ function init() {
     shareButton.style.cursor = "initial";
 
     const threadContainer = document.querySelector(
-      "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
+      "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
     );
+
+    console.log(threadContainer.children);
 
     const conversationData = {
       avatarUrl: getAvatarImage(),
@@ -56,8 +58,11 @@ function init() {
     for (const node of threadContainer.children) {
       const markdownContent = node.querySelector("div:nth-of-type(1) div:nth-of-type(2) div:nth-of-type(1)");
 
+      console.log({ markdownContent });
+
       // tailwind class indicates human or gpt
       if ([...node.classList].includes("dark:bg-gray-800")) {
+        console.log({ node });
         conversationData.items.push({
           from: "human",
           value: node.textContent,
@@ -70,6 +75,8 @@ function init() {
         });
       }
     }
+    
+    console.log({ conversationData });
 
     const res = await fetch("https://sharegpt.com/api/conversations", {
       body: JSON.stringify(conversationData),
