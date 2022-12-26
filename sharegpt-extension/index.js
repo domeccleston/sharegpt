@@ -54,28 +54,24 @@ function init() {
     };
 
     for (const node of threadContainer.children) {
-      const markdownContent = node.querySelector("div:nth-of-type(1) div:nth-of-type(2) div:nth-of-type(1)");
-
-      console.log({ markdownContent });
+      
+      const markdown = node.querySelector('.markdown');
 
       // tailwind class indicates human or gpt
       if ([...node.classList].includes("dark:bg-gray-800")) {
-        console.log({ node });
         conversationData.items.push({
           from: "human",
           value: node.textContent,
         });
         // if it's a GPT response, it might contain code blocks
-      } else if ([...node.classList].includes("bg-gray-50")) {
+      } else if (markdown) {
         conversationData.items.push({
           from: "gpt",
-          value: markdownContent.outerHTML,
+          value: markdown.outerHTML,
         });
       }
     }
     
-    console.log({ conversationData });
-
     const res = await fetch("https://sharegpt.com/api/conversations", {
       body: JSON.stringify(conversationData),
       headers: { "Content-Type": "application/json" },
