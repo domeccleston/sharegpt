@@ -7,22 +7,25 @@ function init() {
     const buttonsWrapper = document.querySelector(
       "#__next main form > div div:nth-of-type(1)"
     );
-  
+
     buttonsWrapper.appendChild(shareButton);
   }
 
   appendShareButton();
 
   // re-append the share buttin whenever "#__next main" gets replaced
-  const observer = new MutationObserver(function(mutations_list) {
-    mutations_list.forEach(function(mutation) {
+  const observer = new MutationObserver(function (mutations_list) {
+    mutations_list.forEach(function (mutation) {
       if (mutation.addedNodes.length > 0) {
         appendShareButton();
       }
     });
   });
-  
-  observer.observe(document.querySelector("#__next"), { subtree: false, childList: true });
+
+  observer.observe(document.querySelector("#__next"), {
+    subtree: false,
+    childList: true,
+  });
 
   const textareaElement = document.querySelector("#__next main form textarea");
 
@@ -54,15 +57,22 @@ function init() {
     };
 
     for (const node of threadContainer.children) {
-      
-      const markdown = node.querySelector('.markdown');
+      const markdown = node.querySelector(".markdown");
 
       // tailwind class indicates human or gpt
       if ([...node.classList].includes("dark:bg-gray-800")) {
-        conversationData.items.push({
-          from: "human",
-          value: node.textContent,
-        });
+        const warning = node.querySelector(".text-orange-500");
+        if (warning) {
+          conversationData.items.push({
+            from: "human",
+            value: warning.innerText.split("\n")[0],
+          });
+        } else {
+          conversationData.items.push({
+            from: "human",
+            value: node.textContent,
+          });
+        }
         // if it's a GPT response, it might contain code blocks
       } else if (markdown) {
         conversationData.items.push({
@@ -78,9 +88,7 @@ function init() {
       method: "POST",
     }).catch((err) => {
       isRequesting = false;
-      alert(
-        `Error saving conversation: ${err.message}`
-      );
+      alert(`Error saving conversation: ${err.message}`);
     });
     const { id } = await res.json();
     const url = `https://shareg.pt/${id}`;
