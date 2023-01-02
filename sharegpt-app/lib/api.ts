@@ -14,6 +14,9 @@ export async function getConvos({
   const convos = await prisma.conversation.findMany({
     where: {
       private: false,
+      title: {
+        not: "Untitled",
+      },
       ...(search && {
         title: {
           search,

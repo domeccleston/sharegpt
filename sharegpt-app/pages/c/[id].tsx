@@ -68,9 +68,9 @@ export default function ChatPage({
     <>
       <Meta
         title={`Check out this ShareGPT conversation`}
-        description={`This is a conversation between a human and a GPT-3 chatbot. The human first asks: ${items[0].value}. The GPT-3 chatbot then responds: ${items[1].value}`}
+        description={`This is a conversation between a human and a GPT-3 chatbot. The human first asks: ${items[0]?.value}. The GPT-3 chatbot then responds: ${items[1]?.value}`}
         image={`https://sharegpt.com/api/conversations/${id}/og`}
-        imageAlt={`This is a preview image for a conversation betwen a human and a GPT-3 chatbot. The human first asks: ${items[0].value}. The GPT-3 chatbot then responds: ${items[1].value}`}
+        imageAlt={`This is a preview image for a conversation betwen a human and a GPT-3 chatbot. The human first asks: ${items[0]?.value}. The GPT-3 chatbot then responds: ${items[1]?.value}`}
         canonical={`https://sharegpt.com/c/${id}`}
       />
       <CommentModal />
@@ -161,8 +161,6 @@ export const getStaticProps = async (
   const { id } = context.params;
 
   const props = await getConvo(id);
-
-  console.log({ props })
 
   if (props) {
     return { props, revalidate: 60 };
