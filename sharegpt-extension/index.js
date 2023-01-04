@@ -82,7 +82,7 @@ function init() {
       }
     }
 
-    const res = await fetch("http:/localhost:3000/api/conversations", {
+    const res = await fetch("https://sharegpt.com/api/conversations", {
       body: JSON.stringify(conversationData),
       headers: { "Content-Type": "application/json" },
       method: "POST",
