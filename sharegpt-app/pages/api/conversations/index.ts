@@ -40,12 +40,6 @@ export default async function handler(
         return res.status(429).json({ error: "Don't DDoS me pls 🥺" });
       }
       const session = await getServerSession(req, res);
-      for (const item of req.body.items) {
-        if (item.from === 'gpt' && item.value.includes ('<div class="markdown')) {
-          item.value = sanitize(item.value);
-          console.log(item.value);
-        }
-      }
       const content = req.body;
       const response = await setRandomKey(content, session?.user?.id ?? null);
       return res.status(200).json(response);

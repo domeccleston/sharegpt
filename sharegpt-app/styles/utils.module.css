@@ -79,6 +79,6 @@
 @media screen and (min-width: 768px) {
   .response pre,
   .response p {
-    max-width: 800px;
+    max-width: 750px;
   }
 }
