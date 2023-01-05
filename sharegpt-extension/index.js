@@ -87,7 +87,7 @@ function init() {
 
     console.log(conversationData);
 
-    const res = await fetch("http://localhost:3000/api/conversations", {
+    const res = await fetch("https://sharegpt.com/api/conversations", {
       body: JSON.stringify(conversationData),
       headers: { "Content-Type": "application/json" },
       method: "POST",
@@ -96,7 +96,7 @@ function init() {
       alert(`Error saving conversation: ${err.message}`);
     });
     const { id } = await res.json();
-    const url = `http://localhost:3000/c/${id}`;
+    const url = `https://sharegpt.com/c/${id}`;
 
     window.open(url, "_blank");
 
