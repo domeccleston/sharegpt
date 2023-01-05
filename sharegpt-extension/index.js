@@ -47,9 +47,11 @@ function init() {
     shareButton.textContent = "Sharing...";
     shareButton.style.cursor = "initial";
 
-    const threadContainer = document.querySelector(
-      "#__next main div:nth-of-type(1) div:nth-of-type(1) div:nth-of-type(1)"
-    );
+    const threadContainer = document.getElementsByClassName(
+      "flex flex-col items-center text-sm h-full"
+    )[0];
+
+    console.log(threadContainer)
 
     const conversationData = {
       avatarUrl: getAvatarImage(),
@@ -57,6 +59,7 @@ function init() {
     };
 
     for (const node of threadContainer.children) {
+      console.log({ node });
       const markdown = node.querySelector(".markdown");
 
       // tailwind class indicates human or gpt
@@ -82,7 +85,9 @@ function init() {
       }
     }
 
-    const res = await fetch("https://sharegpt.com/api/conversations", {
+    console.log(conversationData);
+
+    const res = await fetch("http://localhost:3000/api/conversations", {
       body: JSON.stringify(conversationData),
       headers: { "Content-Type": "application/json" },
       method: "POST",
@@ -91,7 +96,7 @@ function init() {
       alert(`Error saving conversation: ${err.message}`);
     });
     const { id } = await res.json();
-    const url = `https://shareg.pt/${id}`;
+    const url = `http://localhost:3000/c/${id}`;
 
     window.open(url, "_blank");
 
@@ -120,21 +125,26 @@ function showIfNotLoading(loadingElement, newElement) {
 
 function getAvatarImage() {
   // Create a canvas element
-  const canvas = document.createElement("canvas");
+  try {
+    const canvas = document.createElement("canvas");
 
-  const image = document.querySelectorAll("img")[1];
-
-  // Set the canvas size to 30x30 pixels
-  canvas.width = 30;
-  canvas.height = 30;
-
-  // Draw the img onto the canvas
-  canvas.getContext("2d").drawImage(image, 0, 0);
-
-  // Convert the canvas to a base64 string as a JPEG image
-  const base64 = canvas.toDataURL("image/jpeg");
-
-  return base64;
+    const image = document.querySelectorAll("img")[1];
+  
+    // Set the canvas size to 30x30 pixels
+    canvas.width = 30;
+    canvas.height = 30;
+  
+    // Draw the img onto the canvas
+    canvas.getContext("2d").drawImage(image, 0, 0);
+  
+    // Convert the canvas to a base64 string as a JPEG image
+    const base64 = canvas.toDataURL("image/jpeg");
+  
+    return base64;
+  } catch (error) {
+    console.log("Error generating avatar image.");
+    return null;
+  }
 }
 
 function createBtn() {
