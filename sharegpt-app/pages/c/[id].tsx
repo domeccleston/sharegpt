@@ -63,7 +63,7 @@ export default function ChatPage({
   }, [comment, comments, position]);
 
   if (!items[0]) return null;
-  
+
   return (
     <>
       <Meta
@@ -162,11 +162,11 @@ export const getStaticProps = async (
 
   const props = await getConvo(id);
 
-  console.log({ props })
-
   //@ts-ignore
   if (!props?.content?.items?.length) {
-    throw new Error("Error saving conversation: conversation must not be empty.")
+    throw new Error(
+      "Error saving conversation: conversation must not be empty."
+    );
   }
 
   if (props) {
