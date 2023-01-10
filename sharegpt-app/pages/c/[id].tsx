@@ -163,11 +163,9 @@ export const getStaticProps = async (
   const props = await getConvo(id);
 
   //@ts-ignore
-  if (!props?.content?.items?.length) {
-    throw new Error(
-      "Error saving conversation: conversation must not be empty."
-    );
-  }
+  // if (!props?.content?.items?.length) {
+  //   throw new Error("Error saving conversation: conversation must not be empty.")
+  // }
 
   if (props) {
     return { props, revalidate: 60 };
