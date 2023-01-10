@@ -15,7 +15,9 @@ export default function Banner({ views }: { views: number }) {
   return (
     <div className="z-10 fixed bottom-5 inset-x-0 mx-auto max-w-fit rounded-lg px-3 py-2 bg-white border border-gray-100 shadow-md flex justify-between space-x-2 items-center">
       <Link
-        href="/"
+        href="https://sharegpt.com"
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex space-x-3 items-center justify-center font-medium text-gray-600 px-3 h-14 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-all"
       >
         <Image
