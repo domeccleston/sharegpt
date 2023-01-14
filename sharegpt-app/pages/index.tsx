@@ -189,7 +189,14 @@ export default function Home({
           </motion.ul>
         </div>
       </div>
-      <div className="h-[100px] bg-gray-50 flex items-center justify-center w-full">
+      <div className="h-[100px] bg-gray-50 flex flex-col items-center justify-center w-full">
+        <Link
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://github.com/domeccleston/sharegpt"
+        >
+          <h1 className="mb-2 text-sm">View source on GitHub</h1>
+        </Link>
         <Link
           rel="noopener noreferrer"
           target="_blank"
