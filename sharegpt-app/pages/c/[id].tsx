@@ -141,7 +141,7 @@ export const getStaticPaths = async () => {
     },
     where: {
       views: {
-        gte: 5,
+        gte: 20,
       },
     },
   });
