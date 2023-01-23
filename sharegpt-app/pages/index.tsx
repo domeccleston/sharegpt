@@ -6,6 +6,7 @@ import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import Twitter from "@/components/shared/icons/twitter";
 import Layout from "@/components/layout";
 import ConvoCard from "@/components/explore/convo-card";
+import { WarningBanner } from "@/components/layout/warning-banner";
 import { ConversationMeta } from "@/lib/types";
 import { motion } from "framer-motion";
 import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
@@ -48,6 +49,8 @@ export default function Home({
             </span>{" "}
             conversations shared so far.
           </p>
+          <WarningBanner />
+
           <div className="flex flex-col sm:flex-row">
             <div className="flex justify-center items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg bg-[#232c67] md:bg-indigo-500 text-white shadow-md">
               <a
