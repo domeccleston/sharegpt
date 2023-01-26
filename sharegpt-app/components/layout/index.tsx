@@ -4,7 +4,6 @@ import Meta from "./meta";
 import { useSession } from "next-auth/react";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
-import { WarningBanner } from "./warning-banner";
 import { motion, AnimatePresence } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 import Link from "next/link";
