@@ -32,6 +32,35 @@ export default async function handler(
   } else if (req.method === "OPTIONS") {
     res.status(200).send("OK");
 
+    // DELETE /api/conversations
+  } else if (req.method === "DELETE") {
+    try {
+      const session = await getServerSession(req, res);
+      const { id } = req.query as { id: string };
+      const conversation = await prisma.conversation.findUnique({
+        where: { id },
+      });
+      if (!conversation) {
+        return res.status(404).json({ error: "Conversation not found" });
+      }
+      const timeCreated = conversation.createdAt.getTime();
+      // check if time created is less than one hour ago
+      if (timeCreated + 1000 * 60 * 60 > Date.now()) {
+        await prisma.conversation.delete({
+          where: { id },
+        });
+        return res.status(200).json({ message: "Conversation deleted" });
+      }
+      return res.status(401).json({ error: "Not authorized" });
+      // if (conversation.creatorId !== session?.user?.id) {
+      //   return res.status(401).json({ error: "Not authorized" });
+      // }
+      return res.status(200).json({ message: "Conversation deleted" });
+    } catch (error: unknown) {
+      console.log("Error deleting conversation: ", error);
+      return res.status(500).json({ message: "Error deleting conversation." });
+    }
+
     // POST /api/conversations (for saving conversations)
   } else if (req.method === "POST") {
     try {
