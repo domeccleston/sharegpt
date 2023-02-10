@@ -48,7 +48,7 @@ function init() {
     shareButton.style.cursor = "initial";
 
     const threadContainer = document.getElementsByClassName(
-      "flex flex-col items-center text-sm h-full"
+      "flex flex-col items-center text-sm dark:bg-gray-800"
     )[0];
 
     console.log(threadContainer)
