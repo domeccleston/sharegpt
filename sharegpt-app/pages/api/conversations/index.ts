@@ -40,6 +40,7 @@ export default async function handler(
         return res.status(429).json({ error: "Don't DDoS me pls 🥺" });
       }
       const session = await getServerSession(req, res);
+      console.log("session data: ", session);
       const content = req.body;
       const response = await setRandomKey(content, session?.user?.id ?? null);
       return res.status(200).json(response);
