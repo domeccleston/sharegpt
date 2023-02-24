@@ -43,6 +43,16 @@ function init() {
 
   shareButton.addEventListener("click", async () => {
     if (isRequesting) return;
+
+    // Display a confirmation dialog to the user
+    const confirmed = confirm(
+      "Are you sure you want to share this conversation publicly?"
+    );
+
+    if (!confirmed) {
+      return;
+    }
+    
     isRequesting = true;
     shareButton.textContent = "Sharing...";
     shareButton.style.cursor = "initial";
