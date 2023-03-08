@@ -40,9 +40,13 @@ export default async function handler(
         return res.status(429).json({ error: "Don't DDoS me pls 🥺" });
       }
       const session = await getServerSession(req, res);
-      console.log("session data: ", session);
+
+      if(!session) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
       const content = req.body;
-      const response = await setRandomKey(content, session?.user?.id ?? null);
+      const response = await saveConversationAndGetConversationHash(content, session?.user?.id ?? null);
       return res.status(200).json(response);
     } catch (error: unknown) {
       console.log("Error saving conversation: ", error);
@@ -53,7 +57,7 @@ export default async function handler(
   }
 }
 
-async function setRandomKey(
+async function saveConversationAndGetConversationHash(
   content: ConversationProps["content"],
   userId: string | null
 ): Promise<any> {
@@ -63,20 +67,21 @@ async function setRandomKey(
     : "Untitled";
   const avatar = content?.avatarUrl || `https://avatar.vercel.sh/${id}`;
   try {
+    const data = {
+      id,
+      title,
+      avatar,
+      content,
+      ...(userId && { creatorId: userId }),
+    };
     await prisma.conversation.create({
-      data: {
-        id,
-        title,
-        avatar,
-        content,
-        ...(userId && { userId }),
-      },
+      data: data,
     });
     return { id };
   } catch (e: any) {
     if (e.code === "P2002") {
       console.log("Key already exists, trying again...");
-      return setRandomKey(content, userId);
+      return saveConversationAndGetConversationHash(content, userId);
     }
     throw e;
   }
