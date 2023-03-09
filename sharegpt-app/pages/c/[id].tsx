@@ -45,6 +45,7 @@ export default function ChatPage({
   const { CommentModal, setShowCommentModal } = useCommentModal();
 
   useEffect(() => {
+    console.log('loaded')
     if (comment || position) {
       setShowCommentModal(true);
     } else {
