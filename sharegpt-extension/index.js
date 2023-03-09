@@ -51,15 +51,12 @@ function init() {
       "flex flex-col items-center text-sm dark:bg-gray-800"
     )[0];
 
-    console.log(threadContainer)
-
     const conversationData = {
       avatarUrl: getAvatarImage(),
       items: [],
     };
 
     for (const node of threadContainer.children) {
-      console.log({ node });
       const markdown = node.querySelector(".markdown");
 
       // tailwind class indicates human or gpt
@@ -84,8 +81,6 @@ function init() {
         });
       }
     }
-
-    console.log(conversationData);
 
     const res = await fetch("https://sharegpt.com/api/conversations", {
       body: JSON.stringify(conversationData),

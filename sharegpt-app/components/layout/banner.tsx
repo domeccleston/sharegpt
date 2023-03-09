@@ -4,22 +4,27 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import SaveButton from "@/components/shared/save-button";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { nFormatter } from "@/lib/utils";
 
 export default function Banner({ views }: { views: number }) {
   const router = useRouter();
+  const copyRef = useRef<HTMLButtonElement | null>(null);
   const { id } = router.query as { id: string };
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    copyRef?.current?.focus();
+  }, []);
+
   return (
     <div className="z-10 fixed bottom-5 inset-x-0 mx-auto max-w-fit rounded-lg px-3 py-2 bg-white border border-gray-100 shadow-md flex justify-between space-x-2 items-center">
-      <div>
+      <div className="w-40 flex flex-col items-center justify-center">
         <Link
           href="https://sharegpt.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex space-x-3 items-center justify-center font-medium text-gray-600 px-3 h-10 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-all"
+          className="flex space-x-2 items-center justify-center font-medium text-gray-600 px-4 py-1.5 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-all"
         >
           <Image
             alt="ShareGPT logo"
@@ -34,13 +39,14 @@ export default function Banner({ views }: { views: number }) {
           href="https://vercel.com?utm_source=sharegpt&utm_campaign=oss"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex space-x-3 items-center justify-center text-sm text-gray-600 px-3 rounded-md"
+          className="text-xs text-gray-500 hover:text-gray-800 px-3"
         >
           Powered by ▲Vercel
         </Link>
       </div>
       <div className="border-l border-gray-200 h-12 w-1" />
       <button
+        ref={copyRef}
         onClick={() =>
           navigator.clipboard.writeText(`https://shareg.pt/${id}`).then(() => {
             toast.success("Link copied to clipboard");

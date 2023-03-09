@@ -725,22 +725,22 @@
     "@typescript-eslint/types" "5.45.1"
     eslint-visitor-keys "^3.3.0"
 
-"@upstash/core-analytics@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@upstash/core-analytics/-/core-analytics-0.0.3.tgz#b16b936bafbdf92763b90e6fc1d903cf9cb1c582"
-  integrity sha512-81kK0rCpNunSJOhr37mTufqbNE3JhssA2RQsSjNxzq2nR/FCPK3RZWvQxuZoJrfO4vPl2FfytZAy02jTyUVpjg==
+"@upstash/core-analytics@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@upstash/core-analytics/-/core-analytics-0.0.5.tgz#dd11ba31f50ad86a27bbf1f306d2293e8bf34a07"
+  integrity sha512-E+y9ENEUYzR5/coaxEze977NkwtyyF6g54gED2aVvwGi83V1wc9ngLt+jO4fUR+pnQlDtrtH/yquN0q3X4sBhQ==
   dependencies:
     "@upstash/redis" "^1.19.3"
     next "13.1.6"
     react "^18.2.0"
     zod "^3.20.0"
 
-"@upstash/ratelimit@^0.3.6":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/@upstash/ratelimit/-/ratelimit-0.3.6.tgz#c26b9ac940fec5fe26fbf4ac6e38ec86230a85c4"
-  integrity sha512-c0AkMC6rY1NsRiRuCwMEin221sVuteyFV+gTGSNxGu9B3LTkHEDAiBLYnd/BNSwB3/AKhBEXMH4HJEXOsZMZfA==
+"@upstash/ratelimit@^0.3.8":
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/@upstash/ratelimit/-/ratelimit-0.3.8.tgz#faa77032fdc678ca7ab9e4c9a0dfc84717bce4e7"
+  integrity sha512-+DM2k2hqQRhMCnqUIVzqYCd3+hczDGiZOS6a/JXPP1sVFjpsCiVYdme5SdGeKuqzHYQ021nhnKCuAuk0zYrNVg==
   dependencies:
-    "@upstash/core-analytics" "0.0.3"
+    "@upstash/core-analytics" "0.0.5"
 
 "@upstash/redis@^1.18.1":
   version "1.18.1"

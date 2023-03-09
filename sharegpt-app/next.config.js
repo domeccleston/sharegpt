@@ -82,7 +82,7 @@ const nextConfig = {
       {
         source: "/shortcut",
         destination:
-          "https://www.icloud.com/shortcuts/bc0d1abea36f46c4838da29d25cd43d6",
+          "https://www.icloud.com/shortcuts/7d4712f9ca6e4c60aeb5cf813873dcd3",
         permanent: false,
       },
       {
