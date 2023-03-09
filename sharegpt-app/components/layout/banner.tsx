@@ -9,7 +9,7 @@ import { nFormatter } from "@/lib/utils";
 
 export default function Banner({ views }: { views: number }) {
   const router = useRouter();
-  const copyRef = useRef();
+  const copyRef = useRef<HTMLButtonElement | null>(null);
   const { id } = router.query as { id: string };
   const [copied, setCopied] = useState(false);
 
