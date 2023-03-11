@@ -124,17 +124,17 @@ function getAvatarImage() {
     const canvas = document.createElement("canvas");
 
     const image = document.querySelectorAll("img")[1];
-  
+
     // Set the canvas size to 30x30 pixels
     canvas.width = 30;
     canvas.height = 30;
-  
+
     // Draw the img onto the canvas
     canvas.getContext("2d").drawImage(image, 0, 0);
-  
+
     // Convert the canvas to a base64 string as a JPEG image
     const base64 = canvas.toDataURL("image/jpeg");
-  
+
     return base64;
   } catch (error) {
     console.log("Error generating avatar image.");
