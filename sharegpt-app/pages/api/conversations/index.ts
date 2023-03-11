@@ -3,10 +3,42 @@ import { getConvos } from "@/lib/api";
 import { PAGINATION_LIMIT } from "@/lib/constants";
 import { getServerSession } from "@/lib/auth";
 import { ratelimit } from "@/lib/upstash";
-import sanitize from "sanitize-html";
+import sanitizeHtml from "sanitize-html";
+
 import prisma from "@/lib/prisma";
 import { nanoid, truncate } from "@/lib/utils";
 import { ConversationProps } from "@/lib/types";
+
+const options = {
+  allowedTags: sanitizeHtml.defaults.allowedTags.concat(["svg"]),
+  allowedClasses: {
+    div: [
+      "bg-black",
+      "mb-4",
+      "rounded-md",
+      "flex",
+      "items-center",
+      "relative",
+      "text-gray-200",
+      "bg-gray-800",
+      "px-4",
+      "py-2",
+      "text-xs",
+      "font-sans",
+      "flex",
+      "ml-auto",
+      "gap-2",
+    ],
+  },
+  allowedAttributes: Object.assign(
+    {},
+    sanitizeHtml.defaults.allowedAttributes,
+    {
+      "*": ["*"],
+    }
+  ),
+  allowedSchemes: ["http", "https", "mailto", "tel", "data"],
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -41,7 +73,10 @@ export default async function handler(
       }
       const session = await getServerSession(req, res);
       console.log("session data: ", session);
-      const content = req.body;
+      const content = JSON.parse(JSON.stringify(req.body));
+      for (let i = 0; i < content.items.length; i++) {
+        content.items[i].value = sanitizeHtml(content.items[i].value, options);
+      }
       const response = await setRandomKey(content, session?.user?.id ?? null);
       return res.status(200).json(response);
     } catch (error: unknown) {
