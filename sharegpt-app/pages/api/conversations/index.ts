@@ -35,6 +35,8 @@ const options = {
     sanitizeHtml.defaults.allowedAttributes,
     {
       div: ["class"],
+      span: ["class"],
+      button: ["class", "type", "aria-label", "aria-hidden", "title"],
       code: ["class"],
       svg: [
         "class",
