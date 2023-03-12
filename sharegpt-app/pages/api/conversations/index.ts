@@ -34,8 +34,6 @@ const options = {
     {},
     sanitizeHtml.defaults.allowedAttributes,
     {
-      html: ["lang", "class"],
-      a: ["href", "name", "target", "class"],
       div: ["class"],
       code: ["class"],
       svg: [
