@@ -87,7 +87,7 @@ export default function ChatPage({
             id={idx.toString()}
             key={item.value}
             className={cn(
-              "relative dark:bg-[#343541] text-gray-700 w-full border-b dark:border-gray-700 border-gray-200",
+              "relative  dark:bg-[#343541] text-gray-700 w-full border-b dark:border-gray-700 border-gray-200",
               {
                 "bg-gray-100 dark:bg-[#434654]": item.from === "gpt",
               }
@@ -116,7 +116,7 @@ export default function ChatPage({
                 )}
                 <div className="flex flex-col">
                   {item.from === "human" ? (
-                    <p className="pb-2">{item.value}</p>
+                    <p className="pb-2 whitespace-prewrap">{item.value}</p>
                   ) : (
                     <div
                       className={styles.response}
