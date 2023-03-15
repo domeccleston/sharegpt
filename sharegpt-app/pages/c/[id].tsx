@@ -65,6 +65,8 @@ export default function ChatPage({
 
   if (!items[0]) return null;
 
+  model = "GPT-4"
+
   return (
     <>
       <Meta
@@ -112,7 +114,7 @@ export default function ChatPage({
                     src={avatarUrl}
                   />
                 ) : (
-                  <GPTAvatar />
+                  <GPTAvatar model={model}/>
                 )}
                 <div className="flex flex-col">
                   {item.from === "human" ? (
