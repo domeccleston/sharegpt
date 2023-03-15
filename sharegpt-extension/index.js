@@ -51,8 +51,12 @@ function init() {
       "flex flex-col items-center text-sm dark:bg-gray-800"
     )[0];
 
+    const modelElement = threadContainer.firstChild;
+    const model = modelElement.innerText;
+
     const conversationData = {
       avatarUrl: getAvatarImage(),
+      model,
       items: [],
     };
 

@@ -29,6 +29,7 @@ export default function ChatPage({
   content: { avatarUrl, items },
   comments: initialComments,
   views,
+  model,
 }: ConversationProps) {
   useView();
 
@@ -45,7 +46,6 @@ export default function ChatPage({
   const { CommentModal, setShowCommentModal } = useCommentModal();
 
   useEffect(() => {
-    console.log('loaded')
     if (comment || position) {
       setShowCommentModal(true);
     } else {
@@ -77,6 +77,11 @@ export default function ChatPage({
       <CommentModal />
       <Toaster />
       <div className="flex flex-col items-center pb-24 dark:bg-[#343541] min-h-screen">
+        {model ? (
+          <div className="bg-gray-100 dark:bg-[#434654] w-full text-center text-gray-300 p-3">
+            {model}
+          </div>
+        ) : null}
         {items.map((item, idx) => (
           <div
             id={idx.toString()}
