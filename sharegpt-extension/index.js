@@ -52,7 +52,7 @@ function init() {
     )[0];
 
     const modelElement = threadContainer.firstChild;
-    const model = modelElement.innerText.split("Model: ")[1];
+    const model = modelElement.innerText;
 
     const conversationData = {
       avatarUrl: getAvatarImage(),
