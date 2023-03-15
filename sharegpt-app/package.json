@@ -23,7 +23,7 @@
     "@upstash/ratelimit": "^0.3.8",
     "@upstash/redis": "^1.18.1",
     "@vercel/analytics": "^0.1.5",
-    "@vercel/og": "^0.0.22",
+    "@vercel/og": "^0.4.0",
     "classnames": "^2.3.2",
     "focus-trap-react": "^10.0.2",
     "framer-motion": "^7.6.19",
