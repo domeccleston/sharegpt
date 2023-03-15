@@ -1,6 +1,13 @@
-export default function GPTAvatar() {
+import cn from "classnames";
+
+export default function GPTAvatar({ model }: { model?: string }) {
   return (
-    <div className="bg-[#10A37F] border-0 flex items-center justify-center h-[30px] w-[30px] rounded-sm p-[0.25rem]">
+    <div
+      className={cn(
+        "bg-[#10A37F] border-0 flex items-center justify-center h-[30px] w-[30px] rounded-sm p-[0.25rem]",
+        { "bg-gray-900": model?.includes("GPT-4") }
+      )}
+    >
       <svg
         width="41"
         height="41"

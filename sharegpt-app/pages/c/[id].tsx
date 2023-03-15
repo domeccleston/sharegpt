@@ -29,6 +29,7 @@ export default function ChatPage({
   content: { avatarUrl, items },
   comments: initialComments,
   views,
+  model,
 }: ConversationProps) {
   useView();
 
@@ -64,6 +65,8 @@ export default function ChatPage({
 
   if (!items[0]) return null;
 
+  model = "GPT-4"
+
   return (
     <>
       <Meta
@@ -76,12 +79,17 @@ export default function ChatPage({
       <CommentModal />
       <Toaster />
       <div className="flex flex-col items-center pb-24 dark:bg-[#343541] min-h-screen">
+        {model ? (
+          <div className="bg-gray-100 dark:bg-[#434654] w-full text-center text-gray-300 p-3">
+            {model}
+          </div>
+        ) : null}
         {items.map((item, idx) => (
           <div
             id={idx.toString()}
             key={item.value}
             className={cn(
-              "relative dark:bg-[#343541] text-gray-700 w-full border-b dark:border-gray-700 border-gray-200",
+              "relative  dark:bg-[#343541] text-gray-700 w-full border-b dark:border-gray-700 border-gray-200",
               {
                 "bg-gray-100 dark:bg-[#434654]": item.from === "gpt",
               }
@@ -106,11 +114,11 @@ export default function ChatPage({
                     src={avatarUrl}
                   />
                 ) : (
-                  <GPTAvatar />
+                  <GPTAvatar model={model}/>
                 )}
                 <div className="flex flex-col">
                   {item.from === "human" ? (
-                    <p className="pb-2">{item.value}</p>
+                    <p className="pb-2 whitespace-prewrap">{item.value}</p>
                   ) : (
                     <div
                       className={styles.response}

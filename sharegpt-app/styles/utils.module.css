@@ -21,6 +21,19 @@
   margin-top: 0;
 }
 
+.response ul {
+  list-style: disc;
+}
+
+.response ul li:before {
+  content: "•";
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-left: -1rem;
+  position: absolute;
+  margin-top: 0.25rem;
+}
+
 .response pre {
   max-width: 300px;
   margin-bottom: 20px;
