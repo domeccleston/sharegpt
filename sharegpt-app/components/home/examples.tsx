@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import ConvoCard from "@/components/explore/convo-card";
 import { ConversationMeta } from "@/lib/types";
+import { Session } from "next-auth";
 
 type ConversationProps = {
   saves: number;
@@ -25,7 +26,13 @@ type ConversationProps = {
   views: number;
 }[];
 
-export function Examples({ topConvos }: { topConvos: ConversationProps }) {
+export function Examples({
+  topConvos,
+  session,
+}: {
+  topConvos: ConversationProps;
+  session: Session;
+}) {
   return (
     <>
       <div className="py-4 px-2 sm:max-w-screen-lg w-full">
@@ -47,7 +54,7 @@ export function Examples({ topConvos }: { topConvos: ConversationProps }) {
           className="mt-8 grid gap-2"
         >
           {topConvos.map((convo) => (
-            <ConvoCard key={convo.id} data={convo} />
+            <ConvoCard key={convo.id} data={convo} session={session} />
           ))}
           <motion.li variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}>
             <Link

@@ -8,10 +8,17 @@ import { nFormatter, timeAgo } from "@/lib/utils";
 import SaveButton from "../shared/save-button";
 import Link from "next/link";
 import { Eye, MessageCircle } from "lucide-react";
+import { Session } from "next-auth";
 
-export default function ConvoCard({ data }: { data: ConversationMeta }) {
+export default function ConvoCard({
+  data,
+  session,
+}: {
+  data: ConversationMeta;
+  session: Session;
+}) {
   let { id, title, avatar, creator, views, comments, createdAt } = data;
-  if (avatar.includes('error')) avatar = 'https://avatar.vercel.sh/${id};'
+  if (avatar.includes("error")) avatar = "https://avatar.vercel.sh/${id};";
   return (
     <motion.li
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}
@@ -62,7 +69,7 @@ export default function ConvoCard({ data }: { data: ConversationMeta }) {
           </Link>
         </div>
       </div>
-      <SaveButton id={id} />
+      <SaveButton id={id} session={session} />
     </motion.li>
   );
 }

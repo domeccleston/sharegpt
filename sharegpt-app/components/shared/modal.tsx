@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Dispatch,
   SetStateAction,
@@ -23,7 +25,9 @@ export default function Modal({
   closeWithX?: boolean;
 }) {
   const router = useRouter();
-  const { key } = router.query;
+  const params = useSearchParams();
+  const key = params.get("key");
+
   const mobileModalRef = useRef(null);
   const desktopModalRef = useRef(null);
 

@@ -15,9 +15,12 @@ import { ChevronDown, Search } from "lucide-react";
 import Popover from "@/components/shared/popover";
 import YoutubeEmbed from "@/components/home/youtube-embed";
 import { InstallButton } from "@/components/home/install-button";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 // import { useState } from "react";
 
 export default async function Home() {
+  const session = await getServerSession(authOptions);
   const data = await getHomepageData();
   return (
     <>
@@ -75,7 +78,7 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <Examples topConvos={data.topConvos} />
+        <Examples topConvos={data.topConvos} session={session} />
       </div>
       <div className="h-[100px] bg-gray-50 flex flex-col items-center justify-center w-full">
         <Link

@@ -1,3 +1,5 @@
+"use client";
+
 import { fetcher, nFormatter } from "@/lib/utils";
 import useSWR, { mutate } from "swr";
 import { useState } from "react";
@@ -7,9 +9,15 @@ import { useSession } from "next-auth/react";
 import { Bookmark } from "lucide-react";
 import { useRef } from "react";
 import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
+import { Session } from "next-auth";
 
-export default function SaveButton({ id }: { id: string }) {
-  const { data: session } = useSession();
+export default function SaveButton({
+  id,
+  session,
+}: {
+  id: string;
+  session: Session;
+}) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
 
   const buttonRef = useRef<any>();
