@@ -3,6 +3,7 @@ export interface ConversationProps {
   model?: string;
   content: {
     avatarUrl: string;
+    model?: string;
     items: {
       from: "human" | "gpt";
       value: string;
