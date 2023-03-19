@@ -23,7 +23,7 @@ export default async function handler(req: NextRequest) {
     return NextResponse.redirect(new URL("/", req.url));
   }
   const { avatarUrl, items } = (object.rows[0] as ConversationProps).content;
-  const firstUserMessage = convert(items[1].value, {
+  const firstUserMessage = convert(items[0].value, {
     wordwrap: 100,
   });
   const firstBotMessage = convert(items[1].value, {
