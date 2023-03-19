@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode, useRef } from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";

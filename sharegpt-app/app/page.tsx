@@ -1,9 +1,6 @@
-// "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import prisma from "@/lib/prisma";
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import Meta from "@/components/layout/meta";
 import Twitter from "@/components/shared/icons/twitter";
@@ -17,6 +14,7 @@ import { getConvos } from "@/lib/api";
 import { ChevronDown, Search } from "lucide-react";
 import Popover from "@/components/shared/popover";
 import YoutubeEmbed from "@/components/home/youtube-embed";
+import { InstallButton } from "@/components/home/install-button";
 // import { useState } from "react";
 
 export default async function Home() {
@@ -49,75 +47,7 @@ export default async function Home() {
             conversations shared so far.
           </p>
           <div className="flex flex-col sm:flex-row">
-            <div className="flex justify-center items-center mb-3 sm:mr-3 sm:mb-0 rounded-lg bg-[#232c67] md:bg-indigo-500 text-white shadow-md">
-              <a
-                className="hidden md:flex space-x-3 justify-center items-center px-5 py-3 border-r-2 border-white/25 font-medium md:hover:bg-indigo-600 transition-all rounded-l-lg"
-                href="/extension"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  alt="Chrome logo"
-                  src="/chrome.svg"
-                  width={20}
-                  height={20}
-                />
-                <p>Install extension</p>
-              </a>
-              <a
-                className="flex md:hidden space-x-3 justify-center items-center px-5 py-3 border-r-2 border-white/25 font-medium md:hover:bg-indigo-600 transition-all rounded-l-lg"
-                href="/shortcut"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  alt="iOS Shortcuts logo"
-                  src="/shortcut.svg"
-                  width={20}
-                  height={20}
-                  className="border-2 border-white/25 rounded-md"
-                />
-                <p>Add shortcut</p>
-              </a>
-              {/* <Popover
-                content={
-                  <div className="grid w-full md:w-[14.5rem] p-2">
-                    <a
-                      href="/extension"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex space-x-3 items-center px-5 py-3 text-gray-600 text-sm font-medium hover:bg-gray-100 rounded-md transition-all"
-                    >
-                      <Image
-                        alt="Chrome logo"
-                        src="/chrome.svg"
-                        width={20}
-                        height={20}
-                      />
-                      <p>Install extension</p>
-                    </a>
-                    <a
-                      href="/shortcut"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex space-x-3 items-center px-5 py-3 text-gray-600 text-sm font-medium hover:bg-gray-100 rounded-md transition-all"
-                    >
-                      <Image
-                        alt="iOS Shortcut logo"
-                        src="/shortcut.svg"
-                        width={20}
-                        height={20}
-                      />
-                      <p>Add shortcut</p>
-                    </a>
-                  </div>
-                }
-              >
-                <button className="px-3 h-12 flex items-center text-white md:hover:bg-indigo-600 transition-all rounded-r-lg">
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              </Popover> */}
-            </div>
+            <InstallButton />
             <Link
               className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
               href="/explore"
@@ -145,7 +75,6 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        {/* TODO   */}
         <Examples topConvos={data.topConvos} />
       </div>
       <div className="h-[100px] bg-gray-50 flex flex-col items-center justify-center w-full">
