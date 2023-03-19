@@ -10,6 +10,9 @@ export interface Session {
   };
 }
 
+/**
+ * @deprecated
+ */
 export async function getServerSession(
   req: NextApiRequest,
   res: NextApiResponse
