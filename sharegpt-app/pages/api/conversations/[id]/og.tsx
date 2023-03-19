@@ -24,10 +24,10 @@ export default async function handler(req: NextRequest) {
   }
   const { avatarUrl, items } = (object.rows[0] as ConversationProps).content;
   const firstUserMessage = convert(items[0].value, {
-    wordwrap: 100,
+    wordwrap: false,
   });
   const firstBotMessage = convert(items[1].value, {
-    wordwrap: 100,
+    wordwrap: false,
   });
   const interBold = await fetch(
     new URL("../../../../styles/Inter-Bold.ttf", import.meta.url)
