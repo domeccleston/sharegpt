@@ -9,12 +9,14 @@ import Meta from "@/components/layout/meta";
 import Twitter from "@/components/shared/icons/twitter";
 import Layout from "@/components/layout";
 import ConvoCard from "@/components/explore/convo-card";
+import { Examples } from "@/components/home/examples";
 import { ConversationMeta } from "@/lib/types";
 import { motion } from "framer-motion";
 import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { getConvos } from "@/lib/api";
 import { ChevronDown, Search } from "lucide-react";
 import Popover from "@/components/shared/popover";
+import YoutubeEmbed from "@/components/home/youtube-embed";
 // import { useState } from "react";
 
 export default async function Home() {
@@ -77,7 +79,7 @@ export default async function Home() {
                 />
                 <p>Add shortcut</p>
               </a>
-              <Popover
+              {/* <Popover
                 content={
                   <div className="grid w-full md:w-[14.5rem] p-2">
                     <a
@@ -114,7 +116,7 @@ export default async function Home() {
                 <button className="px-3 h-12 flex items-center text-white md:hover:bg-indigo-600 transition-all rounded-r-lg">
                   <ChevronDown className="w-4 h-4" />
                 </button>
-              </Popover>
+              </Popover> */}
             </div>
             <Link
               className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
@@ -125,13 +127,7 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <div className="my-16 px-0 sm:px-2 sm:max-w-screen-lg w-full">
-          {/* <LiteYouTubeEmbed
-            id="lrjC9PTemJw"
-            poster="maxresdefault"
-            title="ShareGPT introduction"
-          /> */}
-        </div>
+        <YoutubeEmbed />
         <div className="w-full bg-gray-100 py-5 sm:py-10 mb-10">
           <div className="flex justify-center space-x-5">
             <Link
@@ -150,37 +146,7 @@ export default async function Home() {
           </div>
         </div>
         {/* TODO   */}
-        {/* <div className="py-4 px-2 sm:max-w-screen-lg w-full">
-          <h2 className="text-3xl sm:text-4xl font-semibold font-display">
-            Browse Examples
-          </h2>
-          <motion.ul
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              show: {
-                transition: {
-                  staggerChildren: 0.05,
-                },
-              },
-            }}
-            className="mt-8 grid gap-2"
-          >
-            {data.topConvos.map((convo) => (
-              <ConvoCard key={convo.id} data={convo} />
-            ))}
-            <motion.li variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}>
-              <Link
-                href="/explore"
-                className="rounded-md p-3 w-full block text-center text-sm text-gray-600 hover:text-gray-800"
-              >
-                View More
-              </Link>
-            </motion.li>
-          </motion.ul>
-        </div> */}
+        <Examples topConvos={data.topConvos} />
       </div>
       <div className="h-[100px] bg-gray-50 flex flex-col items-center justify-center w-full">
         <Link
