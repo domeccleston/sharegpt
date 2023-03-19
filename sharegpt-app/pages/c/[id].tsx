@@ -26,10 +26,9 @@ interface ChatParams extends ParsedUrlQuery {
 
 export default function ChatPage({
   id,
-  content: { avatarUrl, items },
+  content: { avatarUrl, items, model },
   comments: initialComments,
   views,
-  model,
 }: ConversationProps) {
   useView();
 
@@ -65,8 +64,6 @@ export default function ChatPage({
 
   if (!items[0]) return null;
 
-  model = "GPT-4"
-
   return (
     <>
       <Meta
@@ -80,7 +77,7 @@ export default function ChatPage({
       <Toaster />
       <div className="flex flex-col items-center pb-24 dark:bg-[#343541] min-h-screen">
         {model ? (
-          <div className="bg-gray-100 dark:bg-[#434654] w-full text-center text-gray-300 p-3">
+          <div className="bg-gray-100 dark:bg-[#434654] w-full text-center text-gray-500 dark:text-gray-300 p-3">
             {model}
           </div>
         ) : null}
@@ -114,7 +111,7 @@ export default function ChatPage({
                     src={avatarUrl}
                   />
                 ) : (
-                  <GPTAvatar model={model}/>
+                  <GPTAvatar model={model} />
                 )}
                 <div className="flex flex-col">
                   {item.from === "human" ? (
