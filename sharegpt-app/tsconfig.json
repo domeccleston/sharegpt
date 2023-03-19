@@ -8,7 +8,7 @@
     "paths": {
       "@/app/*": ["app/*"],
       "@/components/*": ["components/*"],
-      "@/pages/*": ["temp/pages/*"],
+      "@/pages/*": ["pages/*"],
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"]
     },
