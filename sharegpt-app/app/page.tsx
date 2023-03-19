@@ -17,6 +17,7 @@ import YoutubeEmbed from "@/components/home/youtube-embed";
 import { InstallButton } from "@/components/home/install-button";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { Navigation } from "@/components/shared/navigation";
 // import { useState } from "react";
 
 export default async function Home() {
@@ -24,7 +25,7 @@ export default async function Home() {
   const data = await getHomepageData();
   return (
     <>
-      <Meta />
+      <Navigation session={session} />
       <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
         <Link
           href="https://twitter.com/steventey/status/1599816553490366464"

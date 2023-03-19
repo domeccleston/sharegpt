@@ -5,9 +5,9 @@ import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
+import { Session } from "next-auth";
 
-export default function UserDropdown() {
-  const { data: session } = useSession();
+export default function UserDropdown({ session }: { session: Session | null }) {
   const { email, image } = session?.user || {};
   const [openPopover, setOpenPopover] = useState(false);
 
