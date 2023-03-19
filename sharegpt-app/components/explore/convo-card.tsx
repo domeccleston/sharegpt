@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { ConversationMeta } from "@/lib/types";

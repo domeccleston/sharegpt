@@ -1,8 +1,11 @@
+// "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import prisma from "@/lib/prisma";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import Meta from "@/components/layout/meta";
 import Twitter from "@/components/shared/icons/twitter";
 import Layout from "@/components/layout";
 import ConvoCard from "@/components/explore/convo-card";
@@ -12,19 +15,14 @@ import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { getConvos } from "@/lib/api";
 import { ChevronDown, Search } from "lucide-react";
 import Popover from "@/components/shared/popover";
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function Home({
-  totalConvos,
-  topConvos,
-}: {
-  totalConvos: number;
-  topConvos: ConversationMeta[];
-}) {
-  const [openPopover, setOpenPopover] = useState(false);
+export default async function Home() {
+  const data = await getHomepageData();
   return (
-    <Layout>
-      <div className="flex flex-col items-center py-28 bg-gray-50">
+    <>
+      <Meta />
+      <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
         <Link
           href="https://twitter.com/steventey/status/1599816553490366464"
           target="_blank"
@@ -44,7 +42,7 @@ export default function Home({
             Share your wildest ChatGPT conversations with one click.
             <br />
             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-              {Intl.NumberFormat("en-us").format(totalConvos)}
+              {Intl.NumberFormat("en-us").format(data.totalConvos)}
             </span>{" "}
             conversations shared so far.
           </p>
@@ -112,14 +110,8 @@ export default function Home({
                     </a>
                   </div>
                 }
-                align="end"
-                openPopover={openPopover}
-                setOpenPopover={setOpenPopover}
               >
-                <button
-                  className="px-3 h-12 flex items-center text-white md:hover:bg-indigo-600 transition-all rounded-r-lg"
-                  onClick={() => setOpenPopover(!openPopover)}
-                >
+                <button className="px-3 h-12 flex items-center text-white md:hover:bg-indigo-600 transition-all rounded-r-lg">
                   <ChevronDown className="w-4 h-4" />
                 </button>
               </Popover>
@@ -134,11 +126,11 @@ export default function Home({
           </div>
         </div>
         <div className="my-16 px-0 sm:px-2 sm:max-w-screen-lg w-full">
-          <LiteYouTubeEmbed
+          {/* <LiteYouTubeEmbed
             id="lrjC9PTemJw"
             poster="maxresdefault"
-            title="Whats new in Material Design for the web (Chrome Dev Summit 2019)"
-          />
+            title="ShareGPT introduction"
+          /> */}
         </div>
         <div className="w-full bg-gray-100 py-5 sm:py-10 mb-10">
           <div className="flex justify-center space-x-5">
@@ -157,7 +149,8 @@ export default function Home({
             </Link>
           </div>
         </div>
-        <div className="py-4 px-2 sm:max-w-screen-lg w-full">
+        {/* TODO   */}
+        {/* <div className="py-4 px-2 sm:max-w-screen-lg w-full">
           <h2 className="text-3xl sm:text-4xl font-semibold font-display">
             Browse Examples
           </h2>
@@ -175,7 +168,7 @@ export default function Home({
             }}
             className="mt-8 grid gap-2"
           >
-            {topConvos.map((convo) => (
+            {data.topConvos.map((convo) => (
               <ConvoCard key={convo.id} data={convo} />
             ))}
             <motion.li variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}>
@@ -187,7 +180,7 @@ export default function Home({
               </Link>
             </motion.li>
           </motion.ul>
-        </div>
+        </div> */}
       </div>
       <div className="h-[100px] bg-gray-50 flex flex-col items-center justify-center w-full">
         <Link
@@ -210,18 +203,15 @@ export default function Home({
           />
         </Link>
       </div>
-    </Layout>
+    </>
   );
 }
 
-export async function getStaticProps() {
+async function getHomepageData() {
   const totalConvos = await prisma.conversation.count();
   const topConvos = await getConvos({ orderBy: "views", take: 10 });
   return {
-    props: {
-      totalConvos,
-      topConvos,
-    },
-    revalidate: 60,
+    totalConvos,
+    topConvos,
   };
 }
