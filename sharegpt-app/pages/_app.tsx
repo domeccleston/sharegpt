@@ -27,10 +27,22 @@ function MyApp({
 }: AppProps<{ session: Session }>) {
   return (
     <SessionProvider session={session}>
-      <main className={cx(inter.variable, satoshi.variable)}>
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <p>Due to high volumes of traffic, ShareGPT is down for maintenance.</p>
+        <p>We&apos;ll be back shortly.</p>
+      </div>
+      {/* <main className={cx(inter.variable, satoshi.variable)}>
         <Component {...pageProps} />
         <Analytics />
-      </main>
+      </main> */}
     </SessionProvider>
   );
 }
