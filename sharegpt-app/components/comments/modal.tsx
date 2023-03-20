@@ -19,6 +19,7 @@ import { mutate } from "swr";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 const CommentModal = ({

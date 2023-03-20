@@ -1,7 +1,7 @@
 import { CommentProps } from "@/lib/types";
 import { timeAgo } from "@/lib/utils";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 export default function Comment({
   comment,
@@ -12,6 +12,10 @@ export default function Comment({
   hoverCard?: boolean;
   fullComment?: boolean;
 }) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  // @ts-expect-error pages dir
+  const id = searchParams.get("id");
   const router = useRouter();
   return (
     <div
@@ -50,17 +54,19 @@ export default function Comment({
       {!fullComment && (
         <button
           onClick={() => {
-            router.replace(
-              {
-                pathname: "/c/[id]",
-                query: {
-                  id: router.query.id,
-                  comment: comment.id,
-                },
-              },
-              undefined,
-              { shallow: true, scroll: false }
-            );
+            // TODO: fix this: below doesn't work
+            // router.replace(`${pathname}?comment=${comment.id}`);
+            // router.replace(
+            //   {
+            //     pathname: "/c/[id]",
+            //     query: {
+            //       id: router.query.id,
+            //       comment: comment.id,
+            //     },
+            //   },
+            //   undefined,
+            //   { shallow: true, scroll: false }
+            // );
           }}
           className="mt-3 bg-white text-black border border-gray-200 hover:bg-gray-50 text-center shadow-sm w-full text-sm h-8 rounded-md transition-all duration-75 focus:outline-none"
         >

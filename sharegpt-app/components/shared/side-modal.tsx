@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+"use client";
+import { useSearchParams, useRouter } from "next/navigation";
 import {
   Dispatch,
   SetStateAction,
@@ -19,26 +20,31 @@ export default function SideModal({
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
   const router = useRouter();
-  const { comment, position } = router.query;
+  const params = useSearchParams();
+  // @ts-expect-error pages dir
+  const comment = params.get("comment");
+  // @ts-expect-error pages dir
+  const position = params.get("position");
   const mobileModalRef = useRef(null);
   const desktopModalRef = useRef(null);
 
-  const closeModal = useCallback(() => {
-    if (comment || position) {
-      router.replace(
-        {
-          pathname: "/c/[id]",
-          query: {
-            id: router.query.id,
-          },
-        },
-        undefined,
-        { shallow: true, scroll: false }
-      );
-    } else {
-      setShowModal(false);
-    }
-  }, [comment, position, router, setShowModal]);
+  // TODO - fix this
+  // const closeModal = useCallback(() => {
+  //   if (comment || position) {
+  //     router.replace(
+  //       {
+  //         pathname: "/c/[id]",
+  //         query: {
+  //           id: router.query.id,
+  //         },
+  //       },
+  //       undefined,
+  //       { shallow: true, scroll: false }
+  //     );
+  //   } else {
+  //     setShowModal(false);
+  //   }
+  // }, [comment, position, router, setShowModal]);
 
   const controls = useAnimation();
   const transitionProps = { type: "spring", stiffness: 500, damping: 30 };

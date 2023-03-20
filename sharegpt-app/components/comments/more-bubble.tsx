@@ -14,6 +14,7 @@ export default function MoreCommentsBubble({
   // const router = useRouter();
   return (
     <motion.button
+      // TODO: fix this
       // onClick={() => {
       //   router.replace(
       //     {
