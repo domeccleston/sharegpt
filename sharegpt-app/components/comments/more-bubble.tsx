@@ -2,7 +2,7 @@ import { MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { FRAMER_MOTION_COMMENT_BUBBLE_VARIANTS } from "@/lib/constants";
 import { nFormatter } from "@/lib/utils";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 export default function MoreCommentsBubble({
   position,
@@ -11,22 +11,22 @@ export default function MoreCommentsBubble({
   position: number;
   count: number;
 }) {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <motion.button
-      onClick={() => {
-        router.replace(
-          {
-            pathname: "/c/[id]",
-            query: {
-              id: router.query.id,
-              position,
-            },
-          },
-          undefined,
-          { shallow: true, scroll: false }
-        );
-      }}
+      // onClick={() => {
+      //   router.replace(
+      //     {
+      //       pathname: "/c/[id]",
+      //       query: {
+      //         id: router.query.id,
+      //         position,
+      //       },
+      //     },
+      //     undefined,
+      //     { shallow: true, scroll: false }
+      //   );
+      // }}
       variants={FRAMER_MOTION_COMMENT_BUBBLE_VARIANTS}
       className="h-9 w-9 flex items-center justify-center rounded-full overflow-hidden border border-gray-200 shadow-sm bg-white text-[11px] text-gray-500 font-medium"
     >

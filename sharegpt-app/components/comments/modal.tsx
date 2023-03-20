@@ -1,3 +1,4 @@
+"use client";
 import {
   useState,
   Dispatch,
@@ -11,7 +12,7 @@ import {
 import Comment from "./comment";
 import { CommentProps } from "@/lib/types";
 import SideModal from "@/components/shared/side-modal";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { ChevronLeft, Send, X } from "lucide-react";
 import { LoadingDots } from "../shared/icons";
 import { mutate } from "swr";
@@ -27,12 +28,13 @@ const CommentModal = ({
   showCommentModal: boolean;
   setShowCommentModal: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const router = useRouter();
-  const { id, comment, position } = router.query as {
-    id: string;
-    comment?: string;
-    position?: string;
-  };
+  const searchParams = useSearchParams();
+  // @ts-expect-error pages dir
+  const comment = searchParams.get("comment");
+  // @ts-expect-error pages dir
+  const position = searchParams.get("position");
+  // @ts-expect-error pages dir
+  const id = searchParams.get("id");
 
   const { data: comments } = useSWR<CommentProps[]>(
     `/api/conversations/${id}/comments`,
@@ -81,20 +83,21 @@ const CommentModal = ({
         <div className="flex justify-between items-center px-4 h-16 bg-white rounded-t-lg border-b border-gray-200">
           {comments && comment ? (
             <button
-              onClick={() =>
-                router.replace(
-                  {
-                    pathname: "/c/[id]",
-                    query: {
-                      id: router.query.id,
-                      position:
-                        comments.find((c) => c.id === comment)?.position || 1,
-                    },
-                  },
-                  undefined,
-                  { shallow: true, scroll: false }
-                )
-              }
+              // TODO - fix this
+              // onClick={() =>
+              //   router.replace(
+              //     {
+              //       pathname: "/c/[id]",
+              //       query: {
+              //         id: router.query.id,
+              //         position:
+              //           comments.find((c) => c.id === comment)?.position || 1,
+              //       },
+              //     },
+              //     undefined,
+              //     { shallow: true, scroll: false }
+              //   )
+              // }
               className="flex space-x-2 items-center rounded-lg hover:bg-gray-100 transition-all p-2"
             >
               <ChevronLeft className="w-5 h-5 text-gray-500" />
@@ -106,18 +109,19 @@ const CommentModal = ({
             <h2 className="text-xl font-medium text-gray-600 p-2">Comments</h2>
           )}
           <button
-            onClick={() =>
-              router.replace(
-                {
-                  pathname: "/c/[id]",
-                  query: {
-                    id: router.query.id,
-                  },
-                },
-                undefined,
-                { shallow: true, scroll: false }
-              )
-            }
+            // TODO - fix this
+            // onClick={() =>
+            //   router.replace(
+            //     {
+            //       pathname: "/c/[id]",
+            //       query: {
+            //         id: router.query.id,
+            //       },
+            //     },
+            //     undefined,
+            //     { shallow: true, scroll: false }
+            //   )
+            // }
             className="rounded-lg hover:bg-gray-100 transition-all p-2"
           >
             <X className="w-5 h-5 text-gray-600" />

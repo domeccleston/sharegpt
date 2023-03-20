@@ -1,16 +1,19 @@
+"use client";
+
 import { Link as LinkIcon, Check, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
 import SaveButton from "@/components/shared/save-button";
 import { useEffect, useState, useRef } from "react";
 import { nFormatter } from "@/lib/utils";
 
 export default function Banner({ views }: { views: number }) {
-  const router = useRouter();
+  const params = useSearchParams();
+  // @ts-expect-error due to existence of pages dir TODO remove
+  const id = params.get("id");
   const copyRef = useRef<HTMLButtonElement | null>(null);
-  const { id } = router.query as { id: string };
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
