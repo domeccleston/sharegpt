@@ -2,23 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import prisma from "@/lib/prisma";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
-import Meta from "@/components/layout/meta";
 import Twitter from "@/components/shared/icons/twitter";
-import Layout from "@/components/layout";
-import ConvoCard from "@/components/explore/convo-card";
 import { Examples } from "@/components/home/examples";
-import { ConversationMeta } from "@/lib/types";
-import { motion } from "framer-motion";
-import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { getConvos } from "@/lib/api";
-import { ChevronDown, Search } from "lucide-react";
-import Popover from "@/components/shared/popover";
+import { Search } from "lucide-react";
 import YoutubeEmbed from "@/components/home/youtube-embed";
 import { InstallButton } from "@/components/home/install-button";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Navigation } from "@/components/shared/navigation";
-// import { useState } from "react";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
