@@ -74,52 +74,66 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/extension",
-        destination:
-          "https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0",
+        source: "/c/:slug",
+        destination: "/",
         permanent: false,
       },
       {
-        source: "/shortcut",
-        destination:
-          "https://www.icloud.com/shortcuts/7d4712f9ca6e4c60aeb5cf813873dcd3",
-        permanent: false,
-      },
-      {
-        source: "/github",
-        destination: "https://github.com/domeccleston/sharegpt",
-        permanent: false,
-      },
-      {
-        source: "/mentions",
-        destination:
-          "https://twitter.com/search?q=shareg.pt%20-from%3Asteventey&src=typed_query&f=top", // show ShareGPT mentions on Twitter that are not from @steventey
-        permanent: false,
-      },
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "shareg.pt",
-          },
-        ],
-        destination: "https://sharegpt.com",
-        permanent: false,
-      },
-      {
-        source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "shareg.pt",
-          },
-        ],
-        destination: "https://sharegpt.com/c/:path*",
+        source: "/explore",
+        destination: "/",
         permanent: false,
       },
     ];
   },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/extension",
+  //       destination:
+  //         "https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0",
+  //       permanent: false,
+  //     },
+  //     {
+  //       source: "/shortcut",
+  //       destination:
+  //         "https://www.icloud.com/shortcuts/7d4712f9ca6e4c60aeb5cf813873dcd3",
+  //       permanent: false,
+  //     },
+  //     {
+  //       source: "/github",
+  //       destination: "https://github.com/domeccleston/sharegpt",
+  //       permanent: false,
+  //     },
+  //     {
+  //       source: "/mentions",
+  //       destination:
+  //         "https://twitter.com/search?q=shareg.pt%20-from%3Asteventey&src=typed_query&f=top", // show ShareGPT mentions on Twitter that are not from @steventey
+  //       permanent: false,
+  //     },
+  //     {
+  //       source: "/",
+  //       has: [
+  //         {
+  //           type: "host",
+  //           value: "shareg.pt",
+  //         },
+  //       ],
+  //       destination: "https://sharegpt.com",
+  //       permanent: false,
+  //     },
+  //     {
+  //       source: "/:path*",
+  //       has: [
+  //         {
+  //           type: "host",
+  //           value: "shareg.pt",
+  //         },
+  //       ],
+  //       destination: "https://sharegpt.com/c/:path*",
+  //       permanent: false,
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;
