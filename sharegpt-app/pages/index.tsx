@@ -124,13 +124,6 @@ export default function Home({
                 </button>
               </Popover>
             </div>
-            <Link
-              className="flex min-w-[200px] justify-center space-x-3 items-center rounded-lg px-5 py-3 font-medium text-gray-600 bg-white hover:bg-gray-50 transition-colors duration-75 border border-gray-100 shadow-md"
-              href="/explore"
-            >
-              <Search className="w-4 h-4" />
-              <p>Explore examples</p>
-            </Link>
           </div>
         </div>
         <div className="my-16 px-0 sm:px-2 sm:max-w-screen-lg w-full">
