@@ -63,7 +63,8 @@ export default function SideModal({
     const height = mobileModalRef.current.getBoundingClientRect().height;
     if (offset > height / 2 || velocity > 800) {
       await controls.start({ y: "100%", transition: transitionProps });
-      closeModal();
+      // TODO - fix this
+      // closeModal();
     } else {
       controls.start({ y: 0, transition: transitionProps });
     }

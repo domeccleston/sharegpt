@@ -53,7 +53,7 @@ export default function Layout({
                   Sign In
                 </motion.button>
               ) : (
-                <UserDropdown />
+                <UserDropdown session={session}/>
               )}
             </AnimatePresence>
           </div>

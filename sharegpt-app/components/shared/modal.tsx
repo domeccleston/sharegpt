@@ -26,6 +26,7 @@ export default function Modal({
 }) {
   const router = useRouter();
   const params = useSearchParams();
+  // @ts-expect-error pages dir
   const key = params.get("key");
 
   const mobileModalRef = useRef(null);

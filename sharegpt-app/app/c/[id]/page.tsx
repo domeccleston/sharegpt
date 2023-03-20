@@ -50,7 +50,8 @@ export default async function ChatPage({ params }: { params: ChatParams }) {
             {model}
           </div>
         ) : null}
-        {items.map((item, idx) => (
+        {/* TODO */}
+        {items.map((item: any, idx: number) => (
           <div
             id={idx.toString()}
             key={item.value}

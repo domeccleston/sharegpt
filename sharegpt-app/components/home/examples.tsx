@@ -31,7 +31,7 @@ export function Examples({
   session,
 }: {
   topConvos: ConversationProps;
-  session: Session;
+  session: Session | null;
 }) {
   return (
     <>
@@ -54,6 +54,7 @@ export function Examples({
           className="mt-8 grid gap-2"
         >
           {topConvos.map((convo) => (
+            // @ts-expect-error
             <ConvoCard key={convo.id} data={convo} session={session} />
           ))}
           <motion.li variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}>

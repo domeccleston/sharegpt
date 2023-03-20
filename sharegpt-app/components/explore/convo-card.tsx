@@ -15,7 +15,7 @@ export default function ConvoCard({
   session,
 }: {
   data: ConversationMeta;
-  session: Session;
+  session: Session | null; 
 }) {
   let { id, title, avatar, creator, views, comments, createdAt } = data;
   if (avatar.includes("error")) avatar = "https://avatar.vercel.sh/${id};";

@@ -16,7 +16,7 @@ export default function SaveButton({
   session,
 }: {
   id: string;
-  session: Session;
+  session: Session | null;
 }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
 
