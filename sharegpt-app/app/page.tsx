@@ -13,7 +13,8 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Navigation } from "@/components/shared/navigation";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
+  const session = null;
   const data = await getHomepageData();
   return (
     <>
