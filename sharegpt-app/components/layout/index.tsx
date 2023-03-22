@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import Meta from "./meta";
 import { useSession } from "next-auth/react";
 import { useSignInModal } from "./sign-in-modal";
-import UserDropdown from "./user-dropdown";
+import { UserDropdown } from "./user-dropdown";
 import { motion, AnimatePresence } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 import Link from "next/link";
@@ -53,7 +53,7 @@ export default function Layout({
                   Sign In
                 </motion.button>
               ) : (
-                <UserDropdown session={session}/>
+                <UserDropdown session={session} />
               )}
             </AnimatePresence>
           </div>
