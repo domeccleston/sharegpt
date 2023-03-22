@@ -85,6 +85,8 @@ model Conversation {
   @@index([creatorId])
   @@index([views(sort: Desc)])
   @@index([createdAt])
+  @@index([private])
+  @@fulltext([title])
 }
 model Save {
   id             String       @id @default(cuid())
