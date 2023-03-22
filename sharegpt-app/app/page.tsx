@@ -128,6 +128,7 @@ async function getHomepageData() {
   const topConvos = await getConvos({ orderBy: "views", take: 10 });
   const endTime = new Date();
   console.log(
+    //@ts-expect-error
     `Homepage data fetched in ${endTime - startTime}ms. Timestamp: ${endTime}`
   );
   return {
