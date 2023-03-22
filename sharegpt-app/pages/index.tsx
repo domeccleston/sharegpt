@@ -195,8 +195,13 @@ export default function Home({
 }
 
 export async function getStaticProps() {
+  const startTime = Date.now();
   const totalConvos = await prisma.conversation.count();
+  const totalConvosTime = Date.now() - startTime;
   const topConvos = await getConvos({ orderBy: "views", take: 10 });
+  const topConvosTime = Date.now() - startTime - totalConvosTime;
+  console.log(`Total convos: ${totalConvosTime}ms`);
+  console.log(`Top convos: ${topConvosTime}ms`);  
   return {
     props: {
       totalConvos,
