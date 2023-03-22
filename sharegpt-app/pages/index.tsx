@@ -7,8 +7,6 @@ import Twitter from "@/components/shared/icons/twitter";
 import Layout from "@/components/layout";
 import ConvoCard from "@/components/explore/convo-card";
 import { ConversationMeta } from "@/lib/types";
-import { motion } from "framer-motion";
-import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { getConvos } from "@/lib/api";
 import { ChevronDown, Search } from "lucide-react";
 import Popover from "@/components/shared/popover";
@@ -154,32 +152,21 @@ export default function Home({
           <h2 className="text-3xl sm:text-4xl font-semibold font-display">
             Browse Examples
           </h2>
-          <motion.ul
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              show: {
-                transition: {
-                  staggerChildren: 0.05,
-                },
-              },
-            }}
+          <ul
             className="mt-8 grid gap-2"
           >
             {topConvos.map((convo) => (
               <ConvoCard key={convo.id} data={convo} />
             ))}
-            <motion.li variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}>
+            <li>
               <Link
                 href="/explore"
                 className="rounded-md p-3 w-full block text-center text-sm text-gray-600 hover:text-gray-800"
               >
                 View More
               </Link>
-            </motion.li>
-          </motion.ul>
+            </li>
+          </ul>
         </div>
       </div>
       <div className="h-[100px] bg-gray-50 flex flex-col items-center justify-center w-full">
