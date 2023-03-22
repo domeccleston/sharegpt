@@ -123,10 +123,17 @@ export default async function Home() {
 }
 
 async function getHomepageData() {
+  const startTime = new Date();
   const totalConvos = await prisma.conversation.count();
   const topConvos = await getConvos({ orderBy: "views", take: 10 });
+  const endTime = new Date();
+  console.log(
+    `Homepage data fetched in ${endTime - startTime}ms. Timestamp: ${endTime}`
+  );
   return {
     totalConvos,
     topConvos,
   };
 }
+
+export const revalidate = 60;
