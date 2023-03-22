@@ -1,24 +1,45 @@
 import Link from "next/link";
 import Image from "next/image";
+import { cookies } from "next/headers";
 import prisma from "@/lib/prisma";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import Twitter from "@/components/shared/icons/twitter";
-import { Examples } from "@/components/home/examples";
+import { ExamplesSection } from "@/components/home/examples";
 import { getConvos } from "@/lib/api";
 import { Search } from "lucide-react";
 import YoutubeEmbed from "@/components/home/youtube-embed";
 import { InstallButton } from "@/components/home/install-button";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Navigation } from "@/components/shared/navigation";
+import { decode } from "next-auth/jwt";
+import { LoginSection } from "@/components/shared/login-section";
+import { Examples } from "@/components/home/examples-list";
 
 export default async function Home() {
-  // const session = await getServerSession(authOptions);
-  const session = null;
+  const cookieList = cookies();
+  const cookie = cookieList.get("next-auth.session-token");
+
+  const decoded = await decode({
+    token: cookie?.value,
+    secret: process.env.SECRET as string,
+  });
+
+  const jwtSession = decoded
+    ? {
+        user: {
+          email: decoded?.email,
+          name: decoded?.name,
+          image: decoded?.picture,
+        },
+      }
+    : null;
+
   const data = await getHomepageData();
+
   return (
     <>
-      <Navigation session={session} />
+      <Navigation>
+        <LoginSection session={jwtSession} />
+      </Navigation>
       <div className="flex min-h-screen flex-col items-center py-28 bg-gray-50">
         <Link
           href="https://twitter.com/steventey/status/1599816553490366464"
@@ -72,7 +93,9 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <Examples topConvos={data.topConvos} session={session} />
+        <ExamplesSection>
+          <Examples topConvos={data.topConvos} session={jwtSession} />
+        </ExamplesSection>
       </div>
       <div className="h-[100px] bg-gray-50 flex flex-col items-center justify-center w-full">
         <Link

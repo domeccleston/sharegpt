@@ -1,3 +1,4 @@
+"use client";
 import Modal from "@/components/shared/modal";
 import { signIn } from "next-auth/react";
 import {
@@ -11,7 +12,7 @@ import { LoadingDots } from "@/components/shared/icons";
 import Twitter from "../shared/icons/twitter";
 import Image from "next/image";
 
-const SignInModal = ({
+export const SignInModal = ({
   showSignInModal,
   setShowSignInModal,
 }: {

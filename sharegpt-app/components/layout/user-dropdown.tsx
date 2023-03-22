@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 import { Session } from "next-auth";
 
-export default function UserDropdown({ session }: { session: Session | null }) {
+export function UserDropdown({ session }: { session: Session | null }) {
   const { email, image } = session?.user || {};
   const [openPopover, setOpenPopover] = useState(false);
 
