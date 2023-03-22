@@ -101,7 +101,7 @@ export default function ChatPage({
               )}
             </AnimatePresence> */}
             <div className="relative mx-auto max-w-screen-xl dark:text-gray-100 text-gray-700 w-full px-4 py-10">
-              <div className="w-full max-w-screen-md flex flex-1 mx-auto gap-[1.5rem] leading-[1.75] overflow-x-scroll whitespace-pre-wrap">
+              <div className="w-full max-w-screen-md flex flex-1 mx-auto gap-[1.5rem] leading-[1.75] whitespace-pre-wrap">
                 {item.from === "human" ? (
                   <Image
                     className="mr-2 rounded-sm h-[28px]"
