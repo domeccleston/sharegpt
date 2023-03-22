@@ -101,7 +101,7 @@ export default async function Home() {
         <Link
           rel="noopener noreferrer"
           target="_blank"
-          href="https://github.com/domeccleston/sharegpt"
+        href="https://github.com/domeccleston/sharegpt"
         >
           <h1 className="mb-2 text-sm">View source on GitHub</h1>
         </Link>
