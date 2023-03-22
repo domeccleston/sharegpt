@@ -60,7 +60,7 @@ export default async function Home() {
             Share your wildest ChatGPT conversations with one click.
             <br />
             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-              {Intl.NumberFormat("en-us").format(data.totalConvos)}
+              {/* {Intl.NumberFormat("en-us").format(data.totalConvos)} */}
             </span>{" "}
             conversations shared so far.
           </p>

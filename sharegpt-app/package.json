@@ -34,7 +34,7 @@
     "lucide-react": "^0.104.1",
     "ms": "^2.1.3",
     "nanoid": "^4.0.0",
-    "next": "^13.2.5-canary.12",
+    "next": "^13.2.4",
     "next-auth": "4.20",
     "next-usequerystate": "^1.7.2",
     "prisma": "4.8.1",
