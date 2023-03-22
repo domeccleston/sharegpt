@@ -51,8 +51,17 @@ function init() {
       "flex flex-col items-center text-sm dark:bg-gray-800"
     )[0];
 
-    const modelElement = threadContainer.firstChild;
-    const model = modelElement.innerText;
+    // show the model for chatgpt+ users
+    let model;
+
+    const chatGptPlusElement = document.querySelector(".gold-new-button");
+    const isNotChatGptPlus =
+      chatGptPlusElement && chatGptPlusElement.innerText.includes("Upgrade");
+    
+    if (!isNotChatGptPlus) {
+      const modelElement = threadContainer.firstChild;
+      model = modelElement.innerText;
+    }
 
     const conversationData = {
       avatarUrl: getAvatarImage(),
