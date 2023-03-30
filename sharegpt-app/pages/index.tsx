@@ -152,20 +152,10 @@ export default function Home({
           <h2 className="text-3xl sm:text-4xl font-semibold font-display">
             Browse Examples
           </h2>
-          <ul
-            className="mt-8 grid gap-2"
-          >
+          <ul className="mt-8 grid gap-2">
             {topConvos.map((convo) => (
               <ConvoCard key={convo.id} data={convo} />
             ))}
-            <li>
-              <Link
-                href="/explore"
-                className="rounded-md p-3 w-full block text-center text-sm text-gray-600 hover:text-gray-800"
-              >
-                View More
-              </Link>
-            </li>
           </ul>
         </div>
       </div>
