@@ -5,6 +5,7 @@ import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
+import Link from "next/link";
 
 export default function UserDropdown() {
   const { data: session } = useSession();
@@ -21,20 +22,13 @@ export default function UserDropdown() {
       <Popover
         content={
           <div className="w-full rounded-md bg-white p-2 sm:w-56">
-            {/* <Link
+            <Link
               className="flex items-center justify-start space-x-2 relative w-full rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
               href="/dashboard"
             >
               <LayoutDashboard className="h-4 w-4" />
               <p className="text-sm">Dashboard</p>
-            </Link> */}
-            <button
-              className="cursor-not-allowed flex items-center justify-start space-x-2 relative w-full rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
-              disabled
-            >
-              <LayoutDashboard className="h-4 w-4" />
-              <p className="text-sm">Dashboard</p>
-            </button>
+            </Link>
             <button
               className="flex items-center justify-start space-x-2 relative w-full rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
               onClick={() => signOut()}

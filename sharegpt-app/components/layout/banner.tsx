@@ -63,7 +63,7 @@ export default function Banner({ views }: { views: number }) {
         )}
         <p className="text-center text-gray-600 text-sm">Copy</p>
       </button>
-      {/* <SaveButton id={id} /> */}
+      <SaveButton id={id} />
       <div className="cursor-default p-2 flex flex-col space-y-1 items-center rounded-md w-12 hover:bg-gray-100 active:bg-gray-200 transition-all">
         <Eye className="h-4 w-4 text-gray-600" />
         <p className="text-center text-gray-600 text-sm">{nFormatter(views)}</p>
