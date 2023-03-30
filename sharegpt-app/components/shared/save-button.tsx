@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 import { Bookmark } from "lucide-react";
 import { useRef } from "react";
 import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
+import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 export default function SaveButton({ id }: { id: string }) {
   const { data: session } = useSession();
@@ -44,9 +46,24 @@ export default function SaveButton({ id }: { id: string }) {
               method: data?.saved ? "DELETE" : "POST",
             }).then(() => {
               mutate(`/api/conversations/${id}/save`).then(() =>
-                mutate(`/api/conversations/${id}/saves`).then(() =>
-                  setSubmitting(false)
-                )
+                mutate(`/api/conversations/${id}/saves`).then(() => {
+                  setSubmitting(false);
+                  {
+                    data?.saved
+                      ? toast.success("Successfully unsaved conversation!")
+                      : toast(() => (
+                          <div className="flex items-center flex-col justify-center space-y-1">
+                            <p>Successfully saved conversation!</p>
+                            <Link
+                              href="/dashboard"
+                              className="font-medium underline underline-offset-4 text-black"
+                            >
+                              View all your saved conversations.
+                            </Link>
+                          </div>
+                        ));
+                  }
+                })
               );
             });
           }
