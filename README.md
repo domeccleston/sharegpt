@@ -134,7 +134,7 @@ const url = `https://shareg.pt/${id}`; // short link to the ShareGPT post
 
 #### GET: `https://sharegpt.com/api/conversations`
 
-*PLEASE NOTE:* This endpoint is currently disabled due to excess traffic
+*PLEASE NOTE:* This endpoint is currently disabled due to excess traffic.
 
 This endpoint takes 3 optional query parameters:
 
