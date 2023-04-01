@@ -22,24 +22,6 @@ function init() {
     }
   }, 500);
 
-  // re-append the share buttin whenever "#__next main" gets replaced
-  // const observer = new MutationObserver(function (mutations_list) {
-  //   mutations_list.forEach(function (mutation) {
-  //     if (mutation.addedNodes.length > 0) {
-  //       console.log("re-appending...");
-  //       appendShareButton();
-  //     }
-  //   });
-  // });
-
-  const mainContainer = Array.from(
-    document.querySelectorAll(".overflow-hidden.w-full.h-full.relative")
-  )[0];
-
-  observer.observe(document.querySelectorAll("#__next"), {
-    subtree: false,
-    childList: true,
-  });
 
   const textareaElement = document.querySelector("#__next main form textarea");
 
