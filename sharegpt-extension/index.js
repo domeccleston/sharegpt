@@ -57,7 +57,7 @@ function init() {
     const chatGptPlusElement = document.querySelector(".gold-new-button");
     const isNotChatGptPlus =
       chatGptPlusElement && chatGptPlusElement.innerText.includes("Upgrade");
-    
+
     if (!isNotChatGptPlus) {
       const modelElement = threadContainer.firstChild;
       model = modelElement.innerText;
@@ -81,9 +81,10 @@ function init() {
             value: warning.innerText.split("\n")[0],
           });
         } else {
+          const text = node.querySelector(".whitespace-pre-wrap");
           conversationData.items.push({
             from: "human",
-            value: node.textContent,
+            value: text.textContent,
           });
         }
         // if it's a GPT response, it might contain code blocks
