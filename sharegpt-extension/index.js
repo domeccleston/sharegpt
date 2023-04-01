@@ -3,8 +3,6 @@ let isRequesting = false;
 function init() {
   const shareButton = createBtn();
 
-  console.log("loading...");
-
   function appendShareButton() {
     const buttonsWrapper = document.querySelector(
       "#__next main form > div div:nth-of-type(1)"
@@ -17,11 +15,9 @@ function init() {
 
   const id = setInterval(() => {
     if (!document.querySelector("#share-button")) {
-      console.log('appending')
       appendShareButton();
     }
   }, 500);
-
 
   const textareaElement = document.querySelector("#__next main form textarea");
 
