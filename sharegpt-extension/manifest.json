@@ -1,7 +1,7 @@
 {
   "name": "ShareGPT: Share your ChatGPT conversations",
   "description": "ShareGPT is a Chrome extension that lets you your wildest ChatGPT conversations with one click.",
-  "version": "1.0.92",
+  "version": "1.0.93",
   "manifest_version": 3,
   "icons": {
     "16": "assets/icons/icon16.png",
