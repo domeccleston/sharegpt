@@ -14,7 +14,10 @@ function init() {
   appendShareButton();
 
   const id = setInterval(() => {
-    if (!document.querySelector("#share-button")) {
+    if (
+      !document.querySelector("#share-button") ||
+      document.querySelector("#share-button").style.display === "none"
+    ) {
       appendShareButton();
     }
   }, 500);
@@ -22,16 +25,6 @@ function init() {
   const textareaElement = document.querySelector("#__next main form textarea");
 
   const submitButton = textareaElement.nextElementSibling;
-
-  document.body.addEventListener("keydown", (event) => {
-    if (event.keyCode === 13) {
-      showIfNotLoading(submitButton, shareButton);
-    }
-  });
-
-  submitButton.addEventListener("click", (event) => {
-    showIfNotLoading(submitButton, shareButton);
-  });
 
   shareButton.addEventListener("click", async () => {
     if (isRequesting) return;
@@ -81,6 +74,7 @@ function init() {
         }
         // if it's a GPT response, it might contain code blocks
       } else if (markdown) {
+        console.log(node.children[0].children[1].children[0].children[0]);
         conversationData.items.push({
           from: "gpt",
           value: markdown.outerHTML,
