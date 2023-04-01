@@ -3,6 +3,8 @@ let isRequesting = false;
 function init() {
   const shareButton = createBtn();
 
+  console.log("loading...");
+
   function appendShareButton() {
     const buttonsWrapper = document.querySelector(
       "#__next main form > div div:nth-of-type(1)"
@@ -13,16 +15,28 @@ function init() {
 
   appendShareButton();
 
-  // re-append the share buttin whenever "#__next main" gets replaced
-  const observer = new MutationObserver(function (mutations_list) {
-    mutations_list.forEach(function (mutation) {
-      if (mutation.addedNodes.length > 0) {
-        appendShareButton();
-      }
-    });
-  });
+  const id = setInterval(() => {
+    if (!document.querySelector("#share-button")) {
+      console.log('appending')
+      appendShareButton();
+    }
+  }, 500);
 
-  observer.observe(document.querySelector("#__next"), {
+  // re-append the share buttin whenever "#__next main" gets replaced
+  // const observer = new MutationObserver(function (mutations_list) {
+  //   mutations_list.forEach(function (mutation) {
+  //     if (mutation.addedNodes.length > 0) {
+  //       console.log("re-appending...");
+  //       appendShareButton();
+  //     }
+  //   });
+  // });
+
+  const mainContainer = Array.from(
+    document.querySelectorAll(".overflow-hidden.w-full.h-full.relative")
+  )[0];
+
+  observer.observe(document.querySelectorAll("#__next"), {
     subtree: false,
     childList: true,
   });
@@ -158,6 +172,8 @@ function getAvatarImage() {
 
 function createBtn() {
   const button = document.createElement("button");
+
+  button.id = "share-button";
 
   button.classList.add("btn", "flex", "gap-2", "justify-center", "btn-neutral");
 
