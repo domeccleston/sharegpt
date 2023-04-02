@@ -1,46 +1,45 @@
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
+const hostname = `https://sharegpt.com`;
+const pageSize = 10000;
+
+function generateSiteMapIndex({ pageCount }: { pageCount: number }) {
+  let sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  `;
+
+  for (let pageNumber = 1; pageNumber <= pageCount; pageNumber++) {
+    sitemapIndex += `
+      <sitemap>
+        <loc>${hostname}/sitemap-${pageNumber}.xml</loc>
+      </sitemap>
+    `;
+  }
+
+  sitemapIndex += `</sitemapindex>`;
+
+  return sitemapIndex;
+}
+
 function generateSiteMap({
-  hostname,
   conversations,
-  pageNumber,
 }: {
-  hostname: string;
   conversations: { id: string }[];
-  pageNumber: number;
 }) {
   return `<?xml version="1.0" encoding="UTF-8"?>
-     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-       <url>
-         <loc>${hostname}</loc>
-       </url>
-       <url>
-         <loc>${hostname}/explore</loc>
-       </url>
-       <url>
-         <loc>${hostname}/explore/new</loc>
-       </url>
-       ${conversations
-         .map(({ id }) => {
-           return `
-         <url>
-             <loc>${`${hostname}/c/${id}`}</loc>
-         </url>
-       `;
-         })
-         .join("")}
-       ${
-         conversations.length === 10000
-           ? `
-           <url>
-             <loc>${`${hostname}/sitemap-${pageNumber + 1}.xml`}</loc>
-           </url>
-           `
-           : ""
-       }
-     </urlset>
-   `;
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      ${conversations
+        .map(({ id }) => {
+          return `
+        <url>
+          <loc>${`${hostname}/c/${id}`}</loc>
+        </url>
+      `;
+        })
+        .join("")}
+    </urlset>
+  `;
 }
 
 function SiteMap() {
@@ -54,37 +53,52 @@ export async function getServerSideProps({
   req: NextApiRequest;
   res: NextApiResponse;
 }) {
-  const hostname = `https://sharegpt.com`;
-
-  // Get the page number from the query string, default to 1
-  const pageNumber = parseInt(req.query.pageNumber as string, 10) || 1;
-
-  // Get a limited number of conversations using skip and take
-  const conversations = await prisma.conversation.findMany({
-    select: {
-      id: true,
-    },
+  // Get the total number of conversations
+  const conversationCount = await prisma.conversation.count({
     where: {
       private: false,
       views: {
         gte: 5,
       },
     },
-    skip: (pageNumber - 1) * 10000,
-    take: 10000,
   });
 
-  // We generate the XML sitemap with the conversations data
-  const sitemap = generateSiteMap({
-    hostname,
-    conversations,
-    pageNumber,
-  });
+  // Calculate the number of pages needed
+  const pageCount = Math.ceil(conversationCount / pageSize);
 
-  res.setHeader("Content-Type", "text/xml");
-  // we send the XML to the browser
-  res.write(sitemap);
-  res.end();
+  if (req.query.pageNumber) {
+    // Get the page number from the query string
+    const pageNumber = parseInt(req.query.pageNumber as string, 10);
+
+    // Get conversations for the specified page
+    const conversations = await prisma.conversation.findMany({
+      select: {
+        id: true,
+      },
+      where: {
+        private: false,
+        views: {
+          gte: 5,
+        },
+      },
+      skip: (pageNumber - 1) * pageSize,
+      take: pageSize,
+    });
+
+    // Generate the sitemap for the specified page
+    const sitemap = generateSiteMap({ conversations });
+
+    res.setHeader("Content-Type", "text/xml");
+    res.write(sitemap);
+    res.end();
+  } else {
+    // Generate the sitemap index
+    const sitemapIndex = generateSiteMapIndex({ pageCount });
+
+    res.setHeader("Content-Type", "text/xml");
+    res.write(sitemapIndex);
+    res.end();
+  }
 
   return {
     props: {},
