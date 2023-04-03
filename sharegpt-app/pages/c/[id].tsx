@@ -173,8 +173,8 @@ export const getStaticProps = async (
   // }
 
   if (props) {
-    return { props, revalidate: 60 };
+    return { props };
   } else {
-    return { notFound: true, revalidate: 60 };
+    return { notFound: true };
   }
 };
