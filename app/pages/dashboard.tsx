@@ -56,7 +56,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       conversation: true,
     },
   });
-  console.log(convos);
 
   return {
     props: {
