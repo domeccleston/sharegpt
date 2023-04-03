@@ -53,10 +53,12 @@ export async function getServerSideProps({
     where: {
       private: false,
       views: {
-        gte: 5,
+        gte: 100,
       },
     },
+    take: 500,
   });
+  console.log(conversations.length);
 
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap({
