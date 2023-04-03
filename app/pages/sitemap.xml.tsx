@@ -57,7 +57,6 @@ export async function getServerSideProps({
       },
     },
   });
-  console.log(conversations.length);
 
   // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap({
