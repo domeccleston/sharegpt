@@ -56,7 +56,6 @@ export async function getServerSideProps({
         gte: 100,
       },
     },
-    take: 500,
   });
   console.log(conversations.length);
 
