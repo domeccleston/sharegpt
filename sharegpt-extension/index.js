@@ -74,7 +74,6 @@ function init() {
         }
         // if it's a GPT response, it might contain code blocks
       } else if (markdown) {
-        console.log(node.children[0].children[1].children[0].children[0]);
         conversationData.items.push({
           from: "gpt",
           value: markdown.outerHTML,
