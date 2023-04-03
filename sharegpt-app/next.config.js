@@ -74,6 +74,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/explore",
+        destination: "https://sharegpt.com",
+        permanent: false,
+      },
+      {
         source: "/extension",
         destination:
           "https://chrome.google.com/webstore/detail/sharegpt/daiacboceoaocpibfodeljbdfacokfjb?hl=en&authuser=0",
