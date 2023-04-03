@@ -7,6 +7,15 @@ const pageSize = 10000;
 function generateSiteMapIndex({ pageCount }: { pageCount: number }) {
   let sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <sitemap>
+        <loc>${hostname}/sitemap.xml</loc>
+      </sitemap>
+      <sitemap>
+        <loc>${hostname}/explore</loc>
+      </sitemap>
+      <sitemap>
+        <loc>${hostname}/explore/new</loc>
+      </sitemap>
   `;
 
   for (let pageNumber = 1; pageNumber <= pageCount; pageNumber++) {
