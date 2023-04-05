@@ -61,6 +61,9 @@ export default function Meta({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <meta property="twitter:image:alt" content={imageAlt} />
+      <meta name="twitter:player" content={canonical + "?card=1"} />
+      <meta name="twitter:player:width" content="300" />
+      <meta name="twitter:player:height" content="533" />
     </Head>
   );
 }
