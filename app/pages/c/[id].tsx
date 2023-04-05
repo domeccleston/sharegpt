@@ -168,8 +168,8 @@ export const getStaticProps = async (
   const props = await getConvo(id);
 
   if (props) {
-    return { props };
+    return { props, revalidate: 3600 };
   } else {
-    return { notFound: true };
+    return { notFound: true, revalidate: 1 };
   }
 };
