@@ -23,10 +23,15 @@ import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 interface ChatParams extends ParsedUrlQuery {
   id: string;
 }
+function formatTitle(title: string | undefined): string {
+  if (!title || title === "New chat")
+    return "Check out this ShareGPT conversation";
+  else return title;
+}
 
 export default function ChatPage({
   id,
-  content: { avatarUrl, items, model },
+  content: { title, avatarUrl, items, model },
   comments: initialComments,
   views,
 }: ConversationProps) {
@@ -67,7 +72,7 @@ export default function ChatPage({
   return (
     <>
       <Meta
-        title={`Check out this ShareGPT conversation`}
+        title={formatTitle(title)}
         description={`This is a conversation between a human and a GPT-3 chatbot. The human first asks: ${items[0]?.value}. The GPT-3 chatbot then responds: ${items[1]?.value}`}
         image={`https://sharegpt.com/api/conversations/${id}/thumbnail`}
         imageAlt={`This is a preview image for a conversation betwen a human and a GPT-3 chatbot. The human first asks: ${items[0]?.value}. The GPT-3 chatbot then responds: ${items[1]?.value}`}

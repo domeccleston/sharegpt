@@ -2,6 +2,7 @@ export interface ConversationProps {
   id: string;
   model?: string;
   content: {
+    title?: string;
     avatarUrl: string;
     model?: string;
     items: {

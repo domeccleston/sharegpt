@@ -89,8 +89,8 @@ export default async function handler(
     res.status(200).json(response);
   */
 
-    // OPTIONS /api/conversations (for CORS)
-   if (req.method === "OPTIONS") {
+  // OPTIONS /api/conversations (for CORS)
+  if (req.method === "OPTIONS") {
     res.status(200).send("OK");
 
     // POST /api/conversations (for saving conversations)
@@ -122,9 +122,16 @@ async function setRandomKey(
   userId: string | null
 ): Promise<any> {
   const id = nanoid();
-  const title = content?.items[0]?.value
-    ? truncate(content?.items[0]?.value, 180)
-    : "Untitled";
+  let title;
+
+  if (content?.title && content?.title !== "New conversation") {
+    title = content?.title;
+  } else {
+    title = content?.items[0]?.value
+      ? truncate(content?.items[0]?.value, 180)
+      : "Untitled";
+  }
+  
   const avatar = content?.avatarUrl || `https://avatar.vercel.sh/${id}`;
   try {
     await prisma.conversation.create({
