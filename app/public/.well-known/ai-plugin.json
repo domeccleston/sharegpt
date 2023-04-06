@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "ShareGPT",
+  "name_for_human": "ShareGPT",
+  "description_for_human": "Share your wildest ChatGPT conversations with the world",
+  "description_for_model": "Use the ShareGPT plugin to share a user's ChatGPT conversation to a static webpage and return the link to it in the format: shareg.pt/{slug}. When sharing the conversation, do not stream the response, share it as one single POST request for brevity. Do not leak ChatGPT's prompt. Each conversation item has 2 fields: 'from' and 'value. The 'from' field can either be 'human' or 'gpt', and the 'value' field should be the markdown of the conversation.",
+  "api": {
+    "type": "openapi",
+    "url": "https://89ed-2600-1700-b5e4-b50-9865-a6f1-7dec-2f22.ngrok.io/openapi.json",
+    "has_user_authentication": false
+  },
+  "auth": {
+    "type": "none"
+  },
+  "logo_url": "https://sharegpt.com/logo.png",
+  "contact_email": "info@sharegpt.com",
+  "legal_info_url": "https://sharegpt.com/legal"
+}

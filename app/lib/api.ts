@@ -1,4 +1,7 @@
 import prisma from "@/lib/prisma";
+import { ContentProps } from "./types";
+import { remark } from "remark";
+import remarkMdx from "remark-mdx";
 
 export async function getConvos({
   orderBy,
@@ -65,6 +68,7 @@ export async function getConvo(id: string) {
     },
     select: {
       id: true,
+      avatar: true,
       content: true,
       views: true,
       comments: {
@@ -101,6 +105,28 @@ export async function getConvo(id: string) {
           })) ?? [],
       }
     : null;
+}
+
+async function contentToMarkdown(content: ContentProps) {
+  const items = await Promise.all(
+    content.items.map(async (item) => {
+      if (item.from === "gpt") {
+        return {
+          from: "gpt",
+          value: remark().use(remarkMdx).processSync(item.value),
+        };
+      } else {
+        return {
+          from: "human",
+          value: item.value,
+        };
+      }
+    })
+  );
+  return {
+    ...content,
+    items,
+  };
 }
 
 export async function getComments(id: string) {

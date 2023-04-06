@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ShareGPT API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://89ed-2600-1700-b5e4-b50-9865-a6f1-7dec-2f22.ngrok.io/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Conversations",
+      "description": "OpenAI share conversation endpoint. Send a POST request to this endpoint with a JSON object of the conversation data and get back a conversation ID."
+    }
+  ],
+  "paths": {
+    "/conversations": {
+      "post": {
+        "summary": "Add a new conversation",
+        "description": "Use this endpoint to add new conversations to the ShareGPT database.",
+        "operationId": "createConversation",
+        "tags": ["Conversations"],
+        "requestBody": {
+          "description": "Conversation data to be added",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Conversation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Conversation created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the generated post"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Conversation": {
+        "type": "object",
+        "properties": {
+          "avatarUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Base64 encoded string of the user's avatar image (30x30 pixels, JPEG format)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConversationItem"
+            },
+            "description": "Array of conversation items"
+          }
+        },
+        "required": ["avatarUrl", "items"]
+      },
+      "ConversationItem": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "enum": ["human", "gpt"],
+            "description": "Identifier for the sender of the message (human or gpt)",
+            "example": "human"
+          },
+          "value": {
+            "type": "string",
+            "description": "Markdown containing the message content.",
+            "example": "Hello, world!"
+          }
+        },
+        "required": ["from", "value"]
+      }
+    }
+  }
+}

@@ -17,6 +17,7 @@ import { useEffect, useMemo } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { getConvo } from "@/lib/api";
+import ReactMarkdown from "@/components/markdown/react-markdown";
 import { AnimatePresence, motion } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 
@@ -26,6 +27,7 @@ interface ChatParams extends ParsedUrlQuery {
 
 export default function ChatPage({
   id,
+  avatar,
   content: { avatarUrl, items, model },
   comments: initialComments,
   views,
@@ -108,7 +110,7 @@ export default function ChatPage({
                     alt="Avatar of the person chatting"
                     width="28"
                     height="28"
-                    src={avatarUrl}
+                    src={avatar || avatarUrl}
                   />
                 ) : (
                   <GPTAvatar model={model} />
@@ -117,10 +119,13 @@ export default function ChatPage({
                   {item.from === "human" ? (
                     <p className="pb-2 whitespace-prewrap">{item.value}</p>
                   ) : (
-                    <div
-                      className={styles.response}
-                      dangerouslySetInnerHTML={{ __html: item.value }}
-                    />
+                    // <div
+                    //   className={styles.response}
+                    //   dangerouslySetInnerHTML={{ __html: item.value }}
+                    // />
+                    <div className="prose mt-[-2px] w-full dark:prose-invert">
+                      <ReactMarkdown>{item.value}</ReactMarkdown>
+                    </div>
                   )}
                 </div>
               </div>
@@ -166,6 +171,7 @@ export const getStaticProps = async (
   const { id } = context.params;
 
   const props = await getConvo(id);
+  console.log(JSON.stringify(props, null, 2));
 
   if (props) {
     return { props, revalidate: 3600 };

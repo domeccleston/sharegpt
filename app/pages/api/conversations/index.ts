@@ -89,8 +89,8 @@ export default async function handler(
     res.status(200).json(response);
   */
 
-    // OPTIONS /api/conversations (for CORS)
-   if (req.method === "OPTIONS") {
+  // OPTIONS /api/conversations (for CORS)
+  if (req.method === "OPTIONS") {
     res.status(200).send("OK");
 
     // POST /api/conversations (for saving conversations)
@@ -100,13 +100,25 @@ export default async function handler(
       if (!success) {
         return res.status(429).json({ error: "Don't DDoS me pls 🥺" });
       }
-      const session = await getServerSession(req, res);
-      console.log("session data: ", session);
       const content = JSON.parse(JSON.stringify(req.body));
-      for (let i = 0; i < content.items.length; i++) {
-        content.items[i].value = sanitizeHtml(content.items[i].value, options);
-      }
-      const response = await setRandomKey(content, session?.user?.id ?? null);
+
+      const processedContent = {
+        ...content,
+        items: content.items.map((item: any) => {
+          const { from, value, role, content } = item || {};
+          return {
+            from: from || role,
+            value: value
+              ? sanitizeHtml(value, options)
+              : sanitizeHtml(content, options),
+          };
+        }),
+      };
+
+      const response = await setRandomKey(
+        processedContent
+        // session?.user?.id ?? null
+      );
       return res.status(200).json(response);
     } catch (error: unknown) {
       console.log("Error saving conversation: ", error);
@@ -119,13 +131,14 @@ export default async function handler(
 
 async function setRandomKey(
   content: ConversationProps["content"],
-  userId: string | null
+  userId?: string | null
 ): Promise<any> {
   const id = nanoid();
   const title = content?.items[0]?.value
     ? truncate(content?.items[0]?.value, 180)
     : "Untitled";
   const avatar = content?.avatarUrl || `https://avatar.vercel.sh/${id}`;
+
   try {
     await prisma.conversation.create({
       data: {

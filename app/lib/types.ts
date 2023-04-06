@@ -1,6 +1,15 @@
+export interface ContentProps {
+  avatarUrl: string;
+  items: {
+    from: "human" | "gpt";
+    value: string;
+  }[];
+}
+
 export interface ConversationProps {
   id: string;
   model?: string;
+  avatar?: string;
   content: {
     avatarUrl: string;
     model?: string;
