@@ -1,5 +1,11 @@
 let isRequesting = false;
 
+const API_URL = "https://sharegpt.com/api/conversations";
+const PAGE_URL = "https://sharegpt.com/c/";
+
+// const API_URL = "http://localhost:3000/api/conversations";
+// const PAGE_URL = "http://localhost:3000/c/";
+
 function init() {
   const shareButton = createBtn();
 
@@ -49,6 +55,7 @@ function init() {
     }
 
     const conversationData = {
+      title: document.title,
       avatarUrl: getAvatarImage(),
       model,
       items: [],
@@ -81,7 +88,7 @@ function init() {
       }
     }
 
-    const res = await fetch("https://sharegpt.com/api/conversations", {
+    const res = await fetch(API_URL, {
       body: JSON.stringify(conversationData),
       headers: { "Content-Type": "application/json" },
       method: "POST",
@@ -90,7 +97,7 @@ function init() {
       alert(`Error saving conversation: ${err.message}`);
     });
     const { id } = await res.json();
-    const url = `https://sharegpt.com/c/${id}`;
+    const url = PAGE_URL + id;
 
     window.open(url, "_blank");
 
