@@ -19,6 +19,7 @@ import { fetcher } from "@/lib/utils";
 import { getConvo } from "@/lib/api";
 import { AnimatePresence, motion } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
+import "katex/dist/katex.min.css";
 
 interface ChatParams extends ParsedUrlQuery {
   id: string;

@@ -4,6 +4,7 @@ import { PAGINATION_LIMIT } from "@/lib/constants";
 import { getServerSession } from "@/lib/auth";
 import { ratelimit } from "@/lib/upstash";
 import sanitizeHtml from "sanitize-html";
+import { JSDOM } from "jsdom";
 
 import prisma from "@/lib/prisma";
 import { nanoid, truncate } from "@/lib/utils";
@@ -67,6 +68,27 @@ const options = {
   allowedSchemes: ["http", "https", "mailto", "tel", "data"],
 };
 
+const katexOptions = {
+  ...options,
+  allowedAttributes: {
+    ...options.allowedAttributes,
+    span: [...(options.allowedAttributes?.span ?? []), "style"],
+  }
+}
+
+const sanitize = (content: string, options: sanitizeHtml.IOptions) => {
+  const jsdom = new JSDOM(content);
+  const katexDisplays = jsdom.window.document.querySelectorAll(".katex-display");
+
+  const sanitizedJsdom = new JSDOM(sanitizeHtml(content, options));
+  const document = sanitizedJsdom.window.document;
+  
+  document.querySelectorAll(".katex-display").forEach((element, index) => {
+    element.outerHTML = sanitizeHtml(katexDisplays[index].outerHTML, katexOptions)
+  });
+  return document.body.innerHTML;
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -104,7 +126,7 @@ export default async function handler(
       console.log("session data: ", session);
       const content = JSON.parse(JSON.stringify(req.body));
       for (let i = 0; i < content.items.length; i++) {
-        content.items[i].value = sanitizeHtml(content.items[i].value, options);
+        content.items[i].value = sanitize(content.items[i].value, options);
       }
       const response = await setRandomKey(content, session?.user?.id ?? null);
       return res.status(200).json(response);
