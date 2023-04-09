@@ -26,7 +26,7 @@ interface ChatParams extends ParsedUrlQuery {
 function formatTitle(title: string | undefined): string {
   if (!title || title === "New chat")
     return "Check out this ShareGPT conversation";
-  else return title;
+  else return `${title} -  A ShareGPT conversation`;
 }
 
 export default function ChatPage({
