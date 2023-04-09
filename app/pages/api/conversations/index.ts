@@ -78,12 +78,12 @@ const katexOptions = {
 
 const sanitize = (content: string, options: sanitizeHtml.IOptions) => {
   const jsdom = new JSDOM(content);
-  const katexDisplays = jsdom.window.document.querySelectorAll(".katex-display");
+  const katexDisplays = jsdom.window.document.querySelectorAll(".katex");
 
   const sanitizedJsdom = new JSDOM(sanitizeHtml(content, options));
   const document = sanitizedJsdom.window.document;
   
-  document.querySelectorAll(".katex-display").forEach((element, index) => {
+  document.querySelectorAll(".katex").forEach((element, index) => {
     element.outerHTML = sanitizeHtml(katexDisplays[index].outerHTML, katexOptions)
   });
   return document.body.innerHTML;
