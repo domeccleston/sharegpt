@@ -19,7 +19,7 @@ export default function DeleteButton() {
 
   const { data } = useSWR<{
     ttl: number;
-  }>(`/api/conversations/${id}/delete`, fetcher);
+  }>(`/api/conversations/${id}/ttl`, fetcher);
 
   const [ttl, setTtl] = useState(data?.ttl || 0);
 
@@ -61,7 +61,6 @@ export default function DeleteButton() {
               fetch(`/api/conversations/${id}/delete`, {
                 method: "DELETE",
               }).then(() => {
-                mutate(`/api/conversations/${id}/delete`);
                 router.push("/");
               });
             }}

@@ -1,33 +1,31 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { redis } from "@/lib/upstash";
-import { conn } from "@/lib/planetscale";
-import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
 
-export const config = {
-  runtime: "edge",
-};
-
-export default async function handler(req: NextRequest) {
-  const url = req.nextUrl.pathname;
-  const id = decodeURIComponent(url.split("/")[3]);
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const id = req.query.id as string;
   if (!id) {
-    return new Response("Invalid ID", { status: 400 });
+    return res.status(400).json({ error: "Invalid ID" });
   }
 
-  if (req.method === "GET") {
-    const ttl = await redis.ttl(`delete:${id}`);
-    return NextResponse.json({ ttl });
-  } else if (req.method === "DELETE") {
+  if (req.method === "DELETE") {
     const ttl = await redis.ttl(`delete:${id}`);
     if (ttl > 0) {
-      const response = await conn.execute(
-        `DELETE FROM Conversation WHERE id = ?`,
-        [id]
-      );
-      return NextResponse.json(response);
+      await Promise.all([
+        prisma.conversation.delete({
+          where: { id },
+        }),
+        redis.del(`delete:${id}`),
+      ]);
+      await res.revalidate(`/c/${id}`);
+      return res.status(200).json({ message: "Conversation deleted" });
     } else {
-      return new Response("Not deletable", { status: 400 });
+      return res.status(404).json({ error: "Conversation not deleteable" });
     }
   } else {
-    return new Response("Method not allowed", { status: 405 });
+    return res.status(405).json({ error: "Method not allowed" });
   }
 }

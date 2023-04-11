@@ -15,7 +15,7 @@ export default function Banner({ views }: { views: number }) {
 
   const { data: { ttl } = {} } = useSWR<{
     ttl: number;
-  }>(`/api/conversations/${id}/delete`, fetcher);
+  }>(`/api/conversations/${id}/ttl`, fetcher);
 
   return (
     <AnimatePresence>
