@@ -3,13 +3,13 @@ import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from "@/lib/constants";
 import { ConversationMeta } from "@/lib/types";
 import Image from "next/image";
 import { nFormatter, timeAgo } from "@/lib/utils";
-import SaveButton from "../shared/save-button";
+import SaveButton from "../banner/save-button";
 import Link from "next/link";
 import { Eye, MessageCircle } from "lucide-react";
 
 export default function ConvoCard({ data }: { data: ConversationMeta }) {
   let { id, title, avatar, creator, views, comments, createdAt } = data;
-  if (avatar.includes('error')) avatar = 'https://avatar.vercel.sh/${id};'
+  if (avatar.includes("error")) avatar = "https://avatar.vercel.sh/${id};";
   return (
     <motion.li
       variants={FRAMER_MOTION_LIST_ITEM_VARIANTS}

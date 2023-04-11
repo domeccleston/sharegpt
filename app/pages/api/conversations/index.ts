@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getConvos } from "@/lib/api";
-import { PAGINATION_LIMIT } from "@/lib/constants";
 import { getServerSession } from "@/lib/auth";
-import { ratelimit } from "@/lib/upstash";
+import { ratelimit, redis } from "@/lib/upstash";
 import sanitizeHtml from "sanitize-html";
 
 import prisma from "@/lib/prisma";
@@ -131,7 +129,7 @@ async function setRandomKey(
       ? truncate(content?.items[0]?.value, 180)
       : "Untitled";
   }
-  
+
   const avatar = content?.avatarUrl || `https://avatar.vercel.sh/${id}`;
   try {
     await prisma.conversation.create({
@@ -142,6 +140,9 @@ async function setRandomKey(
         content,
         ...(userId && { userId }),
       },
+    });
+    await redis.set(`delete:${id}`, 1, {
+      ex: 60,
     });
     return { id };
   } catch (e: any) {

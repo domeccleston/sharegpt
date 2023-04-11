@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from "node:querystring";
 import cn from "classnames";
 import GPTAvatar from "@/components/shared/icons/GPTAvatar";
 import styles from "@/styles/utils.module.css";
-import Banner from "@/components/layout/banner";
+import Banner from "@/components/banner";
 import Meta from "@/components/layout/meta";
 import { CommentProps, ConversationProps } from "@/lib/types";
 import useView from "@/lib/hooks/use-view";
@@ -156,7 +156,7 @@ export const getStaticPaths = async () => {
     },
   });
   return {
-    paths: convos.map((convo) => ({
+    paths: convos.map((convo: { id: string }) => ({
       params: {
         id: convo.id,
       },
