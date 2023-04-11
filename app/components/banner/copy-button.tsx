@@ -13,6 +13,7 @@ export default function CopyButton() {
   useEffect(() => {
     copyRef?.current?.focus();
   }, []);
+
   return (
     <button
       ref={copyRef}

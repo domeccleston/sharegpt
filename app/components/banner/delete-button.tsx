@@ -1,6 +1,6 @@
 import { fetcher } from "@/lib/utils";
 import useSWR, { mutate } from "swr";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LoadingCircle } from "@/components/shared/icons";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/router";
@@ -10,6 +10,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/shared/tooltip";
+import Cookies from "js-cookie";
+import DeleteInfoModal from "../layout/delete-info-modal";
 
 export default function DeleteButton() {
   const router = useRouter();
@@ -35,11 +37,25 @@ export default function DeleteButton() {
   }, [ttl]);
 
   const [submitting, setSubmitting] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const ref = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!Cookies.get("dismissedDeleteButtonModal") && ttl > 0) {
+      ref?.current?.focus();
+      setShowModal(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <TooltipProvider delayDuration={200}>
-      <Tooltip>
-        <TooltipTrigger>
-          <button
+    <>
+      <TooltipProvider delayDuration={200}>
+        <Tooltip>
+          <TooltipTrigger
+            ref={ref}
             onClick={() => {
               setSubmitting(true);
               fetch(`/api/conversations/${id}/delete`, {
@@ -60,12 +76,13 @@ export default function DeleteButton() {
               <Trash className="h-4 w-4 text-gray-600" />
             )}
             <p className="text-center text-gray-600 text-sm">{ttl}s</p>
-          </button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>You have {ttl}s remaining to delete this conversation</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>You have {ttl}s remaining to delete this conversation</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+      <DeleteInfoModal showModal={showModal} setShowModal={setShowModal} />
+    </>
   );
 }
