@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "pages/api/auth/[...nextauth]";
 import { Session } from "@/lib/types";
+import { highstorm } from "@/lib/highstorm";
 
 export default async function handler(
   req: NextApiRequest,
@@ -30,6 +31,14 @@ export default async function handler(
         },
       },
     });
+    highstorm("conversation.read", {
+      event: `${userId} has loaded a conversation`,
+      metadata: {
+        conversationId: id,
+        userId,
+        saved: !!response
+      }
+    })
     res.status(200).json({
       saved: !!response,
     });
@@ -40,6 +49,13 @@ export default async function handler(
         userId,
       },
     });
+    highstorm("conversation.created", {
+      event: `${userId} has saved a conversation`,
+      metadata: {
+        conversationId: id,
+        userId
+      }
+    })
     res.status(200).json(response);
   } else if (req.method === "DELETE") {
     const response = await prisma.save.delete({
@@ -50,6 +66,13 @@ export default async function handler(
         },
       },
     });
+    highstorm("conversation.deleted", {
+      event: `${userId} has deleted a conversation`,
+      metadata: {
+        conversationId: id,
+        userId
+      }
+    })
     res.status(200).json(response);
   } else {
     res.status(405).json({ error: "Method not allowed" });
