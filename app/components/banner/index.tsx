@@ -53,7 +53,7 @@ export default function Banner({ views }: { views: number }) {
           </div>
           <div className="border-l border-gray-200 h-12 w-1" />
           <CopyButton />
-          <SaveButton />
+          <SaveButton id={id} />
           {ttl > 0 && <DeleteButton />}
           <ViewCounter views={views} />
         </motion.div>

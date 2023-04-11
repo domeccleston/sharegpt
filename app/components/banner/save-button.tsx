@@ -17,9 +17,8 @@ import {
   TooltipTrigger,
 } from "@/components/shared/tooltip";
 
-export default function SaveButton() {
+export default function SaveButton({ id }: { id: string }) {
   const router = useRouter();
-  const { id } = router.query as { id: string };
 
   const { data: session } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
