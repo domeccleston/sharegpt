@@ -63,9 +63,9 @@ export default function DeleteInfoModal({
                     <p className="text-sm text-gray-500">
                       ShareGPT convos are private by default and only accessible
                       by a direct link. They are not indexed on Google, unless
-                      if they exceed 100 views. <br /> <br /> If you still want
-                      to delete this conversation, you can do so within the next
-                      60 seconds.
+                      they exceed 100 views. <br /> <br /> If you still want to
+                      delete this conversation, you can do so within the next 60
+                      seconds.
                     </p>
                   </div>
                 </div>
