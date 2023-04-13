@@ -113,7 +113,7 @@ export default function ChatPage({
                     alt="Avatar of the person chatting"
                     width="28"
                     height="28"
-                    src={avatarUrl}
+                    src={avatarUrl || `https://avatar.vercel.sh/${id}`}
                   />
                 ) : (
                   <GPTAvatar model={model} />
