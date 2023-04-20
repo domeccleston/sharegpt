@@ -28,6 +28,7 @@
     "focus-trap-react": "^10.0.2",
     "framer-motion": "^7.6.19",
     "html-to-text": "^9.0.0",
+    "jsonwebtoken": "^9.0.0",
     "lucide-react": "^0.104.1",
     "ms": "^2.1.3",
     "nanoid": "^4.0.0",
