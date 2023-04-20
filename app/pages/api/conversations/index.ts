@@ -4,6 +4,7 @@ import { PAGINATION_LIMIT } from "@/lib/constants";
 import { getServerSession } from "@/lib/auth";
 import { ratelimit } from "@/lib/upstash";
 import sanitizeHtml from "sanitize-html";
+import { verify } from "jsonwebtoken";
 
 import prisma from "@/lib/prisma";
 import { nanoid, truncate } from "@/lib/utils";
@@ -72,21 +73,30 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // GET /api/conversations (for fetching conversations) - disabled for now
-  
   if (req.method === "GET") {
-    const { type, page, search } = req.query as {
-      type: string;
-      page?: string;
-      search?: string;
-    };
+    try {
+      const token = req.headers["authorization"]?.split(" ")[1];
+      if (!token) return res.status(401).json({ message: "Unauthorized" });
+      const decoded = verify(token, process.env.JWT_SECRET as string);
+      if (!decoded) return res.status(401).json({ message: "Unauthorized" });
 
-    const response = await getConvos({
-      orderBy: type === "new" ? "createdAt" : "views",
-      take: PAGINATION_LIMIT,
-      skip: page ? parseInt(page) * 50 : 0,
-      search,
-    });
-    res.status(200).json(response);
+      const { type, page, search } = req.query as {
+        type: string;
+        page?: string;
+        search?: string;
+      };
+
+      const response = await getConvos({
+        orderBy: type === "new" ? "createdAt" : "views",
+        take: PAGINATION_LIMIT,
+        skip: page ? parseInt(page) * 50 : 0,
+        search,
+      });
+    
+      res.status(200).json(response);
+    } catch (error) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
   }
 
   // OPTIONS /api/conversations (for CORS)
@@ -131,7 +141,7 @@ async function setRandomKey(
       ? truncate(content?.items[0]?.value, 180)
       : "Untitled";
   }
-  
+
   const avatar = content?.avatarUrl || `https://avatar.vercel.sh/${id}`;
   try {
     await prisma.conversation.create({
