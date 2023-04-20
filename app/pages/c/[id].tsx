@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from "node:querystring";
 import cn from "classnames";
 import GPTAvatar from "@/components/shared/icons/GPTAvatar";
 import styles from "@/styles/utils.module.css";
-import Banner from "@/components/layout/banner";
+import Banner from "@/components/banner";
 import Meta from "@/components/layout/meta";
 import { CommentProps, ConversationProps } from "@/lib/types";
 import useView from "@/lib/hooks/use-view";
@@ -26,7 +26,7 @@ interface ChatParams extends ParsedUrlQuery {
 function formatTitle(title: string | undefined): string {
   if (!title || title === "New chat")
     return "Check out this ShareGPT conversation";
-  else return title;
+  else return `${title} -  A ShareGPT conversation`;
 }
 
 export default function ChatPage({
@@ -113,7 +113,7 @@ export default function ChatPage({
                     alt="Avatar of the person chatting"
                     width="28"
                     height="28"
-                    src={avatarUrl}
+                    src={avatarUrl || `https://avatar.vercel.sh/${id}`}
                   />
                 ) : (
                   <GPTAvatar model={model} />
@@ -156,7 +156,7 @@ export const getStaticPaths = async () => {
     },
   });
   return {
-    paths: convos.map((convo) => ({
+    paths: convos.map((convo: { id: string }) => ({
       params: {
         id: convo.id,
       },

@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getConvos } from "@/lib/api";
-import { PAGINATION_LIMIT } from "@/lib/constants";
 import { getServerSession } from "@/lib/auth";
-import { ratelimit } from "@/lib/upstash";
+import { ratelimit, redis } from "@/lib/upstash";
 import sanitizeHtml from "sanitize-html";
 import { verify } from "jsonwebtoken";
 
@@ -152,6 +150,9 @@ async function setRandomKey(
         content,
         ...(userId && { userId }),
       },
+    });
+    await redis.set(`delete:${id}`, 1, {
+      ex: 60,
     });
     return { id };
   } catch (e: any) {
