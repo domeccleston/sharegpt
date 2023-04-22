@@ -11,8 +11,10 @@ function init() {
 
   function appendShareButton() {
     const buttonsWrapper = document.querySelector(
-      "#__next main form > div div:nth-of-type(1)"
+      "#__next main form > div div:nth-of-type(1) > div"
     );
+
+    console.log(buttonsWrapper);
 
     buttonsWrapper.appendChild(shareButton);
   }
