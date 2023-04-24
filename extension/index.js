@@ -23,8 +23,8 @@ function init() {
 
   const id = setInterval(() => {
     if (
-      !document.querySelector("#share-button") ||
-      document.querySelector("#share-button").style.display === "none"
+      !document.querySelector("#export-button") ||
+      document.querySelector("#export-button").style.display === "none"
     ) {
       appendShareButton();
     }
@@ -153,7 +153,7 @@ function getAvatarImage() {
 function createBtn() {
   const button = document.createElement("button");
 
-  button.id = "share-button";
+  button.id = "export-button";
 
   button.classList.add("btn", "flex", "gap-2", "justify-center", "btn-neutral");
 
