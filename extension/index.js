@@ -146,7 +146,7 @@ function getAvatarImage() {
 
     const image = document.querySelectorAll("img")[3];
 
-    // Set the canvas size to 30x30 pixels
+    // Set the canvas size to 48x48 pixels
     canvas.width = 48;
     canvas.height = 48;
 
