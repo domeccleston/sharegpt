@@ -177,6 +177,7 @@ function createBtn() {
   return button;
 }
 
+
 document.addEventListener("DOMContentLoaded", function() {
-    init(); // Your function call
+    init();
 });
