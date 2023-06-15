@@ -15,21 +15,14 @@ function init() {
     );
     const mobileWrapper = document.querySelector("#__next main form > div");
 
-    if (buttonsWrapper) {
-      if (
-        buttonsWrapper.contains(shareButton) ||
-        mobileWrapper.contains(shareButton)
-      ) {
-        buttonsWrapper.removeChild(shareButton);
-        mobileWrapper.removeChild(shareButton);
-      }
-      buttonsWrapper.appendChild(shareButton);
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      shareButton.style.marginLeft = "6px";
+      mobileWrapper.appendChild(shareButton);
     } else {
-      if (mobileWrapper) {
-        if (mobileWrapper.contains(shareButton)) {
-          mobileWrapper.removeChild(shareButton);
-        }
-        mobileWrapper.appendChild(shareButton);
+      if (buttonsWrapper) {
+        buttonsWrapper.appendChild(shareButton);
+        console.log(buttonsWrapper);
+      } else {
       }
     }
   }
