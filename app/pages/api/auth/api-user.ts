@@ -16,5 +16,7 @@ export default async function generateApiUser(
     expiresIn: "30d",
   });
 
+  console.log({ token });
+
   return res.status(200).json({ userId });
 }
