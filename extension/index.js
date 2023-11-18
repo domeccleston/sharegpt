@@ -82,7 +82,7 @@ function init() {
           const text = node.querySelector(".whitespace-pre-wrap");
           conversationData.items.push({
             from: "human",
-            value: text.textContent,
+            value: text?.textContent || '',
           });
         }
         // if it's a GPT response, it might contain code blocks
