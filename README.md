@@ -23,6 +23,10 @@
 </p>
 <br/>
 
+# Deprecated
+
+As of 2024, ShareGPT is no longer actively being maintained. I recommend switching over to an alternative like TypingMind.
+
 ## Introduction
 
 ShareGPT is an open-source Chrome Extension for you to share your wildest ChatGPT conversations with one click.
