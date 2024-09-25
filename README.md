@@ -23,9 +23,11 @@
 </p>
 <br/>
 
-# Deprecated
+# DEPRECATION NOTICE
 
 As of 2024, ShareGPT is no longer actively being maintained. I recommend switching over to an alternative like TypingMind.
+
+The following is left for posteriority. API access has been discontinued.
 
 ## Introduction
 
