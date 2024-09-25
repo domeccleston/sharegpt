@@ -3,11 +3,11 @@ export default function NotFound() {
 		<div>
 			<h1>404</h1>
 			<p>
-				ShareGPT is deprecated. Please use OpenAI's built-in sharing instead.
+				ShareGPT is deprecated. Please use OpenAI&apos;s built-in sharing instead.
 			</p>
 			<p>
 				If you have a dependency on ShareGPT, please email me at
-				domeccleston@gmail.com and I'll help you migrate.
+				domeccleston@gmail.com and I&apos;ll discuss helping you migrate.
 			</p>
 		</div>
 	);

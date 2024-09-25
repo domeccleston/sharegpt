@@ -15,7 +15,7 @@ export default function Home({}: {}) {
 						ShareGPT
 					</h1>
 					<p className="max-w-lg text-gray-600 transition-colors sm:text-lg">
-						ShareGPT is deprecated. Please use OpenAI's built-in sharing
+						ShareGPT is deprecated. Please use OpenAI&apos;s built-in sharing
 						instead.
 					</p>
 					<p className="max-w-lg text-gray-600 transition-colors sm:text-lg">
